@@ -9,6 +9,12 @@ import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
 import com.mockaroo.api.interfaces.ICreateJSONObject;
 
+/**
+ * Class to create a specific JSONObject - Helper class
+ * @author Dennis Hernández Vargas
+ * @version 0.1.0
+ * @since 09/July/2014
+ */
 public class CreateJSONObjectHelper implements ICreateJSONObject {
 	
 	@Override
