@@ -3,8 +3,11 @@ package com.mockaroo.api.classes;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.mockaroo.api.enums.MockarooMoneyType;
 import com.mockaroo.api.enums.MockarooType;
 import com.mockaroo.api.exceptions.MockarooExceptionArray;
+import com.mockaroo.api.exceptions.MockarooExceptionFormula;
+import com.mockaroo.api.exceptions.MockarooExceptionMyList;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
 
@@ -218,6 +221,292 @@ public class CreateJSONObject {
 	{
 		return createJSONObject.createJSONObject(name, MockarooType.First_Name.toString()
 																.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a First Name European JSONObject
+	 * @param name Column name
+	 * @return First Name JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createFirstNameEuropean(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.First_Name_European.toString()
+																.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a First Name Female JSONObject
+	 * @param name Column name
+	 * @return First Name Female JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createFirstNameFemale(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.First_Name_Female.toString()
+																.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a First Name Male JSONObject
+	 * @param name Column name
+	 * @return First Name Male JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject creatFirstNameMale(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.First_Name_Male.toString()
+																.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a Formula JSONObject
+	 * @param name Column name
+	 * @param formula Formula
+	 * @return Formula JSONObject
+	 * @see {@link http://www.mockaroo.com/api/docs#type_formula}
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionFormula
+	 */
+	public JSONObject createFormula(String name, String formula) 
+			throws MockarooExceptionName, MockarooExceptionFormula
+	{
+		return createJSONObject.createJSONObject(name, formula, MockarooType.Formula.toString());
+	}
+	
+	/**
+	 * Create a Frequency JSONObject
+	 * @param name Column name
+	 * @return Frequency JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createFrequency(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Frequency.toString());
+	}
+	
+	/**
+	 * Create a Full Name JSONObject
+	 * @param name Column name
+	 * @return Full Name JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createFullName(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Full_Name.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a Gender JSONObject
+	 * @param name Column name
+	 * @return Gender JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createGender(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Gender.toString());
+	}
+	
+	/**
+	 * Create a Gender (abbrev) JSONObject
+	 * @param name Column name
+	 * @return Gender (abbrev) JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createGenderAbbrev(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, "Gender (abbrev)");
+	}
+	
+	/**
+	 * Create a Given Name (Chinese) JSONObject
+	 * @param name Column name
+	 * @return Given Name (Chinese) JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createGivenNameChinese(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, "Given Name (Chinese)");
+	}
+	
+	/**
+	 * Create a GUID JSONObject
+	 * @param name Column name
+	 * @return GUID JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createGUID(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.GUID.toString());
+	}
+	
+	/**
+	 * Create a Hex Color JSONObject
+	 * @param name Column name
+	 * @return Hex Color JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createHexColor(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Hex_Color.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a IP Address v4 JSONObject
+	 * @param name Column name
+	 * @return IP Address v4 JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createIPAddressv4(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.IP_Address_v4.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a IP Address v6 JSONObject
+	 * @param name Column name
+	 * @return IP Address v6 JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createIPAddressv6(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.IP_Address_v6.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a ISBN JSONObject
+	 * @param name Column name
+	 * @return ISBN JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createISBN(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.ISBN.toString());
+	}
+	
+	/**
+	 * Create a JSON Array JSONObject
+	 * @param name Column name
+	 * @return JSON Array JSONObject
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionNumber 
+	 */
+	public JSONObject createJSONArray(String name, int minItems, int maxItems) 
+			throws MockarooExceptionName, MockarooExceptionNumber
+	{
+		return createJSONObject.createJSONObject(name,minItems, maxItems, MockarooType.JSON_Array.toString()
+																				.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a Language JSONObject
+	 * @param name Column name
+	 * @return Language JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createLanguage(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Language.toString());
+	}
+	
+	/**
+	 * Create a Last Name JSONObject
+	 * @param name Column name
+	 * @return Last Name JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createLastName(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Last_Name.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a Latitude JSONObject
+	 * @param name Column name
+	 * @return Latitude JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createLatitude(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Latitude.toString());
+	}
+	
+	/**
+	 * Create a Longitude JSONObject
+	 * @param name Column name
+	 * @return Longitude JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createLongitude(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Longitude.toString());
+	}
+	
+	/**
+	 * Create a MAC Address JSONObject
+	 * @param name Column name
+	 * @return MAC Address JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createMACAddress(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.MAC_Address.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a Money JSONObject
+	 * @param name Column name
+	 * @param min Minimum value
+	 * @param max Maximum value
+	 * @param moneyType {@link MockarooMoneyType}
+	 * @return Money JSONObject
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionNumber 
+	 */
+	public JSONObject createMoney(String name, int min, int max, MockarooMoneyType moneyType) 
+			throws MockarooExceptionName, MockarooExceptionNumber
+	{
+		return createJSONObject.createJSONObject(name,min, max, MockarooType.Money.toString(), 
+													moneyType.toString());
+	}
+	
+	/**
+	 * Create a My List JSONObject
+	 * @param name Column name
+	 * @param myListName The name of a saved list
+	 * @return My List JSONObject
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionMyList 
+	 */
+	public JSONObject createMyList(String name, String myListName) 
+			throws MockarooExceptionName, MockarooExceptionMyList
+	{
+		return createJSONObject.createJSONObjectMyList(name, MockarooType.My_List.toString()
+															.replace('_', ' '), myListName);
+	}
+	
+	/**
+	 * Create a Normal Distribution JSONObject
+	 * @param name Column name
+	 * @param mean The mean value for the normal distribution
+	 * @param sd The standard deviation for the normal distribution
+	 * @param decimals The number of decimals places for each generated value
+	 * @return Normal Distribution JSONObject
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionMyList 
+	 * @throws MockarooExceptionNumber 
+	 */
+	public JSONObject createNormalDistribution(String name, Double mean, Double sd, int decimals) 
+			throws MockarooExceptionName, MockarooExceptionMyList, MockarooExceptionNumber
+	{
+		return createJSONObject.createJSONObject(name, mean, sd, decimals, MockarooType.Normal_Distribution.toString()
+																				.replace('_', ' ' ));
 	}
 	
 	/**

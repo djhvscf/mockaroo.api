@@ -4,7 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mockaroo.api.enums.MockarooType;
+import com.mockaroo.api.enums.MockarooMoneyType;
 import com.mockaroo.api.exceptions.MockarooExceptionArray;
+import com.mockaroo.api.exceptions.MockarooExceptionFormula;
+import com.mockaroo.api.exceptions.MockarooExceptionMyList;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
 
@@ -21,11 +24,26 @@ public interface ICreateJSONObject {
 	public static final String messageExceptionMaxDate = "The max date can't be empty";
 	public static final String messageExceptionFormatDate = "The format date can't be empty";
 	public static final String messageExceptionMinLess = "The min number can't be less than 0";
+	public static final String messageExceptionMeanLess = "The mean number can't be less than 0";
+	public static final String messageExceptionSdLess = "The sd number can't be less than 1";
 	public static final String messageExceptionMaxLess = "The max number can't be less than 0";
 	public static final String messageExceptionDecimalLess = "The decimals number can't be less than 0";
 	public static final String messageExceptionNumberSame = "The min and max numbers can't be the same";
 	public static final String messageExceptionMinMax = "The min number must be less than max number";
 	public static final String messageExceptionArray = "The array values can't be empty";
+	public static final String messageExceptionFormula = "The formula can't be empty";
+	public static final String messageExceptionMyList = "The my list name can't be empty";
+
+	/**
+	 * Create a JSONObject
+	 * @param pname Column name
+	 * @param pType {@link MockarooType}
+	 * @return {@link JSONObject}
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionMyList 
+	 */
+	JSONObject createJSONObjectMyList(String name, String type, String myListName) 
+			throws MockarooExceptionName, MockarooExceptionMyList;
 	
 	/**
 	 * Create a JSONObject
@@ -34,8 +52,8 @@ public interface ICreateJSONObject {
 	 * @return {@link JSONObject}
 	 * @throws MockarooExceptionName
 	 */
-	JSONObject createJSONObject(String pname, String pType) throws MockarooExceptionName;
-
+	JSONObject createJSONObject(String name, String type) throws MockarooExceptionName;
+	
 	/**
 	 * Create a JSONObject
 	 * @param name Column name
@@ -66,10 +84,63 @@ public interface ICreateJSONObject {
 	 * @param name Column name
 	 * @param type {@link MockarooType}
 	 * @param values {@link JSONArray}
-	 * @return {@link JSONObject
+	 * @return {@link JSONObject}
 	 * @throws MockarooExceptionName
 	 * @throws MockarooExceptionArray
 	 */
 	JSONObject createJSONObject(String name, String type, JSONArray values)
 			throws MockarooExceptionName, MockarooExceptionArray;
+	
+	/**
+	 * Create a JSONObject 
+	 * @param name Column name
+	 * @param formula Formula
+	 * @param type {@link MockarooType}
+	 * @return {@link JSONObject}
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionFormula 
+	 */
+	JSONObject createJSONObject(String name, String formula, String type) 
+			throws MockarooExceptionName, MockarooExceptionFormula;
+	
+	/**
+	 * Create a JSONObject
+	 * @param name Column name
+	 * @param minItems Minimum items
+	 * @param maxItems Maximum items
+	 * @param type {@link MockarooType}
+	 * @return {@link JSONObject}
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionNumber 
+	 */
+	JSONObject createJSONObject(String name, int minItems, int maxItems, String type)
+			throws MockarooExceptionName, MockarooExceptionNumber;
+	
+	/**
+	 * Create a JSONObject
+	 * @param name Column name
+	 * @param minimum Minimum value
+	 * @param maximum Maximum value
+	 * @param type {@link MockarooType}
+	 * @param moneyType {@link MockarooMoneyType}
+	 * @return {@link JSONObject}
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionNumber
+	 */
+	JSONObject createJSONObject(String name, int min, int max, String type, String moneyType)
+			throws MockarooExceptionName, MockarooExceptionNumber;
+	
+	/**
+	 * Create a JSONObject
+	 * @param name Column name
+	 * @param mean The mean value for the normal distribution
+	 * @param sd The standard deviation for the normal distribution
+	 * @param decimals The number of decimals places for each generated value
+	 * @param type {@link MockarooType}
+	 * @return {@link JSONObject}
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionNumber
+	 */
+	JSONObject createJSONObject(String name, Double mean, Double sd, int decimals, String type)
+			throws MockarooExceptionName, MockarooExceptionNumber;;
 }
