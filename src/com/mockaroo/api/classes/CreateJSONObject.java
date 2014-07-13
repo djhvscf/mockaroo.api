@@ -10,6 +10,8 @@ import com.mockaroo.api.exceptions.MockarooExceptionFormula;
 import com.mockaroo.api.exceptions.MockarooExceptionMyList;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
+import com.mockaroo.api.exceptions.MockarooExceptionRegExpValue;
+import com.mockaroo.api.helpers.CreateJSONObjectHelper;
 
 /**
  * Class to create a specific JSONObject
@@ -524,4 +526,116 @@ public class CreateJSONObject {
 	{
 		return createJSONObject.createJSONObject(name, min, max, decimals);
 	}
+	
+	/**
+	 * Create a Paragraphs JSONObject
+	 * @param name Column name
+	 * @param min Minimum value
+	 * @param max Maximum value
+	 * @return Paragraphs JSONObject
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionNumber 
+	 */
+	public JSONObject createParagraphs(String name, int min, int max) 
+			throws MockarooExceptionName, MockarooExceptionNumber
+	{
+		return createJSONObject.createJSONObject(name,min, max, MockarooType.Paragraphs.toString());
+	}
+	
+	/**
+	 * Create a Password JSONObject
+	 * @param name Column name
+	 * @return Password JSONObject
+	 * @throws MockarooExceptionName 
+	 */
+	public JSONObject createPassword(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Password.toString());
+	}
+	
+	/**
+	 * Create a Phone JSONObject
+	 * @param name Column name
+	 * @return Phone JSONObject
+	 * @throws MockarooExceptionName 
+	 */
+	public JSONObject createPhone(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Phone.toString());
+	}
+	
+	/**
+	 * Create a Province JSONObject
+	 * @param name Column name
+	 * @return Province JSONObject
+	 * @throws MockarooExceptionName 
+	 */
+	public JSONObject createProvince(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Province.toString());
+	}
+	
+	/**
+	 * Create a Province (abbrev) JSONObject
+	 * @param name Column name
+	 * @return Province (abbrev) JSONObject
+	 * @throws MockarooExceptionName 
+	 */
+	public JSONObject createProvinceAbbrev(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, "Province (abbrev)");
+	}
+	
+	/**
+	 * Create a Race JSONObject
+	 * @param name Column name
+	 * @return Race JSONObject
+	 * @throws MockarooExceptionName 
+	 */
+	public JSONObject createRace(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Race.toString());
+	}
+	
+	/**
+	 * Create a Regular Expression JSONObject
+	 * @param name Column name
+	 * @param value Regular expression value
+	 * @return Regular Expression JSONObject
+	 * @throws MockarooExceptionName 
+	 * @throws MockarooExceptionMyList 
+	 */
+	public JSONObject createRegularExpression(String name, String value) 
+			throws MockarooExceptionName, MockarooExceptionRegExpValue
+	{
+		return createJSONObject.createJSONObjectRegExp(name, value, MockarooType.Regular_Expression.toString()
+																.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a Row Number JSONObject
+	 * @param name Column name
+	 * @return Row Number JSONObject
+	 * @throws MockarooExceptionName 
+	 */
+	public JSONObject createRowNumber(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Row_Number.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a Sentences JSONObject
+	 * @param name Column name
+	 * @return Sentences JSONObject
+	 * @throws MockarooExceptionName 
+	 * @throws MockarooExceptionNumber 
+	 */
+	public JSONObject createSentences(String name, int min, int max) throws MockarooExceptionName, MockarooExceptionNumber
+	{
+		return createJSONObject.createJSONObjectSentences(name, min, max, MockarooType.Sentences.toString()
+															.replace('_', ' '));
+	}
+	
+	//Sequence
 }

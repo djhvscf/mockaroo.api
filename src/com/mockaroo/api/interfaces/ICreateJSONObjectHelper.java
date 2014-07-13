@@ -10,6 +10,7 @@ import com.mockaroo.api.exceptions.MockarooExceptionFormula;
 import com.mockaroo.api.exceptions.MockarooExceptionMyList;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
+import com.mockaroo.api.exceptions.MockarooExceptionRegExpValue;
 
 /**
  * Interface that provide base methods to create JSONObject
@@ -17,7 +18,7 @@ import com.mockaroo.api.exceptions.MockarooExceptionNumber;
  * @version 0.1.0
  * @since 09/July/2014
  */
-public interface ICreateJSONObject {
+public interface ICreateJSONObjectHelper {
 
 	public static final String messageExceptionName = "The column name can't be empty";
 	public static final String messageExceptionMinDate = "The min date can't be empty";
@@ -33,6 +34,7 @@ public interface ICreateJSONObject {
 	public static final String messageExceptionArray = "The array values can't be empty";
 	public static final String messageExceptionFormula = "The formula can't be empty";
 	public static final String messageExceptionMyList = "The my list name can't be empty";
+	public static final String messageExceptionValue = "The regular expression value can't be empty";
 
 	/**
 	 * Create a JSONObject
@@ -44,6 +46,32 @@ public interface ICreateJSONObject {
 	 */
 	JSONObject createJSONObjectMyList(String name, String type, String myListName) 
 			throws MockarooExceptionName, MockarooExceptionMyList;
+	
+	/**
+	 * Create a JSONObject
+	 * @param name Column name
+	 * @param value Expression value
+	 * @param type {@link MockarooType}
+	 * @return {@link JSONObject}
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionRegExpValue 
+	 */
+	JSONObject createJSONObjectRegExp(String name, String value, String type) 
+			throws MockarooExceptionName, MockarooExceptionRegExpValue;
+	
+	
+	/**
+	 * Create a JSONObject
+	 * @param name Column name
+	 * @param min Minimum sentences
+	 * @param maxs Maximum sentences
+	 * @param type {@link MockarooType}
+	 * @return {@link JSONObject}
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionNumber 
+	 */
+	JSONObject createJSONObjectSentences(String name, int min, int max, String type)
+			throws MockarooExceptionName, MockarooExceptionNumber;
 	
 	/**
 	 * Create a JSONObject

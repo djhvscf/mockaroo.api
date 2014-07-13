@@ -1,4 +1,4 @@
-package com.mockaroo.api.classes;
+package com.mockaroo.api.helpers;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,7 +9,8 @@ import com.mockaroo.api.exceptions.MockarooExceptionFormula;
 import com.mockaroo.api.exceptions.MockarooExceptionMyList;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
-import com.mockaroo.api.interfaces.ICreateJSONObject;
+import com.mockaroo.api.exceptions.MockarooExceptionRegExpValue;
+import com.mockaroo.api.interfaces.ICreateJSONObjectHelper;
 
 /**
  * Class to create a specific JSONObject - Helper class
@@ -17,15 +18,15 @@ import com.mockaroo.api.interfaces.ICreateJSONObject;
  * @version 0.1.0
  * @since 09/July/2014
  */
-public class CreateJSONObjectHelper implements ICreateJSONObject {
+public class CreateJSONObjectHelper implements ICreateJSONObjectHelper {
+	
+	private ValidatorHelper validator = new ValidatorHelper();
 	
 	@Override
-	public JSONObject createJSONObject(String name, String type) throws MockarooExceptionName
+	public JSONObject createJSONObject(String name, String type) throws MockarooExceptionName 
 	{
-		if(name.isEmpty())
-		{
-			throw new MockarooExceptionName(messageExceptionName);
-		}
+		validator.validateColumnName(name, messageExceptionName);
+		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("name", name);
 		jsonObject.put("type", type);
@@ -37,10 +38,7 @@ public class CreateJSONObjectHelper implements ICreateJSONObject {
 	public JSONObject createJSONObject(String name, String type, JSONArray values) 
 			throws MockarooExceptionName, MockarooExceptionArray
 	{
-		if(name.isEmpty())
-		{
-			throw new MockarooExceptionName(messageExceptionName);
-		}
+		validator.validateColumnName(name, messageExceptionName);
 		
 		if(values.length() == 0)
 		{
@@ -59,10 +57,7 @@ public class CreateJSONObjectHelper implements ICreateJSONObject {
 	public JSONObject createJSONObject(String name, String min, String max, String format) 
 			throws MockarooExceptionName 
 	{
-		if(name.isEmpty())
-		{
-			throw new MockarooExceptionName(messageExceptionName);
-		}
+		validator.validateColumnName(name, messageExceptionName);
 		
 		if(min.isEmpty())
 		{
@@ -93,35 +88,17 @@ public class CreateJSONObjectHelper implements ICreateJSONObject {
 	public JSONObject createJSONObject(String name, int min, int max, int decimals) 
 													throws MockarooExceptionNumber, MockarooExceptionName 
 	{
-		if(name.isEmpty())
-		{
-			throw new MockarooExceptionName(messageExceptionName);
-		}
+		validator.validateColumnName(name, messageExceptionName);
 		
-		if(min < 0)
-		{
-			throw new MockarooExceptionNumber(messageExceptionMinLess);
-		}
+		validator.validateNumber(min, messageExceptionMinLess);
 		
-		if(max < 0)
-		{
-			throw new MockarooExceptionNumber(messageExceptionMaxLess);
-		}
+		validator.validateNumber(max, messageExceptionMaxLess);
 		
-		if(decimals < 0)
-		{
-			throw new MockarooExceptionNumber(messageExceptionDecimalLess);
-		}
+		validator.validateNumber(decimals , messageExceptionDecimalLess);
 		
-		if(min == max)
-		{
-			throw new MockarooExceptionNumber(messageExceptionNumberSame);
-		}
+		validator.validateNumberEquals(min, max, messageExceptionNumberSame);
 		
-		if(max < min)
-		{
-			throw new MockarooExceptionNumber(messageExceptionMinMax);
-		}
+		validator.validateNumber(max, min, messageExceptionMinMax);
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("name", name);
@@ -137,10 +114,7 @@ public class CreateJSONObjectHelper implements ICreateJSONObject {
 	public JSONObject createJSONObject(String name, String formula, String type)
 			throws MockarooExceptionName, MockarooExceptionFormula 
 	{
-		if(name.isEmpty())
-		{
-			throw new MockarooExceptionName(messageExceptionName);
-		}
+		validator.validateColumnName(name, messageExceptionName);
 		
 		if(formula.isEmpty())
 		{
@@ -159,20 +133,13 @@ public class CreateJSONObjectHelper implements ICreateJSONObject {
 	public JSONObject createJSONObject(String name, int minItems, int maxItems, String type)
 			throws MockarooExceptionName, MockarooExceptionNumber {
 
-		if(minItems < 0)
-		{
-			throw new MockarooExceptionNumber(messageExceptionMinLess);
-		}
+		validator.validateColumnName(name, messageExceptionName);
 		
-		if(maxItems < 0)
-		{
-			throw new MockarooExceptionNumber(messageExceptionMaxLess);
-		}
+		validator.validateNumber(minItems, messageExceptionMaxLess);
 		
-		if(minItems == maxItems)
-		{
-			throw new MockarooExceptionNumber(messageExceptionNumberSame);
-		}
+		validator.validateNumber(maxItems, messageExceptionMaxLess);
+		
+		validator.validateNumberEquals(minItems, maxItems, messageExceptionNumberSame);
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("name", name);
@@ -188,25 +155,13 @@ public class CreateJSONObjectHelper implements ICreateJSONObject {
 			String type, String moneyType) throws MockarooExceptionName, MockarooExceptionNumber 
 	{
 		
-		if(name.isEmpty())
-		{
-			throw new MockarooExceptionName(messageExceptionName);
-		}
+		validator.validateColumnName(name, messageExceptionName);
 		
-		if(min < 0)
-		{
-			throw new MockarooExceptionNumber(messageExceptionMinLess);
-		}
+		validator.validateNumber(min, messageExceptionMaxLess);
 		
-		if(max < 0)
-		{
-			throw new MockarooExceptionNumber(messageExceptionMaxLess);
-		}
+		validator.validateNumber(max, messageExceptionMaxLess);
 		
-		if(min == max)
-		{
-			throw new MockarooExceptionNumber(messageExceptionNumberSame);
-		}
+		validator.validateNumberEquals(min, max, messageExceptionNumberSame);
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("name", name);
@@ -222,10 +177,7 @@ public class CreateJSONObjectHelper implements ICreateJSONObject {
 	public JSONObject createJSONObjectMyList(String name, String type,
 			String myListName) throws MockarooExceptionName, MockarooExceptionMyList 
 	{
-		if(name.isEmpty())
-		{
-			throw new MockarooExceptionName(messageExceptionName);
-		}
+		validator.validateColumnName(name, messageExceptionName);
 		
 		if(myListName.isEmpty())
 		{
@@ -244,31 +196,61 @@ public class CreateJSONObjectHelper implements ICreateJSONObject {
 	public JSONObject createJSONObject(String name, Double mean, Double sd,
 			int decimals, String type) throws MockarooExceptionName, MockarooExceptionNumber {
 		
-		if(name.isEmpty())
-		{
-			throw new MockarooExceptionName(messageExceptionName);
-		}
+		validator.validateColumnName(name, messageExceptionName);
 		
-		if(mean < 0)
-		{
-			throw new MockarooExceptionNumber(messageExceptionMeanLess);
-		}
+		validator.validateNumber(mean, messageExceptionMeanLess);
 		
-		if(sd < 1)
-		{
-			throw new MockarooExceptionNumber(messageExceptionSdLess);
-		}
+		validator.validateNumber(decimals, messageExceptionDecimalLess);
 		
-		if(decimals < 0)
-		{
-			throw new MockarooExceptionNumber(messageExceptionDecimalLess);
-		}
+		validator.validateNumber(sd, 1, messageExceptionSdLess);
+		
+		validator.validateNumber(decimals, messageExceptionDecimalLess);
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("name", name);
 		jsonObject.put("type", type);
 		jsonObject.put("mean", mean);
 		jsonObject.put("sd", sd);
+		
+		return jsonObject;
+	}
+
+	@Override
+	public JSONObject createJSONObjectRegExp(String name, String value, String type) 
+			throws MockarooExceptionName, MockarooExceptionRegExpValue {
+		
+		validator.validateColumnName(name, messageExceptionName);
+		
+		if(value.isEmpty())
+		{
+			throw new MockarooExceptionRegExpValue(messageExceptionValue);
+		}
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("name", name);
+		jsonObject.put("type", type);
+		jsonObject.put("value", value);
+		
+		return jsonObject;
+	}
+
+	@Override
+	public JSONObject createJSONObjectSentences(String name, int min, int max,
+			String type) throws MockarooExceptionName, MockarooExceptionNumber {
+		
+		validator.validateColumnName(name, messageExceptionName);
+		
+		validator.validateNumber(min, messageExceptionMinLess);
+		
+		validator.validateNumber(max, messageExceptionMaxLess);
+		
+		validator.validateNumberEquals(min, max, messageExceptionNumberSame);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("name", name);
+		jsonObject.put("type", type);
+		jsonObject.put("min", min);
+		jsonObject.put("max", max);
 		
 		return jsonObject;
 	}

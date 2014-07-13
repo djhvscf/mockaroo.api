@@ -1,0 +1,81 @@
+package com.mockaroo.api.helpers;
+
+import com.mockaroo.api.exceptions.MockarooExceptionName;
+import com.mockaroo.api.exceptions.MockarooExceptionNumber;
+import com.mockaroo.api.interfaces.IValidatorHelper;
+
+/**
+ * Class to validate some things - Helper class
+ * @author Dennis Hernández Vargas
+ * @version 0.1.0
+ * @since 12/July/2014
+ */
+public class ValidatorHelper implements IValidatorHelper {
+
+	@Override
+	public void validateColumnName(String name, String messageException) throws MockarooExceptionName
+	{
+		if(name.isEmpty())
+		{
+			throw new MockarooExceptionName(messageException);
+		}
+	}
+	
+	@Override
+	public void validateNumber(int number, String messageException) throws MockarooExceptionNumber
+	{
+		if(number < 0)
+		{
+			throw new MockarooExceptionNumber(messageException);
+		}
+	}
+
+	@Override
+	public void validateNumber(Double number, String messageException)
+			throws MockarooExceptionNumber {
+		
+		if (number < 0)
+		{
+			throw new MockarooExceptionNumber(messageException);
+		}
+	}
+
+	@Override
+	public void validateNumber(int number, int numberValidator,
+			String messageException) throws MockarooExceptionNumber {
+		
+		if(number < numberValidator)
+		{
+			throw new MockarooExceptionNumber(messageException);
+		}		
+	}
+
+	@Override
+	public void validateNumber(Double number, int numberValidator,
+			String messageException) throws MockarooExceptionNumber {
+		
+		if(number < numberValidator)
+		{
+			throw new MockarooExceptionNumber(messageException);
+		}
+	}
+
+	@Override
+	public void validateNumberEquals(int number, int numberValidator,
+			String messageException) throws MockarooExceptionNumber {
+	
+		if(number == numberValidator)
+		{
+			throw new MockarooExceptionNumber(messageException);
+		}
+	}
+
+	@Override
+	public void validateNumberEquals(Double number, Double numberValidator,
+			String messageException) throws MockarooExceptionNumber {
+		if(number == numberValidator)
+		{
+			throw new MockarooExceptionNumber(messageException);
+		}
+	}
+}
