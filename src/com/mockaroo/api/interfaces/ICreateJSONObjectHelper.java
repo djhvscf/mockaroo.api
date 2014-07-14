@@ -40,6 +40,8 @@ public interface ICreateJSONObjectHelper {
 	public static final String messageExceptionStepLess = "The step number can't be less than 1";
 	public static final String messageExceptionRepeatLess = "The repeat number can't be less than 1";
 	public static final String messageExceptionValueTemplate = "The value template can't be empty";
+	public static final String messageExceptionMinTime = "The minimum time can't be empty";
+	public static final String messageExceptionMaxTime = "The maximum time can't be empty";
 
 	/**
 	 * Create a JSONObject
@@ -106,6 +108,31 @@ public interface ICreateJSONObjectHelper {
 	 */
 	JSONObject createJSONObjectTemplate(String name, String value, String type)
 			throws MockarooExceptionName, MockarooExceptionValue;
+	
+	/**
+	 * Create a JSONObject
+	 * @param name Column name
+	 * @param time Time
+	 * @param type {@link MockarooType}
+	 * @return {@link JSONObject}
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionValue
+	 */
+	JSONObject createJSONObjectTime(String name, String min, String max, String format, String type) 
+			throws MockarooExceptionName, MockarooExceptionValue;
+	
+	/**
+	 * Create a JSONObject 
+	 * @param name Column name
+	 * @param min Minimum words
+	 * @param max Maximum words
+	 * @param type {@link MockarooType}
+	 * @return {@link JSONObject}
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionNumber
+	 */
+	JSONObject createJSONObjectWords(String name, int min, int max, String type) 
+			throws MockarooExceptionName, MockarooExceptionNumber;
 	
 	/**
 	 * Create a JSONObject
@@ -206,5 +233,19 @@ public interface ICreateJSONObjectHelper {
 	 * @throws MockarooExceptionNumber
 	 */
 	JSONObject createJSONObject(String name, Double mean, Double sd, int decimals, String type)
-			throws MockarooExceptionName, MockarooExceptionNumber;;
+			throws MockarooExceptionName, MockarooExceptionNumber;
+	
+	/**
+	 * Create a JSONObject
+	 * @param name Column name
+	 * @param includeProtocol True to include a protocol in the url
+	 * @param includeHost True to include a hostname in the url
+	 * @param includePath True to include a path in the url
+	 * @param includeQueryString True to include a query string in the url
+	 * @param type {@link MockarooType}
+	 * @return {@link JSONObject}
+	 * @throws MockarooExceptionName
+	 */
+	JSONObject createJSONObject(String name, boolean includeProtocol, boolean includeHost, 
+			boolean includePath, boolean includeQueryString, String type) throws MockarooExceptionName;
 }

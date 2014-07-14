@@ -294,4 +294,66 @@ public class CreateJSONObjectHelper implements ICreateJSONObjectHelper {
 		
 		return jsonObject;
 	}
+
+	@Override
+	public JSONObject createJSONObjectTime(String name, String min, String max, String format, String type)
+			throws MockarooExceptionName, MockarooExceptionValue {
+		
+		validator.validateColumnName(name, messageExceptionName);
+		
+		validator.validateString(min, messageExceptionMinTime);
+		
+		validator.validateString(max, messageExceptionMaxTime);
+		
+		validator.validateString(format, messageExceptionValueTemplate);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("name", name);
+		jsonObject.put("type", type);
+		jsonObject.put("min", min);
+		jsonObject.put("max", max);
+		jsonObject.put("format", format);
+		
+		return jsonObject;
+	}
+
+	@Override
+	public JSONObject createJSONObject(String name, boolean includeProtocol, boolean includeHost, 
+			boolean includePath, boolean includeQueryString, String type)
+			throws MockarooExceptionName 
+	{
+		
+		validator.validateColumnName(name, messageExceptionName);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("name", name);
+		jsonObject.put("type", type);
+		jsonObject.put("includeProtocol", includeProtocol);
+		jsonObject.put("includeHost", includeHost);
+		jsonObject.put("includePath", includePath);
+		jsonObject.put("includeQueryString", includeQueryString);
+		
+		return jsonObject;
+	}
+
+	@Override
+	public JSONObject createJSONObjectWords(String name, int min, int max,
+			String type) throws MockarooExceptionName, MockarooExceptionNumber {
+		
+		validator.validateColumnName(name, messageExceptionName);
+		
+		validator.validateNumber(min, messageExceptionMinLess);
+		
+		validator.validateNumber(max, messageExceptionMaxLess);
+		
+		validator.validateNumberEquals(min, max, messageExceptionNumberSame);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("name", name);
+		jsonObject.put("type", type);
+		jsonObject.put("min", min);
+		jsonObject.put("max", max);
+		
+		return jsonObject;
+	}
 }

@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mockaroo.api.enums.MockarooMoneyType;
+import com.mockaroo.api.enums.MockarooTimeType;
 import com.mockaroo.api.enums.MockarooType;
 import com.mockaroo.api.exceptions.MockarooExceptionArray;
 import com.mockaroo.api.exceptions.MockarooExceptionFormula;
@@ -775,6 +776,7 @@ public class CreateJSONObject {
 	/**
 	 * Create a Template JSONObject
 	 * @param name Column name
+	 * @param value Template value
 	 * @return Template JSONObject
 	 * @throws MockarooExceptionName 
 	 * @throws MockarooExceptionValue 
@@ -784,5 +786,115 @@ public class CreateJSONObject {
 	{
 		return createJSONObject.createJSONObjectTemplate(name, value, MockarooType.Template.toString());
 	}
-	//Time
+	
+	/**
+	 * Create a Time JSONObject
+	 * @param name Column name
+	 * @param min The minimum time in HH:MM AM/PM format
+	 * @param max The maximum time in HH:MM AM/PM format
+	 * @param format The format to output
+	 * @return Time JSONObject
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionValue
+	 */
+	public JSONObject createTime(String name, String min, String max, MockarooTimeType format) 
+			throws MockarooExceptionName, MockarooExceptionValue
+	{
+		return createJSONObject.createJSONObjectTime(name, min, max, format.toString(), 
+															MockarooType.Time.toString());
+	}
+	
+	/**
+	 * Create a Time Zone JSONObject
+	 * @param name Column name
+	 * @return Time Zone JSONObject
+	 * @throws MockarooExceptionName 
+	 * @throws MockarooExceptionValue 
+	 */
+	public JSONObject createTimeZone(String name)throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Time_Zone.toString());
+	}
+	
+	/**
+	 * Create a Title JSONObject
+	 * @param name Column name
+	 * @return Title JSONObject
+	 * @throws MockarooExceptionName 
+	 * @throws MockarooExceptionValue 
+	 */
+	public JSONObject createTitle(String name)throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Title.toString());
+	}
+	
+	/**
+	 * Create a Top Level Domain JSONObject
+	 * @param name Column name
+	 * @return Top Level Domain JSONObject
+	 * @throws MockarooExceptionName 
+	 * @throws MockarooExceptionValue 
+	 */
+	public JSONObject createTopLevelDomain(String name)throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Top_Level_Domain.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a URL JSONObject
+	 * @param name Column name
+	 * @param includeProtocol True to include a protocol in the url
+	 * @param includeHost True to include a hostname in the url
+	 * @param includePath True to include a path in the url
+	 * @param includeQueryString True to include a query string in the url
+	 * @return URL JSONObject
+	 * @throws MockarooExceptionName
+	 */
+	public JSONObject createURL(String name, boolean includeProtocol, boolean includeHost,
+			boolean includePath, boolean includeQueryString) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, includeProtocol, includeHost, 
+				includePath, includeQueryString, MockarooType.URL.toString());
+	}
+	
+	/**
+	 * Create a Username JSONObject
+	 * @param name Column name
+	 * @return Username JSONObject
+	 * @throws MockarooExceptionName 
+	 * @throws MockarooExceptionValue 
+	 */
+	public JSONObject createUsername(String name)throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Username.toString());
+	}
+	
+	/**
+	 * Create a Words JSONObject
+	 * @param name Column name
+	 * @param min Minimun words
+	 * @param max Maximum words
+	 * @return Words JSONObject
+	 * @throws MockarooExceptionName 
+	 * @throws MockarooExceptionNumber 
+	 * @throws MockarooExceptionValue 
+	 */
+	public JSONObject createWords(String name, int min, int max)
+			throws MockarooExceptionName, MockarooExceptionNumber
+	{
+		return createJSONObject.createJSONObjectWords(name, min, max, MockarooType.Words.toString());
+	}
+	
+	/**
+	 * Create a Zip JSONObject
+	 * @param name Column name
+	 * @return Zip JSONObject
+	 * @throws MockarooExceptionName 
+	 * @throws MockarooExceptionValue 
+	 */
+	public JSONObject createZip(String name)throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Zip.toString());
+	}
 }
