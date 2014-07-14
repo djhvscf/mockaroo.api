@@ -15,7 +15,7 @@ public interface IValidatorHelper {
 	/**
 	 * Validate if the column name is null or empty
 	 * @param name Column name
-	 * @param messageException Message to show when the exception is throwed
+	 * @param messageException Message to show when the exception is thrown
 	 * @throws MockarooExceptionName
 	 */
 	void validateColumnName(String name, String messageException) throws MockarooExceptionName;
@@ -23,7 +23,7 @@ public interface IValidatorHelper {
 	/**
 	 * Validate if the value string is empty
 	 * @param value String to validate
-	 * @param messageException Message to show when the exception is throwed
+	 * @param messageException Message to show when the exception is thrown
 	 * @throws MockarooExceptionValue
 	 */
 	void validateString(String value, String messageException) throws MockarooExceptionValue;
@@ -31,7 +31,7 @@ public interface IValidatorHelper {
 	/**
 	 * Validate if the number is less than 0
 	 * @param number Number to validate
-	 * @param messageException Message to show when the exception is throwed
+	 * @param messageException Message to show when the exception is thrown
 	 * @throws MockarooExceptionName
 	 */
 	void validateNumber(int number, String messageException) throws MockarooExceptionNumber;
@@ -39,7 +39,7 @@ public interface IValidatorHelper {
 	/**
 	 * Validate if the number is less than 0
 	 * @param number Number to validate
-	 * @param messageException Message to show when the exception is throwed
+	 * @param messageException Message to show when the exception is thrown
 	 * @throws MockarooExceptionName
 	 */
 	void validateNumber(Double number, String messageException) throws MockarooExceptionNumber;
@@ -48,7 +48,7 @@ public interface IValidatorHelper {
 	 * Validate if the number is less than number passed by parameter
 	 * @param number Number to validate
 	 * @param numberValidator Number validator
-	 * @param messageException Message to show when the exception is throwed
+	 * @param messageException Message to show when the exception is thrown
 	 * @throws MockarooExceptionName
 	 */
 	void validateNumber(int number, int numberValidator, String messageException) throws MockarooExceptionNumber;
@@ -57,7 +57,7 @@ public interface IValidatorHelper {
 	 * Validate if the number is less than number passed by parameter
 	 * @param number Number to validate
 	 * @param numberValidator Number validator
-	 * @param messageException Message to show when the exception is throwed
+	 * @param messageException Message to show when the exception is thrown
 	 * @throws MockarooExceptionName
 	 */
 	void validateNumber(Double number, int numberValidator, String messageException) 
@@ -67,7 +67,7 @@ public interface IValidatorHelper {
 	 * Validate if the number are equals
 	 * @param number Number to validate
 	 * @param numberValidator Number validator
-	 * @param messageException Message to show when the exception is throwed
+	 * @param messageException Message to show when the exception is thrown
 	 * @throws MockarooExceptionName
 	 */
 	void validateNumberEquals(int number, int numberValidator, String messageException) 
@@ -77,7 +77,7 @@ public interface IValidatorHelper {
 	 * Validate if the number are equals
 	 * @param number Number to validate
 	 * @param numberValidator Number validator
-	 * @param messageException Message to show when the exception is throwed
+	 * @param messageException Message to show when the exception is thrown
 	 * @throws MockarooExceptionName
 	 */
 	void validateNumberEquals(Double number, Double numberValidator, String messageException) 
