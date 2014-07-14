@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import com.mockaroo.api.enums.MockarooType;
 import com.mockaroo.api.enums.MockarooMoneyType;
 import com.mockaroo.api.exceptions.MockarooExceptionArray;
+import com.mockaroo.api.exceptions.MockarooExceptionFormatTime;
 import com.mockaroo.api.exceptions.MockarooExceptionFormula;
 import com.mockaroo.api.exceptions.MockarooExceptionMyList;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
@@ -112,14 +113,17 @@ public interface ICreateJSONObjectHelper {
 	/**
 	 * Create a JSONObject
 	 * @param name Column name
-	 * @param time Time
+	 * @param min Minimum time
+	 * @param max Maximum time
+	 * @param format Format time
 	 * @param type {@link MockarooType}
 	 * @return {@link JSONObject}
 	 * @throws MockarooExceptionName
-	 * @throws MockarooExceptionValue
+	 * @throws MockarooExceptionFormatTime 
+	 * @throws MockarooExceptionValue 
 	 */
 	JSONObject createJSONObjectTime(String name, String min, String max, String format, String type) 
-			throws MockarooExceptionName, MockarooExceptionValue;
+			throws MockarooExceptionName, MockarooExceptionFormatTime, MockarooExceptionValue;
 	
 	/**
 	 * Create a JSONObject 

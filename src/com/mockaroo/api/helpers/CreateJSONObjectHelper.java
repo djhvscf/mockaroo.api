@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mockaroo.api.exceptions.MockarooExceptionArray;
+import com.mockaroo.api.exceptions.MockarooExceptionFormatTime;
 import com.mockaroo.api.exceptions.MockarooExceptionFormula;
 import com.mockaroo.api.exceptions.MockarooExceptionMyList;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
@@ -297,7 +298,7 @@ public class CreateJSONObjectHelper implements ICreateJSONObjectHelper {
 
 	@Override
 	public JSONObject createJSONObjectTime(String name, String min, String max, String format, String type)
-			throws MockarooExceptionName, MockarooExceptionValue {
+			throws MockarooExceptionName, MockarooExceptionFormatTime, MockarooExceptionValue {
 		
 		validator.validateColumnName(name, messageExceptionName);
 		
@@ -305,7 +306,7 @@ public class CreateJSONObjectHelper implements ICreateJSONObjectHelper {
 		
 		validator.validateString(max, messageExceptionMaxTime);
 		
-		validator.validateString(format, messageExceptionValueTemplate);
+		validator.validateTimeFormat(format, messageExceptionValueTemplate);
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("name", name);

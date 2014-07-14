@@ -1,5 +1,7 @@
 package com.mockaroo.api.helpers;
 
+import com.mockaroo.api.enums.MockarooTimeType;
+import com.mockaroo.api.exceptions.MockarooExceptionFormatTime;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
 import com.mockaroo.api.exceptions.MockarooExceptionValue;
@@ -86,6 +88,27 @@ public class ValidatorHelper implements IValidatorHelper {
 		if(value.isEmpty())
 		{
 			throw new MockarooExceptionValue(messageException);
+		}
+	}
+
+	@Override
+	public void validateTimeFormat(String value, String messageException)
+			throws MockarooExceptionFormatTime {
+		
+		boolean isValidFormatTime = false;
+		MockarooTimeType.values();
+		
+		for(MockarooTimeType timeType : MockarooTimeType.values())
+		{
+	        if(value == timeType.getTimeType())
+	        {
+	        	isValidFormatTime = true;
+	        }
+	    }
+		
+		if(!isValidFormatTime)
+		{
+			throw new MockarooExceptionFormatTime(messageException);
 		}
 	}
 }
