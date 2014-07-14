@@ -3,13 +3,13 @@ package com.mockaroo.api.helpers;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.mockaroo.api.enums.MockarooType;
 import com.mockaroo.api.exceptions.MockarooExceptionArray;
 import com.mockaroo.api.exceptions.MockarooExceptionFormula;
 import com.mockaroo.api.exceptions.MockarooExceptionMyList;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
 import com.mockaroo.api.exceptions.MockarooExceptionRegExpValue;
+import com.mockaroo.api.exceptions.MockarooExceptionValue;
 import com.mockaroo.api.interfaces.ICreateJSONObjectHelper;
 
 /**
@@ -54,7 +54,7 @@ public class CreateJSONObjectHelper implements ICreateJSONObjectHelper {
 	}
 	
 	@Override
-	public JSONObject createJSONObject(String name, String min, String max, String format) 
+	public JSONObject createJSONObject(String name, String min, String max, String format, String type) 
 			throws MockarooExceptionName 
 	{
 		validator.validateColumnName(name, messageExceptionName);
@@ -76,7 +76,7 @@ public class CreateJSONObjectHelper implements ICreateJSONObjectHelper {
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("name", name);
-		jsonObject.put("type", MockarooType.Date.toString());
+		jsonObject.put("type", type);
 		jsonObject.put("min", min);
 		jsonObject.put("max", max);
 		jsonObject.put("format", format);
@@ -85,7 +85,7 @@ public class CreateJSONObjectHelper implements ICreateJSONObjectHelper {
 	}
 	
 	@Override
-	public JSONObject createJSONObject(String name, int min, int max, int decimals) 
+	public JSONObject createJSONObject(String name, int min, int max, int decimals, String type) 
 													throws MockarooExceptionNumber, MockarooExceptionName 
 	{
 		validator.validateColumnName(name, messageExceptionName);
@@ -102,7 +102,7 @@ public class CreateJSONObjectHelper implements ICreateJSONObjectHelper {
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("name", name);
-		jsonObject.put("type", MockarooType.Number.toString());
+		jsonObject.put("type", type);
 		jsonObject.put("min", min);
 		jsonObject.put("max", max);
 		jsonObject.put("decimals", decimals);
@@ -251,6 +251,46 @@ public class CreateJSONObjectHelper implements ICreateJSONObjectHelper {
 		jsonObject.put("type", type);
 		jsonObject.put("min", min);
 		jsonObject.put("max", max);
+		
+		return jsonObject;
+	}
+
+	@Override
+	public JSONObject createJSONObjectSequence(String name, int start,
+			int step, int repeat, String type) throws MockarooExceptionName,
+			MockarooExceptionNumber {
+		
+		validator.validateColumnName(name, messageExceptionName);
+		
+		validator.validateNumber(start, 1, messageExceptionStartLess);
+		
+		validator.validateNumber(step, 1, messageExceptionStepLess);
+		
+		validator.validateNumber(repeat, 1, messageExceptionRepeatLess);
+		
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("name", name);
+		jsonObject.put("type", type);
+		jsonObject.put("start", start);
+		jsonObject.put("step", step);
+		jsonObject.put("repeat", repeat);
+		
+		return jsonObject;
+	}
+
+	@Override
+	public JSONObject createJSONObjectTemplate(String name, String value,
+			String type) throws MockarooExceptionName, MockarooExceptionValue {
+		
+		validator.validateColumnName(name, messageExceptionName);
+		
+		validator.validateString(value, messageExceptionValueTemplate);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("name", name);
+		jsonObject.put("type", type);
+		jsonObject.put("value", value);
 		
 		return jsonObject;
 	}

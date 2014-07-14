@@ -11,6 +11,7 @@ import com.mockaroo.api.exceptions.MockarooExceptionMyList;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
 import com.mockaroo.api.exceptions.MockarooExceptionRegExpValue;
+import com.mockaroo.api.exceptions.MockarooExceptionValue;
 
 /**
  * Interface that provide base methods to create JSONObject
@@ -35,6 +36,10 @@ public interface ICreateJSONObjectHelper {
 	public static final String messageExceptionFormula = "The formula can't be empty";
 	public static final String messageExceptionMyList = "The my list name can't be empty";
 	public static final String messageExceptionValue = "The regular expression value can't be empty";
+	public static final String messageExceptionStartLess = "The start number can't be less than 1";
+	public static final String messageExceptionStepLess = "The step number can't be less than 1";
+	public static final String messageExceptionRepeatLess = "The repeat number can't be less than 1";
+	public static final String messageExceptionValueTemplate = "The value template can't be empty";
 
 	/**
 	 * Create a JSONObject
@@ -75,6 +80,35 @@ public interface ICreateJSONObjectHelper {
 	
 	/**
 	 * Create a JSONObject
+	 * @param name Column name
+	 * @param start The first number in the sequence
+	 * @param step The number to add to each subsequent value
+	 * @param repeat The number of times each value should occur before the step amount is added.
+	 * @param type {@link MockarooType}
+	 * @return {@link JSONObject}
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionNumber
+	 */
+	JSONObject createJSONObjectSequence(String name, int start, int step, int repeat, String type)
+			throws MockarooExceptionName, MockarooExceptionNumber;
+	
+	/**
+	 * Create a JSONObject
+	 * @param name Column name
+	 * @param value Templates allow you to incorporate values from other columns by surrounding column names 
+	 * 	with {braces}. For example, let's say you have a "first_name" column and a "last_name" column. 
+		The following template will generate a formatted name where last name comes first:
+		{last_name}, {first_name}
+	 * @param type {@link MockarooType}
+	 * @return {@link JSONObject}
+	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionValue 
+	 */
+	JSONObject createJSONObjectTemplate(String name, String value, String type)
+			throws MockarooExceptionName, MockarooExceptionValue;
+	
+	/**
+	 * Create a JSONObject
 	 * @param pname Column name
 	 * @param pType {@link MockarooType}
 	 * @return {@link JSONObject}
@@ -88,11 +122,12 @@ public interface ICreateJSONObjectHelper {
 	 * @param min Minimum number
 	 * @param max Maximum number
 	 * @param decimals Number of decimals
+	 * @param type {@link MockarooType}
 	 * @return {@link JSONObject}
 	 * @throws MockarooExceptionNumber
 	 * @throws MockarooExceptionName
 	 */
-	JSONObject createJSONObject(String name, int min, int max, int decimals)
+	JSONObject createJSONObject(String name, int min, int max, int decimals, String type)
 			throws MockarooExceptionNumber, MockarooExceptionName;
 
 	/**
@@ -101,11 +136,12 @@ public interface ICreateJSONObjectHelper {
 	 * @param min Minimum number
 	 * @param max Maximum number
 	 * @param format Format date
+	 * @param type {@link MockarooType}
 	 * @return {@link JSONObject}
 	 * @throws MockarooExceptionName
 	 */
-	JSONObject createJSONObject(String name, String min, String max,
-			String format) throws MockarooExceptionName;
+	JSONObject createJSONObject(String name, String min, String max, String format, String type) 
+			throws MockarooExceptionName;
 
 	/**
 	 * Create a JSONObject

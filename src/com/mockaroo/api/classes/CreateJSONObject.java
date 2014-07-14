@@ -11,6 +11,7 @@ import com.mockaroo.api.exceptions.MockarooExceptionMyList;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
 import com.mockaroo.api.exceptions.MockarooExceptionRegExpValue;
+import com.mockaroo.api.exceptions.MockarooExceptionValue;
 import com.mockaroo.api.helpers.CreateJSONObjectHelper;
 
 /**
@@ -164,7 +165,7 @@ public class CreateJSONObject {
 	public JSONObject createDate(String name, String min, String max, String format) 
 			throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, min, max, format);
+		return createJSONObject.createJSONObject(name, min, max, format, MockarooType.Date.toString());
 	}
 	
 	/**
@@ -524,7 +525,7 @@ public class CreateJSONObject {
 	public JSONObject createNumber(String name, int min, int max, int decimals) 
 			throws MockarooExceptionNumber, MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, min, max, decimals);
+		return createJSONObject.createJSONObject(name, min, max, decimals, MockarooType.Number.toString());
 	}
 	
 	/**
@@ -637,5 +638,151 @@ public class CreateJSONObject {
 															.replace('_', ' '));
 	}
 	
-	//Sequence
+	/**
+	 * Create a Sequence JSONObject
+	 * @param name Column name
+	 * @param start The first number in the sequence
+	 * @param step The number to add to each subsequent value
+	 * @param repeat The number of times each value should occur before the step amount is added
+	 * @return Sequence JSONObject
+	 * @throws MockarooExceptionName 
+	 * @throws MockarooExceptionNumber 
+	 */
+	public JSONObject createSequence(String name, int start, int step, int repeat) throws MockarooExceptionName, MockarooExceptionNumber
+	{
+		return createJSONObject.createJSONObjectSequence(name, start, step, repeat, MockarooType.Sequence.toString());
+	}
+	
+	/**
+	 * Create a Shirt Size JSONObject
+	 * @param name Column name
+	 * @return Shirt Size JSONObject
+	 * @throws MockarooExceptionName 
+	 */
+	public JSONObject createShirtSize(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Shirt_Size.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a Short Hex Color JSONObject
+	 * @param name Column name
+	 * @return Short Hex Color JSONObject
+	 * @throws MockarooExceptionName 
+	 */
+	public JSONObject createShortHexColor(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Short_Hex_Color.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a SSN JSONObject
+	 * @param name Column name
+	 * @return SSN JSONObject
+	 * @throws MockarooExceptionName 
+	 */
+	public JSONObject createSSN(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.SSN.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a State JSONObject
+	 * @param name Column name
+	 * @return State JSONObject
+	 * @throws MockarooExceptionName 
+	 */
+	public JSONObject createState(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.State.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a State (abbrev) JSONObject
+	 * @param name Column name
+	 * @return State (abbrev) JSONObject
+	 * @throws MockarooExceptionName 
+	 */
+	public JSONObject createStateAbbrev(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, "State (abbrev)");
+	}
+	
+	/**
+	 * Create a Street Address JSONObject
+	 * @param name Column name
+	 * @return Street Address JSONObject
+	 * @throws MockarooExceptionName 
+	 */
+	public JSONObject createStreetAddress(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Street_Address.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a Street Name JSONObject
+	 * @param name Column name
+	 * @return Street Name JSONObject
+	 * @throws MockarooExceptionName 
+	 */
+	public JSONObject createStreetName(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Street_Name.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a Street Number JSONObject
+	 * @param name Column name
+	 * @return Street Number JSONObject
+	 * @throws MockarooExceptionName 
+	 */
+	public JSONObject createStreetNumber(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Street_Number.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a Street Suffix JSONObject
+	 * @param name Column name
+	 * @return Street Suffix JSONObject
+	 * @throws MockarooExceptionName 
+	 */
+	public JSONObject createStreetSuffix(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Street_Suffix.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a Suffix JSONObject
+	 * @param name Column name
+	 * @return Suffix JSONObject
+	 * @throws MockarooExceptionName 
+	 */
+	public JSONObject createSuffix(String name) throws MockarooExceptionName
+	{
+		return createJSONObject.createJSONObject(name, MockarooType.Suffix.toString()
+															.replace('_', ' '));
+	}
+	
+	/**
+	 * Create a Template JSONObject
+	 * @param name Column name
+	 * @return Template JSONObject
+	 * @throws MockarooExceptionName 
+	 * @throws MockarooExceptionValue 
+	 */
+	public JSONObject createTemplate(String name, String value) 
+			throws MockarooExceptionName, MockarooExceptionValue
+	{
+		return createJSONObject.createJSONObjectTemplate(name, value, MockarooType.Template.toString());
+	}
+	//Time
 }

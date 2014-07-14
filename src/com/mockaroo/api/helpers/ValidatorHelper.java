@@ -2,6 +2,7 @@ package com.mockaroo.api.helpers;
 
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
+import com.mockaroo.api.exceptions.MockarooExceptionValue;
 import com.mockaroo.api.interfaces.IValidatorHelper;
 
 /**
@@ -76,6 +77,15 @@ public class ValidatorHelper implements IValidatorHelper {
 		if(number == numberValidator)
 		{
 			throw new MockarooExceptionNumber(messageException);
+		}
+	}
+
+	@Override
+	public void validateString(String value, String messageException) throws MockarooExceptionValue {
+		
+		if(value.isEmpty())
+		{
+			throw new MockarooExceptionValue(messageException);
 		}
 	}
 }
