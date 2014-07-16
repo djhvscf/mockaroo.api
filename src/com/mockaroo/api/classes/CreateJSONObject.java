@@ -3,6 +3,7 @@ package com.mockaroo.api.classes;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.mockaroo.api.enums.MockarooDateType;
 import com.mockaroo.api.enums.MockarooMoneyType;
 import com.mockaroo.api.enums.MockarooTimeType;
 import com.mockaroo.api.enums.MockarooType;
@@ -164,7 +165,8 @@ public class CreateJSONObject {
 	 * @return Date JSONObject
 	 * @throws MockarooExceptionName
 	 */
-	public JSONObject createDate(String name, String min, String max, String format) 
+	//public JSONObject createDate(String name, String min, String max, MockarooDateType format) 
+	public JSONObject createDate(String name, String min, String max, String format)
 			throws MockarooExceptionName
 	{
 		return createJSONObject.createJSONObject(name, min, max, format, MockarooType.Date.toString());

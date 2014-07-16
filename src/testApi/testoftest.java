@@ -25,13 +25,12 @@ public class testoftest {
 		values.put("Marketing");
 		values.put("HR");
 
-		//dob.put("format", "%m/%d/%Y");*/
 		JSONArray columns = new JSONArray();
 		columns.put(creater.createNumber("yearsEmployed", 1, 30, 0));
 		columns.put(creater.createCustomList("department", values));
 		columns.put(creater.createDate("dob", "1/1/1950", "1/1/2000", "%m/%d/%Y"));
 		columns.put(creater.createFirstName("name"));
-		columns.put(creater.createTime("time", "05:00 AM", "06:59 AM", MockarooTimeType.N));
+		columns.put(creater.createTime("time", "05:00 AM", "06:59 AM", MockarooTimeType.H));
 
 		OutputStream os = conn.getOutputStream();
 		os.write(columns.toString().getBytes());
