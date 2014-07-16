@@ -13,7 +13,7 @@ import com.mockaroo.api.interfaces.IValidatorHelper;
  * @version 0.1.0
  * @since 12/July/2014
  */
-public class ValidatorHelper implements IValidatorHelper {
+public class MockarooValidatorHelper implements IValidatorHelper {
 
 	@Override
 	public void validateColumnName(String name, String messageException) throws MockarooExceptionName

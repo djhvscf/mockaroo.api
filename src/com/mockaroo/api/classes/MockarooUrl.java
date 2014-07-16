@@ -13,45 +13,65 @@ import com.mockaroo.api.interfaces.IUrl;
  * @version 0.1.0
  * @since 09/July/2014
  */
-public class Url implements IUrl{
+public class MockarooUrl implements IUrl{
 
-	private static Url instance = null;
+	private static MockarooUrl instance = null;
+	private String key;
+	private String contentType;
 	
 	/**
 	 * Default constructor.
 	 * Applying singleton
 	 */
-	private Url()
-	{}
+	private MockarooUrl(String key, String contentType)
+	{
+		this.setKey(key);
+		this.setContentType(contentType);
+	}
 	
 	/**
 	 * Method that help with creation of url object
-	 * @return {@link Url} Object
+	 * @return {@link MockarooUrl} Object
 	 */
-	public static Url getInstance() 
+	public static MockarooUrl getInstance(String key, String contentType) 
 	{
       if(instance == null) 
       {
-         instance = new Url();
+         instance = new MockarooUrl(key, contentType);
       }
       return instance;
 	}
 	
+	public String getKey() {
+		return key;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	private void setKey(String key) {
+		this.key = key;
+	}
+
+	private void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+
 	@Override
-	public HttpURLConnection openConnecion(String papiKey,  String pcontentType) 
-													throws MalformedURLException, Exception, IOException 
+	public HttpURLConnection openConnecion() throws MalformedURLException, Exception, IOException 
 	{
-		if(papiKey.isEmpty())
+		if(this.getKey().isEmpty())
 		{
 			throw new NullPointerException("Api key is null; please provide Mackroo API key");
 		}
 		
-		if(pcontentType.isEmpty())
+		if(this.getContentType().isEmpty())
 		{
 			throw new NullPointerException("Content type is null; please provide content type");
 		}
 		
-		return createConnection(papiKey, pcontentType);
+		return createConnection(this.getKey(), this.getContentType());
 	}
 	
 	/**

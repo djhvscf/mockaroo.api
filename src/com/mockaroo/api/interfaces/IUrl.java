@@ -22,6 +22,5 @@ public interface IUrl {
 	 * @throws Exception
 	 * @throws IOException
 	 */
-	HttpURLConnection openConnecion(String papiKey, String pcontentType) 
-			throws MalformedURLException, Exception, IOException;
+	HttpURLConnection openConnecion() throws MalformedURLException, Exception, IOException;
 }

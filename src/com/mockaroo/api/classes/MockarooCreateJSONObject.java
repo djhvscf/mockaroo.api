@@ -15,7 +15,7 @@ import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
 import com.mockaroo.api.exceptions.MockarooExceptionRegExpValue;
 import com.mockaroo.api.exceptions.MockarooExceptionValue;
-import com.mockaroo.api.helpers.CreateJSONObjectHelper;
+import com.mockaroo.api.helpers.MockarooCreateJSONObjectHelper;
 
 /**
  * Class to create a specific JSONObject
@@ -23,9 +23,9 @@ import com.mockaroo.api.helpers.CreateJSONObjectHelper;
  * @version 0.1.0
  * @since 09/July/2014
  */
-public class CreateJSONObject {
+public class MockarooCreateJSONObject {
 
-	private CreateJSONObjectHelper createJSONObject = new CreateJSONObjectHelper();
+	private MockarooCreateJSONObjectHelper createJSONObject = new MockarooCreateJSONObjectHelper();
 	
 	/**
 	 * Create a Blank JSONObject

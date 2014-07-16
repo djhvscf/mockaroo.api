@@ -7,19 +7,18 @@ import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.mockaroo.api.classes.CreateJSONObject;
-import com.mockaroo.api.classes.Url;
+import com.mockaroo.api.MockarooApi;
+import com.mockaroo.api.classes.MockarooCreateJSONObject;
 import com.mockaroo.api.enums.MockarooTimeType;
-import com.mockaroo.api.interfaces.IUrl;
 
 public class testoftest {
 	public static void main(String[] args) throws Exception {
 		
-		CreateJSONObject creater = new CreateJSONObject();
+		MockarooApi mockarooApi = new MockarooApi("60391b90", "application/json");
+		HttpURLConnection conn = mockarooApi.getUrl().openConnecion();
 		
-		IUrl url = Url.getInstance();
-		HttpURLConnection conn = url.openConnecion("60391b90", "application/json");
-
+		MockarooCreateJSONObject creater = mockarooApi.getCreater();
+		
 		JSONArray values = new JSONArray();
 		values.put("R+D");
 		values.put("Marketing");

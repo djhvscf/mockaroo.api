@@ -19,9 +19,9 @@ import com.mockaroo.api.interfaces.ICreateJSONObjectHelper;
  * @version 0.1.0
  * @since 09/July/2014
  */
-public class CreateJSONObjectHelper implements ICreateJSONObjectHelper {
+public class MockarooCreateJSONObjectHelper implements ICreateJSONObjectHelper {
 	
-	private ValidatorHelper validator = new ValidatorHelper();
+	private MockarooValidatorHelper validator = new MockarooValidatorHelper();
 	
 	@Override
 	public JSONObject createJSONObject(String name, String type) throws MockarooExceptionName 
