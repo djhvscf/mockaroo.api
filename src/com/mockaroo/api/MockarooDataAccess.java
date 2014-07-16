@@ -1,10 +1,7 @@
 package com.mockaroo.api;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -16,7 +13,6 @@ import java.sql.Statement;
  */
 public class MockarooDataAccess {
 
-	private Connection connect = null;
 	private String driverClassName = "com.mysql.jdbc.Driver";
     private String url = "jdbc:mysql://localhost:3306/motorlinkdb";
     private String username = "root"; 
@@ -30,34 +26,26 @@ public class MockarooDataAccess {
     	this.setPassword(password);
     }
     
-    public Connection getConnection() throws ClassNotFoundException, SQLException
+    protected Connection getConnection() throws ClassNotFoundException, SQLException
     {
     	Class.forName(this.getDriverClassName());
         return DriverManager.getConnection(this.getUrl(),this.getUsername(), this.getPassword());
     }
-
-	public Connection getConnect() {
-		return connect;
-	}
-
-	public String getDriverClassName() {
+    
+    protected String getDriverClassName() {
 		return driverClassName;
 	}
 
-	public String getUrl() {
+    protected String getUrl() {
 		return url;
 	}
 
-	public String getUsername() {
+    protected String getUsername() {
 		return username;
 	}
 
-	public String getPassword() {
+    protected String getPassword() {
 		return password;
-	}
-
-	private void setConnect(Connection connect) {
-		this.connect = connect;
 	}
 
 	private void setDriverClassName(String driverClassName) {
@@ -74,5 +62,12 @@ public class MockarooDataAccess {
 
 	private void setPassword(String password) {
 		this.password = password;
+	}
+	
+	protected boolean Insert(String sql) throws ClassNotFoundException, SQLException
+	{
+		Statement statement;
+		statement = this.getConnection().createStatement();
+		return !statement.execute(sql);
 	}
 }

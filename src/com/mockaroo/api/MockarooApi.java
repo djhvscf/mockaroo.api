@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
@@ -29,6 +28,8 @@ public class MockarooApi {
 	private int countRegister;
 	private final MockarooCreateJSONObject creater;
 	private static final String messageExceptionJSONArray = "The count parameter can't be less than 0 or equal";
+	private static final String messageExceptionInsertError = "An error ocurred inserting the data";
+	private static final String INSERT_INTO = "INSERT INTO ";
 	
 	public MockarooApi(String key, String contentType)
 	{
@@ -104,11 +105,11 @@ public class MockarooApi {
 	
 	public void Insert(JSONObject jsonObject, MockarooDataAccess dataAccess, String tableName, String[] values) throws ClassNotFoundException, SQLException
 	{
-		Statement statement;
-		statement = dataAccess.getConnection().createStatement();
-		String insertQuery = "INSERT INTO " + tableName + generateValues(values) + generateValuesInsert(jsonObject);
-		
-		statement.execute(insertQuery);
+		String insertQuery = INSERT_INTO + tableName + generateValues(values) + generateValuesInsert(jsonObject);
+		if(!dataAccess.Insert(insertQuery))
+		{
+			throw new SQLException(messageExceptionInsertError);
+		}
 	}
 	
 	private String generateValues(String[] values)
