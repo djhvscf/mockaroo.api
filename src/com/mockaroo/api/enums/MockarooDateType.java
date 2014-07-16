@@ -8,16 +8,16 @@ package com.mockaroo.api.enums;
  */
 public enum MockarooDateType {
 
-	/**
-	 * Year with century (can be negative, 4 digits at least)
-	 * 0001, 0000, 1995, 2009, 14292, etc.
-	 */
-	  Y("%Y"),
+		/**
+		 * Year with century (can be negative, 4 digits at least)
+		 * 0001, 0000, 1995, 2009, 14292, etc.
+		 */
+		Y("%Y"),
 	  
 	  /**
 	   * year / 100 (round down.  20 in 2009)
 	   */
-      C("%C"),
+	  C("%C"),
       
       /**
        *  year % 100 (00..99)
@@ -64,7 +64,7 @@ public enum MockarooDateType {
        */
       j("%j");
 	  
-	  private String dateType;
+	  	private String dateType;
 		
 		/**
 		 * Constructor

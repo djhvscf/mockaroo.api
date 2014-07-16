@@ -1,11 +1,9 @@
 package com.mockaroo.api;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.sql.SQLException;
 
-import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -27,10 +25,14 @@ public class MockarooApi {
 	private String contentType;
 	private int countRegister;
 	private final MockarooCreateJSONObject creater;
-	private static final String messageExceptionJSONArray = "The count parameter can't be less than 0 or equal";
 	private static final String messageExceptionInsertError = "An error ocurred inserting the data";
 	private static final String INSERT_INTO = "INSERT INTO ";
 	
+	/**
+	 * Constructor
+	 * @param key Api key
+	 * @param contentType Content type
+	 */
 	public MockarooApi(String key, String contentType)
 	{
 		this.setKey(key);
@@ -40,6 +42,12 @@ public class MockarooApi {
 		creater = new MockarooCreateJSONObject();
 	}
 	
+	/**
+	 * Constructor
+	 * @param key Api key
+	 * @param contentType Content type
+	 * @param countRegister Qunatity of registers
+	 */
 	public MockarooApi(String key, String contentType, int countRegister)
 	{
 		this.setKey(key);
@@ -49,60 +57,104 @@ public class MockarooApi {
 		creater = new MockarooCreateJSONObject();
 	}
 	
+	/**
+	 * Get the content type
+	 * @return Content type
+	 */
 	public String getContentType() {
 		return contentType;
 	}
 
+	/**
+	 * Set the content type
+	 * @param contentType
+	 */
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
 	}
 
+	/**
+	 * Get the api key
+	 * @return Api key
+	 */
 	public String getKey() {
 		return key;
 	}
 
+	/**
+	 * Api key
+	 * @param key
+	 */
 	private void setKey(String key) {
 		this.key = key;
 	}
 	
+	/**
+	 * Get the url
+	 * @return {@link IUrl}
+	 */
 	public IUrl getUrl() {
 		return url;
 	}
 
+	/**
+	 * Get the {@link MockarooCreateJSONObject}
+	 * @return {@link MockarooCreateJSONObject}
+	 */
 	public MockarooCreateJSONObject getCreater() {
 		return creater;
 	}
 	
+	/**
+	 * Gets the counter
+	 * @return Quantity
+	 */
 	public int getCountRegister() {
 		return countRegister;
 	}
 
+	/**
+	 * Set the quantity of the register
+	 * @param countRegister Quantity
+	 */
 	private void setCountRegister(int countRegister) {
 		this.countRegister = countRegister;
 	}
 	
+	/**
+	 * Return a JSONObject
+	 * @param conn Connection
+	 * @param columns Columns of the JSONObject
+	 * @return JSONObject with data
+	 * @throws IOException
+	 */
 	public JSONObject getJSONObject(HttpURLConnection conn, JSONArray columns) throws IOException
 	{
-		OutputStream os = conn.getOutputStream();
-		os.write(columns.toString().getBytes());
-		os.flush();
-
-		return new JSONObject(IOUtils.toString(conn.getInputStream()));
+		return MockarooJSON.getJSONObject(conn, columns);
 	}
 	
+	/**
+	 * Return a JSONArray
+	 * @param conn Connection
+	 * @param columns Columns of the JSONArray
+	 * @return JSONArray with data
+	 * @throws IOException
+	 * @throws MockarooExceptionJSONArray
+	 */
 	public JSONArray getJSONArray(HttpURLConnection conn, JSONArray columns) throws IOException, MockarooExceptionJSONArray
 	{
-		if(this.getCountRegister() <= 0)
-		{
-			throw new MockarooExceptionJSONArray(messageExceptionJSONArray);
-		}
-		
-		OutputStream os = conn.getOutputStream();
-		os.write(columns.toString().getBytes());
-		os.flush();
-		return new JSONArray(IOUtils.toString(conn.getInputStream()));
+		return MockarooJSON.getJSONArray(conn, columns, this.getCountRegister());
 	}
 	
+	/**
+	 * Insert into the database specified
+	 * @param jsonObject JSONObject with the information
+	 * @param dataAccess Object Data Access layer
+	 * @param tableName Table to insert
+	 * @param values Values of the table
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public void Insert(JSONObject jsonObject, MockarooDataAccess dataAccess, String tableName, String[] values) throws ClassNotFoundException, SQLException
 	{
 		String insertQuery = INSERT_INTO + tableName + generateValues(values) + generateValuesInsert(jsonObject);
@@ -112,6 +164,11 @@ public class MockarooApi {
 		}
 	}
 	
+	/**
+	 * Generate the values of the table
+	 * @param values Array to generate the string
+	 * @return String with the values of the table
+	 */
 	private String generateValues(String[] values)
 	{
 		String first = " (";
@@ -129,25 +186,35 @@ public class MockarooApi {
 		return valuesGenerated;
 	}
 	
+	/**
+	 * Generate the values to insert
+	 * @param jsonObject
+	 * @return String with values to insert
+	 */
 	private String generateValuesInsert(JSONObject jsonObject)
 	{
 		JSONArray name = jsonObject.names();
 		String first = "VALUES(";
 		String last = ") ";
-		String retur = "";
+		String valuesToInsert = "";
 		
-		retur += first;
+		valuesToInsert += first;
 		
 		for(int i = 0; i < name.length(); i++)
 		{
-			retur += "'" + jsonObject.getString(name.getString(i)) + "'" + ",";
+			valuesToInsert += "'" + jsonObject.getString(name.getString(i)) + "'" + ",";
 		}
 		
-		retur = validateEnds(retur) + last;
+		valuesToInsert = validateEnds(valuesToInsert) + last;
 		
-		return retur;
+		return valuesToInsert;
 	}
 	
+	/**
+	 * Validate if the string ends with ,
+	 * @param value String to validate
+	 * @return String without ,
+	 */
 	private String validateEnds(String value)
 	{
 		if (value.endsWith(",")) 

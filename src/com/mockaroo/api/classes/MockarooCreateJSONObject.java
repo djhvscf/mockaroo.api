@@ -3,7 +3,6 @@ package com.mockaroo.api.classes;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.mockaroo.api.enums.MockarooDateType;
 import com.mockaroo.api.enums.MockarooMoneyType;
 import com.mockaroo.api.enums.MockarooTimeType;
 import com.mockaroo.api.enums.MockarooType;

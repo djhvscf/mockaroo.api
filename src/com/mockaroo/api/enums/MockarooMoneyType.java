@@ -8,10 +8,33 @@ package com.mockaroo.api.enums;
  */
 public enum MockarooMoneyType {
 	
+	/**
+	 * Dollar 
+	 */
 	$,
+	
+	/**
+	 * Pound
+	 */
 	£,
+	
+	/**
+	 * Euro
+	 */
 	€,
+	
+	/**
+	 * Yuan
+	 */
 	¥,
+	
+	/**
+	 * Generate a random money symbol
+	 */
 	random,
+	
+	/**
+	 * No generate a money symbol
+	 */
 	none,
 }
