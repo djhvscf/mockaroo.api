@@ -1,13 +1,12 @@
 package testApi;
 
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 
-import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mockaroo.api.MockarooApi;
+import com.mockaroo.api.MockarooDataAccess;
 import com.mockaroo.api.classes.MockarooCreateJSONObject;
 import com.mockaroo.api.enums.MockarooTimeType;
 
@@ -25,24 +24,25 @@ public class testoftest {
 		values.put("HR");
 
 		JSONArray columns = new JSONArray();
-		columns.put(creater.createNumber("yearsEmployed", 1, 30, 0));
+		//columns.put(creater.createNumber("yearsEmployed", 1, 30, 0));
 		columns.put(creater.createCustomList("department", values));
-		columns.put(creater.createDate("dob", "1/1/1950", "1/1/2000", "%m/%d/%Y"));
+		//columns.put(creater.createDate("dob", "1/1/1950", "1/1/2000", "%m/%d/%Y"));
 		columns.put(creater.createFirstName("name"));
-		columns.put(creater.createTime("time", "05:00 AM", "06:59 AM", MockarooTimeType.H));
+		//columns.put(creater.createTime("time", "05:00 AM", "06:59 AM", MockarooTimeType.H));
 
-		OutputStream os = conn.getOutputStream();
-		os.write(columns.toString().getBytes());
-		os.flush();
-
-		JSONObject data = new JSONObject(IOUtils.toString(conn.getInputStream()));
+		JSONObject data = mockarooApi.getJSONObject(conn, columns);
+	
+		MockarooDataAccess dataAccess = new MockarooDataAccess("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/test", "root", "mtrlnk");
+		String[] valuesf = new String[2];
+		valuesf[0] = "varascol";
+		valuesf[1] = "varascol1";
 		
-		//JSONArray data = new JSONArray(IOUtils.toString(conn.getInputStream()));
-
-		System.out.println(data.getInt("yearsEmployed"));
+		mockarooApi.Insert(data, dataAccess, "varas", valuesf);
+		
+		//System.out.println(data.getInt("yearsEmployed"));
 		System.out.println(data.getString("department"));
-		System.out.println(data.getString("dob"));
+		//System.out.println(data.getString("dob"));
 		System.out.println(data.getString("name"));
-		System.out.println(data.getString("time"));
+		//System.out.println(data.getString("time"));
 	}
 }
