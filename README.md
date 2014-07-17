@@ -27,8 +27,8 @@ How to use it?
 	
 		MockarooDataAccess dataAccess = new MockarooDataAccess("databaseDriver", "localhost", "username", "password");
 		String[] columnsTable = new String[2];
-		columnsTable[0] = "varascol";
-		columnsTable[1] = "varascol1";
+		columnsTable[0] = "department";
+		columnsTable[1] = "name";
 		
 		mockarooApi.Insert(data, dataAccess, "tableName", columnsTable);
 
