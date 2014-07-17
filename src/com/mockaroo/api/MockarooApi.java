@@ -10,6 +10,8 @@ import org.json.JSONObject;
 import com.mockaroo.api.classes.MockarooCreateJSONObject;
 import com.mockaroo.api.classes.MockarooUrl;
 import com.mockaroo.api.exceptions.MockarooExceptionJSONArray;
+import com.mockaroo.api.exceptions.MockarooExceptionPing;
+import com.mockaroo.api.helpers.MockarooPingHelper;
 import com.mockaroo.api.interfaces.IUrl;
 
 /**
@@ -32,9 +34,12 @@ public class MockarooApi {
 	 * Constructor
 	 * @param key Api key
 	 * @param contentType Content type
+	 * @throws MockarooExceptionPing 
 	 */
-	public MockarooApi(String key, String contentType)
+	public MockarooApi(String key, String contentType) throws MockarooExceptionPing
 	{
+		MockarooPingHelper.pingStatus();
+		
 		this.setKey(key);
 		this.setContentType(contentType);
 		this.setCountRegister(-1);
@@ -47,9 +52,12 @@ public class MockarooApi {
 	 * @param key Api key
 	 * @param contentType Content type
 	 * @param countRegister Qunatity of registers
+	 * @throws MockarooExceptionPing 
 	 */
-	public MockarooApi(String key, String contentType, int countRegister)
+	public MockarooApi(String key, String contentType, int countRegister) throws MockarooExceptionPing
 	{
+		MockarooPingHelper.pingStatus();
+		
 		this.setKey(key);
 		this.setContentType(contentType);
 		this.setCountRegister(countRegister);
