@@ -2,15 +2,12 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/Dennis Hernandez/Documents/GitHub/mockaroo.api/dependencies/json-20140107.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Dennis Hernandez/Documents/GitHub/mockaroo.api/dependencies/commons-io-1.3.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Dennis Hernandez/Documents/GitHub/mockaroo.api/dependencies/mysql-connector-java-5.1.31.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Dennis Hernandez/Documents/GitHub/mockaroo.api/dependencies/jxl.jar"/>
-=======
 	<classpathentry kind="lib" path="C:/Users/Dennis/Documents/GitHub/mockaroo.api/dependencies/commons-io-1.3.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Dennis/Documents/GitHub/mockaroo.api/dependencies/json-20140107.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Dennis/Documents/GitHub/mockaroo.api/dependencies/mysql-connector-java-5.1.31.jar"/>
->>>>>>> origin/develop
 	<classpathentry kind="output" path="bin"/>
 </classpath>
