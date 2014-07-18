@@ -3,6 +3,8 @@ package com.mockaroo.api.interfaces;
 import java.io.File;
 import java.io.IOException;
 
+import org.json.JSONObject;
+
 import jxl.write.WriteException;
 
 /**
@@ -21,5 +23,6 @@ public interface IMockarooExcelHelper {
 	 * @throws IOException
 	 * @throws WriteException
 	 */
-	public void write(String sheetName, String language, String country, File file) throws IOException, WriteException;
+	public void write(String sheetName, String language, String country, File file, JSONObject jsonObject) 
+			throws IOException, WriteException;
 }

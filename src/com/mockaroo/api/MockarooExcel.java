@@ -3,6 +3,8 @@ package com.mockaroo.api;
 import java.io.File;
 import java.io.IOException;
 
+import org.json.JSONObject;
+
 import jxl.write.WriteException;
 
 import com.mockaroo.api.helpers.MockarooExcelHelper;
@@ -31,8 +33,10 @@ public class MockarooExcel {
 	 * @param sheetName Excel sheet name
 	 * @param language Language
 	 * @param country Country
+	 * @throws WriteException 
 	 */
 	public MockarooExcel(String path, String inputFileName, String sheetName, String language, String country)
+			throws WriteException
 	{
 		mockarooExcel = MockarooExcelHelper.getInstance();
 		this.setPath(path);
@@ -48,8 +52,10 @@ public class MockarooExcel {
 	 * @param path Path where save the excel file
 	 * @param inputFileName Excel file name
 	 * @param sheetName Excel sheet name
+	 * @throws WriteException 
 	 */
-	public MockarooExcel(String path, String inputFileName, String sheetName)
+	public MockarooExcel(String path, String inputFileName, String sheetName) 
+			throws WriteException
 	{
 		mockarooExcel = MockarooExcelHelper.getInstance();
 		this.setPath(path);
@@ -169,15 +175,8 @@ public class MockarooExcel {
 	 * @throws IOException
 	 * @throws WriteException
 	 */
-	public void write() throws IOException, WriteException
+	public void write(JSONObject jsonObject) throws IOException, WriteException
 	{
-		mockarooExcel.write(this.getSheetName(), this.getLanguage(), this.getCountry(), this.getFile());
+		mockarooExcel.write(this.getSheetName(), this.getLanguage(), this.getCountry(), this.getFile(), jsonObject);
 	}
-	
-	/*public static void main(String[] args) throws WriteException, IOException {
-		MockarooExcel test = new MockarooExcel("c:/temp/","lars.xls","testing","en", "EN");
-	    //test.setOutputFile("c:/temp/","lars.xls");
-	    test.write();
-	    System.out.println("Please check the result file under c:/temp/lars.xls ");
-	  }*/
 }

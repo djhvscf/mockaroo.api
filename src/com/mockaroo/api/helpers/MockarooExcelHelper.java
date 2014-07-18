@@ -4,15 +4,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import com.mockaroo.api.interfaces.IMockarooExcelHelper;
 
-import jxl.CellView;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
+import jxl.format.CellFormat;
 import jxl.format.UnderlineStyle;
-import jxl.write.Formula;
 import jxl.write.Label;
-import jxl.write.Number;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
@@ -32,10 +33,22 @@ public class MockarooExcelHelper implements IMockarooExcelHelper {
 	private WritableCellFormat times;
 	private static MockarooExcelHelper instance = null;
 
+	/**
+	 * Default constructor
+	 * @throws WriteException
+	 */
+	private MockarooExcelHelper() throws WriteException
+	{
+		this.setTimes();
+		this.setTimesBoldUnderline();
+	}
 	
-	private MockarooExcelHelper(){}
-	
-	public static MockarooExcelHelper getInstance()
+	/**
+	 * Applying singleton
+	 * @return {@link MockarooExcelHelper}
+	 * @throws WriteException
+	 */
+	public static MockarooExcelHelper getInstance() throws WriteException
 	{
 		if(instance == null)
 		{
@@ -45,8 +58,48 @@ public class MockarooExcelHelper implements IMockarooExcelHelper {
 		return instance;
 	}
 	
+	/**
+	 * Get the times bold underline format
+	 * @return {@link WritableCellFormat}
+	 */
+	private WritableCellFormat getTimesBoldUnderline() {
+		return this.timesBoldUnderline;
+	}
+
+	/**
+	 * Get the times format
+	 * @return {@link WritableCellFormat}
+	 */
+	private WritableCellFormat getTimes() {
+		return this.times;
+	}
+
+	/**
+	 * Sets the times bold underline format
+	 * @throws WriteException
+	 */
+	private void setTimesBoldUnderline() throws WriteException 
+	{
+		WritableFont times10ptBoldUnderline = new WritableFont(WritableFont.TIMES, 10, 
+				WritableFont.BOLD, false, UnderlineStyle.SINGLE);
+		this.timesBoldUnderline = new WritableCellFormat(times10ptBoldUnderline);
+		this.timesBoldUnderline.setWrap(true);
+	}
+
+	/**
+	 * Set the times format
+	 * @throws WriteException
+	 */
+	private void setTimes() throws WriteException 
+	{
+		WritableFont times10pt = new WritableFont(WritableFont.TIMES, 10);
+		this.times = new WritableCellFormat(times10pt);
+		this.times.setWrap(true);
+	}
+
 	@Override
-	public void write(String sheetName, String language, String country, File file) throws IOException, WriteException 
+	public void write(String sheetName, String language, String country, File file, JSONObject jsonObject) 
+			throws IOException, WriteException
 	{
 		WorkbookSettings wbSettings = new WorkbookSettings();
 		wbSettings.setLocale(new Locale(language, country));
@@ -54,85 +107,97 @@ public class MockarooExcelHelper implements IMockarooExcelHelper {
 		WritableWorkbook workbook = Workbook.createWorkbook(file, wbSettings);
 		workbook.createSheet(sheetName, 0);
 		WritableSheet excelSheet = workbook.getSheet(0);
-		createLabel(excelSheet);
-		createContent(excelSheet);
+		createHeader(excelSheet, jsonObject);
+		createData(excelSheet, jsonObject);
 
 		workbook.write();
 		workbook.close();
 	}
 	
-	/*Extra*/
-	private void createLabel(WritableSheet sheet) throws WriteException 
+	/**
+	 * Create a header of the columns in the Excel file
+	 * @param sheet Excel file sheet
+	 * @param jsonObject {@link JSONObject} with data
+	 * @throws WriteException
+	 */
+	private void createHeader(WritableSheet sheet, JSONObject jsonObject) throws WriteException 
 	{
-		// Lets create a times font
-		WritableFont times10pt = new WritableFont(WritableFont.TIMES, 10);
-		// Define the cell format
-		times = new WritableCellFormat(times10pt);
-		// Lets automatically wrap the cells
-		times.setWrap(true);
-
-		// create create a bold font with unterlines
-		WritableFont times10ptBoldUnderline = new WritableFont(WritableFont.TIMES, 10, WritableFont.BOLD, false,
-				UnderlineStyle.SINGLE);
-		timesBoldUnderline = new WritableCellFormat(times10ptBoldUnderline);
-		// Lets automatically wrap the cells
-		timesBoldUnderline.setWrap(true);
-
-		CellView cv = new CellView();
+		/*CellView cv = new CellView();
 		cv.setFormat(times);
 		cv.setFormat(timesBoldUnderline);
-		cv.setAutosize(true);
+		cv.setAutosize(true);*/
 
-		// Write a few headers
-		addCaption(sheet, 0, 0, "Header 1");
-		addCaption(sheet, 1, 0, "This is another header");
-	}
-
-	private void createContent(WritableSheet sheet) throws WriteException, RowsExceededException 
-	{
-		// Write a few number
-		for (int i = 1; i < 10; i++) {
-			// First column
-			addNumber(sheet, 0, i, i + 10);
-			// Second column
-			addNumber(sheet, 1, i, i * i);
-		}
-		// Lets calculate the sum of it
-		StringBuffer buf = new StringBuffer();
-		buf.append("SUM(A2:A10)");
-		Formula f = new Formula(0, 10, buf.toString());
-		sheet.addCell(f);
-		buf = new StringBuffer();
-		buf.append("SUM(B2:B10)");
-		f = new Formula(1, 10, buf.toString());
-		sheet.addCell(f);
-
-		// now a bit of text
-		for (int i = 12; i < 20; i++) {
-			// First column
-			addLabel(sheet, 0, i, "Boring text " + i);
-			// Second column
-			addLabel(sheet, 1, i, "Another text");
+		String[] header = getHeader(jsonObject);
+		for(int i= 0; i < header.length; i++)
+		{
+			addData(sheet, i, 0, header[i], this.getTimesBoldUnderline());
 		}
 	}
 
-	private void addCaption(WritableSheet sheet, int column, int row, String s) throws RowsExceededException, WriteException {
-		Label label;
-		label = new Label(column, row, s, timesBoldUnderline);
-		sheet.addCell(label);
+	/**
+	 * Create a data to write in Excel file
+	 * @param sheet Excel file sheet
+	 * @param jsonObject {@link JSONObject} with data
+	 * @throws WriteException
+	 * @throws RowsExceededException
+	 */
+	private void createData(WritableSheet sheet, JSONObject jsonObject) throws WriteException, RowsExceededException 
+	{
+		String[] data = generateValuesInsert(jsonObject);
+		for (int i = 0; i < data.length; i++) 
+		{
+			addData(sheet, i, 1, data[i], this.getTimes());
+		}
 	}
 
-	private void addNumber(WritableSheet sheet, int column, int row, Integer integer) throws WriteException, RowsExceededException 
+	/**
+	 * Add data to a cell in Excel file
+	 * @param sheet Excel file sheet
+	 * @param column Number of the column
+	 * @param row Number of the row
+	 * @param data Data to write in the cell
+	 * @param format Format
+	 * @throws WriteException
+	 * @throws RowsExceededException
+	 */
+	private void addData(WritableSheet sheet, int column, int row, String data, CellFormat format) throws WriteException, RowsExceededException 
 	{
-		Number number;
-		number = new Number(column, row, integer, times);
-		sheet.addCell(number);
+		sheet.addCell(new Label(column, row, data, format));
 	}
-
-	private void addLabel(WritableSheet sheet, int column, int row, String s) throws WriteException, RowsExceededException 
+	
+	/**
+	 * Generate the values to insert
+	 * @param jsonObject
+	 * @return String with values to insert
+	 */
+	public String[] getHeader(JSONObject jsonObject)
 	{
-		Label label;
-		label = new Label(column, row, s, times);
-		sheet.addCell(label);
+		JSONArray name = jsonObject.names();
+		String[] valuesToInsert = new String[name.length()];
+		
+		for(int i = 0; i < name.length(); i++)
+		{
+			valuesToInsert[i] = name.getString(i);
+		}
+		
+		return valuesToInsert;
+	}
+	
+	/**
+	 * Generate the values to insert
+	 * @param jsonObject
+	 * @return String with values to insert
+	 */
+	public String[] generateValuesInsert(JSONObject jsonObject)
+	{
+		JSONArray name = jsonObject.names();
+		String valuesToInsert[] = new String[name.length()];
+		
+		for(int i = 0; i < name.length(); i++)
+		{
+			valuesToInsert[i] = jsonObject.getString(name.getString(i));
+		}
+		
+		return valuesToInsert;
 	}
 }

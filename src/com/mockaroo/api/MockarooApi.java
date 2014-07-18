@@ -11,6 +11,7 @@ import com.mockaroo.api.classes.MockarooCreateJSONObject;
 import com.mockaroo.api.classes.MockarooUrl;
 import com.mockaroo.api.exceptions.MockarooExceptionJSONArray;
 import com.mockaroo.api.exceptions.MockarooExceptionPing;
+import com.mockaroo.api.helpers.MockarooApiHelper;
 import com.mockaroo.api.helpers.MockarooPingHelper;
 import com.mockaroo.api.interfaces.IUrl;
 
@@ -27,6 +28,7 @@ public class MockarooApi {
 	private String contentType;
 	private int countRegister;
 	private final MockarooCreateJSONObject creater;
+	private MockarooApiHelper mockarooApiHelper;
 	private static final String messageExceptionInsertError = "An error ocurred inserting the data";
 	private static final String INSERT_INTO = "INSERT INTO ";
 	
@@ -45,6 +47,7 @@ public class MockarooApi {
 		this.setCountRegister(-1);
 		url = MockarooUrl.getInstance(key, contentType);
 		creater = new MockarooCreateJSONObject();
+		mockarooApiHelper = new MockarooApiHelper();
 	}
 	
 	/**
@@ -63,6 +66,7 @@ public class MockarooApi {
 		this.setCountRegister(countRegister);
 		url = MockarooUrl.getInstance(key, contentType);
 		creater = new MockarooCreateJSONObject();
+		mockarooApiHelper = new MockarooApiHelper();
 	}
 	
 	/**
@@ -165,71 +169,11 @@ public class MockarooApi {
 	 */
 	public void Insert(JSONObject jsonObject, MockarooDataAccess dataAccess, String tableName, String[] values) throws ClassNotFoundException, SQLException
 	{
-		String insertQuery = INSERT_INTO + tableName + generateValues(values) + generateValuesInsert(jsonObject);
+		String insertQuery = INSERT_INTO + tableName + mockarooApiHelper.generateValues(values) + 
+								mockarooApiHelper.generateValuesInsert(jsonObject);
 		if(!dataAccess.Insert(insertQuery))
 		{
 			throw new SQLException(messageExceptionInsertError);
 		}
-	}
-	
-	/**
-	 * Generate the values of the table
-	 * @param values Array to generate the string
-	 * @return String with the values of the table
-	 */
-	private String generateValues(String[] values)
-	{
-		String first = " (";
-		String last = ") ";
-		String valuesGenerated = "";
-		valuesGenerated += first;
-		
-		for(int i = 0; i < values.length; i++)
-		{
-			valuesGenerated += values[i] + ",";
-		}
-		
-		valuesGenerated = validateEnds(valuesGenerated) + last;
-		
-		return valuesGenerated;
-	}
-	
-	/**
-	 * Generate the values to insert
-	 * @param jsonObject
-	 * @return String with values to insert
-	 */
-	private String generateValuesInsert(JSONObject jsonObject)
-	{
-		JSONArray name = jsonObject.names();
-		String first = "VALUES(";
-		String last = ") ";
-		String valuesToInsert = "";
-		
-		valuesToInsert += first;
-		
-		for(int i = 0; i < name.length(); i++)
-		{
-			valuesToInsert += "'" + jsonObject.getString(name.getString(i)) + "'" + ",";
-		}
-		
-		valuesToInsert = validateEnds(valuesToInsert) + last;
-		
-		return valuesToInsert;
-	}
-	
-	/**
-	 * Validate if the string ends with ,
-	 * @param value String to validate
-	 * @return String without ,
-	 */
-	private String validateEnds(String value)
-	{
-		if (value.endsWith(",")) 
-		{
-			value = value.substring(0, value.length() - 1);
-		}
-		
-		return value;	
 	}
 }
