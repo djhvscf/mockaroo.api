@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import com.mockaroo.api.enums.MockarooType;
 import com.mockaroo.api.enums.MockarooMoneyType;
 import com.mockaroo.api.exceptions.MockarooExceptionArray;
+import com.mockaroo.api.exceptions.MockarooExceptionFormatDate;
 import com.mockaroo.api.exceptions.MockarooExceptionFormatTime;
 import com.mockaroo.api.exceptions.MockarooExceptionFormula;
 import com.mockaroo.api.exceptions.MockarooExceptionMyList;
@@ -23,9 +24,9 @@ import com.mockaroo.api.exceptions.MockarooExceptionValue;
 public interface ICreateJSONObjectHelper {
 
 	public static final String messageExceptionName = "The column name can't be empty";
-	public static final String messageExceptionMinDate = "The min date can't be empty";
-	public static final String messageExceptionMaxDate = "The max date can't be empty";
-	public static final String messageExceptionFormatDate = "The format date can't be empty";
+	public static final String messageExceptionMinDate = "The min date is empty or incorrect";
+	public static final String messageExceptionMaxDate = "The max date is empty or incorrect";
+	public static final String messageExceptionFormatDate = "The format date is empty or incorrect";
 	public static final String messageExceptionMinLess = "The min number can't be less than 0";
 	public static final String messageExceptionMeanLess = "The mean number can't be less than 0";
 	public static final String messageExceptionSdLess = "The sd number can't be less than 1";
@@ -170,9 +171,10 @@ public interface ICreateJSONObjectHelper {
 	 * @param type {@link MockarooType}
 	 * @return {@link JSONObject}
 	 * @throws MockarooExceptionName
+	 * @throws MockarooExceptionFormatDate 
 	 */
 	JSONObject createJSONObject(String name, String min, String max, String format, String type) 
-			throws MockarooExceptionName;
+			throws MockarooExceptionName, MockarooExceptionFormatDate;
 
 	/**
 	 * Create a JSONObject

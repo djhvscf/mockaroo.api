@@ -1,11 +1,13 @@
 package com.mockaroo.api.helpers;
 
 import com.mockaroo.api.enums.MockarooTimeType;
+import com.mockaroo.api.exceptions.MockarooExceptionFormatDate;
 import com.mockaroo.api.exceptions.MockarooExceptionFormatTime;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
 import com.mockaroo.api.exceptions.MockarooExceptionValue;
 import com.mockaroo.api.interfaces.IValidatorHelper;
+import java.text.SimpleDateFormat;
 
 /**
  * Class to validate some things - Helper class
@@ -109,6 +111,34 @@ public class MockarooValidatorHelper implements IValidatorHelper {
 		if(!isValidFormatTime)
 		{
 			throw new MockarooExceptionFormatTime(messageException);
+		}
+	}
+	
+	@Override
+	public void validateDateFormat(String value, String format, String messageExceptionDate, 
+			String messageExceptionFormat)
+			throws MockarooExceptionFormatDate
+	{
+		if(value.isEmpty())
+		{
+			throw new MockarooExceptionFormatDate(messageExceptionDate);
+		}
+		
+		if(format.isEmpty())
+		{
+			throw new MockarooExceptionFormatDate(messageExceptionFormat);
+		}
+		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+		simpleDateFormat.setLenient(false);
+		
+		try 
+		{
+			simpleDateFormat.parse(value);
+		} 
+		catch (Exception e)
+		{
+			throw new MockarooExceptionFormatDate(messageExceptionFormat);
 		}
 	}
 }

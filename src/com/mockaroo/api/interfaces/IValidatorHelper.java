@@ -1,5 +1,6 @@
 package com.mockaroo.api.interfaces;
 
+import com.mockaroo.api.exceptions.MockarooExceptionFormatDate;
 import com.mockaroo.api.exceptions.MockarooExceptionFormatTime;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
@@ -87,9 +88,21 @@ public interface IValidatorHelper {
 	/**
 	 * Validate if the format time is correct
 	 * @param value Format time
-	 * @param messageException
+	 * @param messageException Message to show when the exception is thrown
 	 * @throws MockarooExceptionFormatTime
 	 */
 	void validateTimeFormat(String value, String messageException) throws MockarooExceptionFormatTime;
 	
+	/**
+	 * Validate if the format date is correct
+	 * @param value Date to validate
+	 * @param format Format date
+	 * @param messageExceptionDate Message to show when the exception is thrown
+	 * @param messageExceptionFormat Message to show when the exception is thrown
+	 * @param messageException Message to show when the exception is thrown
+	 * @throws MockarooExceptionFormatDate
+	 */
+	void validateDateFormat(String value, String format, String messageExceptionDate, 
+			String messageExceptionFormat) 
+			throws MockarooExceptionFormatDate;
 }
