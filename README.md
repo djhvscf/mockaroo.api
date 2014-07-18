@@ -31,6 +31,7 @@ How to use it?
 		columnsTable[1] = "name";
 		
 		mockarooApi.Insert(data, dataAccess, "tableName", columnsTable);//Insert into a data base
+		
 		MockarooFile test = new MockarooExcel("c:/temp/","test","testing","en", "EN");
 	    test.write(data); //Generate a Excel file
 	    
