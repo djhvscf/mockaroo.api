@@ -48,9 +48,8 @@ Not yet.
 
 Release history
 ======================
-Not yet.
+Version: 0.1.0 - 18/July/2014
 
 Download mockarooapi.jar
 =======================
-Not yet.
-
+https://github.com/djhvscf/mockaroo.api/releases/tag/v0.1.0
