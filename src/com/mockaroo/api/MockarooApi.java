@@ -40,7 +40,7 @@ public class MockarooApi {
 	 */
 	public MockarooApi(String key, String contentType) throws MockarooExceptionPing
 	{
-		MockarooPingHelper.pingStatus();
+		MockarooPingHelper.ping();
 		
 		this.setKey(key);
 		this.setContentType(contentType);
@@ -59,7 +59,7 @@ public class MockarooApi {
 	 */
 	public MockarooApi(String key, String contentType, int countRegister) throws MockarooExceptionPing
 	{
-		MockarooPingHelper.pingStatus();
+		MockarooPingHelper.ping();
 		
 		this.setKey(key);
 		this.setContentType(contentType);

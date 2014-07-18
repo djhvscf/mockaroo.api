@@ -8,7 +8,9 @@ import org.json.JSONObject;
 import com.mockaroo.api.MockarooApi;
 import com.mockaroo.api.MockarooDataAccess;
 import com.mockaroo.api.MockarooExcel;
+import com.mockaroo.api.MockarooJSON;
 import com.mockaroo.api.classes.MockarooCreateJSONObject;
+import com.mockaroo.api.classes.MockarooFile;
 
 public class test {
 	public static void main(String[] args) throws Exception {
@@ -43,7 +45,11 @@ public class test {
 	    {
 	    	
 	    }
-	    MockarooExcel test = new MockarooExcel("c:/temp/","test.xls","testing","en", "EN");
+	    
+	    MockarooFile test = new MockarooExcel("c:/temp/","test","testing","en", "EN");
 	    test.write(data);
+	    
+	    MockarooFile json = new MockarooJSON("c:/temp/", "test");
+	    json.write(data);
 	}
 }

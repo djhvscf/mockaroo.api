@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import jxl.write.WriteException;
 
+import com.mockaroo.api.classes.MockarooFile;
 import com.mockaroo.api.helpers.MockarooExcelHelper;
 import com.mockaroo.api.interfaces.IMockarooExcelHelper;
 
@@ -16,7 +17,7 @@ import com.mockaroo.api.interfaces.IMockarooExcelHelper;
  * @version 0.1.0
  * @since 17/July/2014
  */
-public class MockarooExcel {
+public class MockarooExcel extends MockarooFile {
 
 	private String inputFileName;
 	private File file;
@@ -25,6 +26,7 @@ public class MockarooExcel {
 	private String sheetName;
 	private String language;
 	private String country;
+	private static final String EXTENSION = ".xls";
 	
 	/**
 	 * Constructor
@@ -40,7 +42,7 @@ public class MockarooExcel {
 	{
 		mockarooExcel = MockarooExcelHelper.getInstance();
 		this.setPath(path);
-		this.setInputFileName(inputFileName);
+		this.setInputFileName(inputFileName + EXTENSION);
 		this.setSheetName(sheetName);
 		this.setLanguage(language);
 		this.setCountry(country);
@@ -175,6 +177,7 @@ public class MockarooExcel {
 	 * @throws IOException
 	 * @throws WriteException
 	 */
+	@Override
 	public void write(JSONObject jsonObject) throws IOException, WriteException
 	{
 		mockarooExcel.write(this.getSheetName(), this.getLanguage(), this.getCountry(), this.getFile(), jsonObject);

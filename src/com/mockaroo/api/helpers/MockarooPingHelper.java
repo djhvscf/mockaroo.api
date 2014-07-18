@@ -21,7 +21,7 @@ public class MockarooPingHelper {
 	 * @return True if the mockaroo site is up
 	 * @throws MockarooExceptionPing
 	 */
-	public static boolean pingStatus() throws MockarooExceptionPing
+	public static boolean ping() throws MockarooExceptionPing
 	{
 		boolean result = false;
         try 
