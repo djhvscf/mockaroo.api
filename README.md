@@ -1,7 +1,7 @@
 Mockaroo API
 ================
 
-Mockaroo API is an API that let us generate random data and insert into our data base. That's it.
+Mockaroo API is an API that let us generate random data and insert into our data base. That's it.<br />
 This API is based in JSON Objects.
 
 Author Homepage:      http://djhv92.wix.com/dennishernandez<br />
