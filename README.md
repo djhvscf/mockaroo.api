@@ -46,7 +46,7 @@ Repo Contents
 =============
 Not yet.
 
-Realese history
+Release history
 ======================
 Not yet.
 
