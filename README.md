@@ -50,7 +50,7 @@ Release history
 ======================
 Not yet.
 
-Download .mockarooapi.jar
+Download mockarooapi.jar
 =======================
 Not yet.
 
