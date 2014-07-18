@@ -38,14 +38,13 @@ Not yet.
 
 Repo Contents
 =============
-
-Not yet
+Not yet.
 
 Realese history
 ======================
-Not yet
+Not yet.
 
 Download .mockarooapi.jar
 =======================
-Not yet
+Not yet.
 
