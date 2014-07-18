@@ -30,7 +30,12 @@ How to use it?
 		columnsTable[0] = "department";
 		columnsTable[1] = "name";
 		
-		mockarooApi.Insert(data, dataAccess, "tableName", columnsTable);
+		mockarooApi.Insert(data, dataAccess, "tableName", columnsTable);//Insert into a data base
+		MockarooFile test = new MockarooExcel("c:/temp/","test","testing","en", "EN");
+	    test.write(data); //Generate a Excel file
+	    
+	    MockarooFile json = new MockarooJSON("c:/temp/", "test");
+	    json.write(data); //Generate a .json file
 
 Dependencies
 =============
