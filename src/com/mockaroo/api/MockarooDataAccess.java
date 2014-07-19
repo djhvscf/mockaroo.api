@@ -136,7 +136,7 @@ public class MockarooDataAccess {
      * @throws ClassNotFoundException
      * @throws SQLException
      */
-	protected void Insert(String tableName, JSONObject jsonObject, String[] values) throws ClassNotFoundException, SQLException
+	public void Insert(String tableName, JSONObject jsonObject, String[] values) throws ClassNotFoundException, SQLException
 	{
 		mockarooDataAccessHelper.Insert(tableName, jsonObject, values, this.getConnection());
 	}
