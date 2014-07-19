@@ -51,12 +51,10 @@ Not yet.
 
 Release history
 ======================
-Version: 0.1.0 - 18/July/2014
+Version: 0.1.0 - 18-July-2014
+Version: 1.0.0 - 19-July-2014
 
 Download mockarooapi.jar
 =======================
 https://github.com/djhvscf/mockaroo.api/releases/download/v0.1.0/mockarooapi.jar
-<<<<<<< HEAD
-=======
-
->>>>>>> develop
+https://github.com/djhvscf/mockaroo.api/releases/download/v1.0.0/mockarooapi.jar
