@@ -32,12 +32,15 @@ How to use it?
 		
 		mockarooApi.Insert(data, dataAccess, "tableName", columnsTable);//Insert into a data base
 		
-		MockarooFile test = new MockarooExcel("c:/temp/","test","testing","en", "EN");
-	    test.write(data); //Generate a Excel file
+		MockarooFile excel = new MockarooExcel("c:/temp/","test","testing","en", "EN");
+	    excel.write(data); //Generate a Excel file
 	    
 	    MockarooFile json = new MockarooJSON("c:/temp/", "test");
 	    json.write(data); //Generate a .json file
-
+	    
+	    MockarooFile xml = new MockarooXML("c:/temp/", "test", "lala");
+		xml.write(data);
+	    
 Dependencies
 =============
 Not yet.
