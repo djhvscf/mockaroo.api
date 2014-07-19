@@ -7,7 +7,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -15,15 +14,11 @@ import javax.xml.transform.stream.StreamResult;
 
 import jxl.write.WriteException;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.w3c.dom.Attr;
-import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.xml.sax.EntityResolver;
-import org.xml.sax.ErrorHandler;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 import com.mockaroo.api.interfaces.IMockarooXMLHelper;
 
@@ -59,7 +54,7 @@ public class MockarooXMLHelper implements IMockarooXMLHelper {
 		return instance;
 	}
 
-	public DocumentBuilder getDocBuilder() {
+	private DocumentBuilder getDocBuilder() {
 		return docBuilder;
 	}
 
@@ -67,72 +62,72 @@ public class MockarooXMLHelper implements IMockarooXMLHelper {
 		this.docBuilder = docBuilder;
 	}
 
-	public DocumentBuilderFactory getDocFactory() {
+	private DocumentBuilderFactory getDocFactory() {
 		return docFactory;
 	}
 
-	public void setDocFactory(DocumentBuilderFactory docFactory) {
+	private void setDocFactory(DocumentBuilderFactory docFactory) {
 		this.docFactory = docFactory;
 	}
 
-	public Document getDocument() {
+	private Document getDocument() {
 		return document;
 	}
 
-	public void setDocument(Document document) {
+	private void setDocument(Document document) {
 		this.document = document;
 	}
 	
-	public Element getRootElement() {
+	private Element getRootElement() {
 		return rootElement;
 	}
 
-	public void setRootElement(Element rootElement) {
+	private void setRootElement(Element rootElement) {
 		this.rootElement = rootElement;
 	}
 
-	public Element getObject() {
+	private Element getObject() {
 		return object;
 	}
 
-	public void setObject(Element object) {
+	private void setObject(Element object) {
 		this.object = object;
 	}
 
-	public void createRootElement(String rootTagName)
+	private void createRootElement(String rootTagName)
 	{
 		this.setRootElement(this.getDocument().createElement(rootTagName));
 		this.getDocument().appendChild(rootElement);
 	}
 	
-	public void createChildElement(String objectName)
+	private void createChildElement(String objectName)
 	{
 		this.setObject(this.getDocument().createElement(objectName));
 		this.getRootElement().appendChild(this.getObject());
 	}
 	
-	public void createAttributes(String attributeName, String attributeValue)
+	@SuppressWarnings("unused")
+	private void createAttributes(String attributeName, String attributeValue)
 	{
 		Attr attr = this.getDocument().createAttribute(attributeName);
 		attr.setValue(attributeValue);
 		this.getObject().setAttributeNode(attr);
 	}
 	
-	public void createObjectTag(String tagName, String tagValue)
+	private void createObjectTag(String tagName, String tagValue)
 	{
 		Element element = this.getDocument().createElement(tagName);
 		element.appendChild(this.getDocument().createTextNode(tagValue));
 		this.getObject().appendChild(element);
 	}
-	
-	public void write(String path, String fileName) throws TransformerException
-	{
-		
-	}
 
 	@Override
-	public void write(String fileName, JSONObject jsonObject)
+	public void write(String fileName, String rootTagName, String objectName, JSONObject jsonObject)
 			throws IOException, WriteException, TransformerException {
+		
+		this.createRootElement(rootTagName);
+		this.createChildElement(objectName);
+		this.setObjectTag(jsonObject);
 		
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
@@ -140,5 +135,52 @@ public class MockarooXMLHelper implements IMockarooXMLHelper {
 		StreamResult result = new StreamResult(new File(fileName));
 		
 		transformer.transform(source, result);
+	}
+	
+	/**
+	 * Generate the object tags name
+	 * @param jsonObject {@link JSONObject}
+	 * @return String with the tags name
+	 */
+	public String[] getObjectTag(JSONObject jsonObject)
+	{
+		JSONArray name = jsonObject.names();
+		String[] tagsName = new String[name.length()];
+		
+		for(int i = 0; i < name.length(); i++)
+		{
+			tagsName[i] = name.getString(i);
+		}
+		
+		return tagsName;
+	}
+	
+	/**
+	 * Generate the object values
+	 * @param jsonObject
+	 * @return String with the object values
+	 */
+	public String[] generateObjectValue(JSONObject jsonObject)
+	{
+		JSONArray name = jsonObject.names();
+		String objectValues[] = new String[name.length()];
+		
+		for(int i = 0; i < name.length(); i++)
+		{
+			objectValues[i] = jsonObject.getString(name.getString(i));
+		}
+		
+		return objectValues;
+	}
+	
+	private void setObjectTag(JSONObject jsonObject)
+	{
+		String[] tagsName = this.getObjectTag(jsonObject);
+		String[] objectValues = this.generateObjectValue(jsonObject);
+		
+		for(int i = 0; i < tagsName.length; i++)
+		{
+			this.createObjectTag(tagsName[i], objectValues[i]);
+		}
 	}
 }

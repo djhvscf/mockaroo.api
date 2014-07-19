@@ -10,6 +10,4 @@ import org.json.JSONObject;
 public abstract class MockarooFile {
 
 	public abstract void write(JSONObject jsonObject) throws IOException, WriteException, TransformerException;
-	public void write(String fileName, JSONObject jsonObject) throws IOException, WriteException {
-	}
 }

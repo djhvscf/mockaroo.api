@@ -24,6 +24,6 @@ public interface IMockarooXMLHelper {
 	 * @throws WriteException
 	 * @throws TransformerException
 	 */
-	public void write(String fileName, JSONObject jsonObject) 
+	public void write(String fileName, String rootTagName, String objectName, JSONObject jsonObject) 
 			throws IOException, WriteException, TransformerException;
 }
