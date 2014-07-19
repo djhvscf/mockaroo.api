@@ -27,6 +27,13 @@ public class MockarooXML extends MockarooFile {
 	private static final String CHILD_ELEMENT = "Object";
 	private static final String EXTENSION = ".xml";
 	
+	/**
+	 * Constructor
+	 * @param path Path where save the file
+	 * @param fileName File name
+	 * @param rootElement Name of the root element of the .XML
+	 * @throws ParserConfigurationException
+	 */
 	public MockarooXML(String path, String fileName, String rootElement) throws ParserConfigurationException
 	{
 		xmlHelper = MockarooXMLHelper.getInstance();
@@ -35,30 +42,48 @@ public class MockarooXML extends MockarooFile {
 		this.setRootElement(rootElement);
 	}
 	
+	/**
+	 * Get the path
+	 * @return Path where save the file
+	 */
 	public String getPath() {
 		return path;
 	}
 
+	/**
+	 * Get the file name
+	 * @return File name
+	 */
 	public String getFileName() {
 		return fileName;
 	}
 
+	/**
+	 * Set the path where save the file
+	 * @param path String with the path
+	 */
 	public void setPath(String path) {
 		this.path = path;
 	}
 
+	/**
+	 * File name
+	 * @param fileName String with the file name
+	 */
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
 	}
 
 	/**
-	 * @return the rootElement
+	 * Get the root element
+	 * @return The root element name
 	 */
 	private String getRootElement() {
 		return rootElement;
 	}
 
 	/**
+	 * Set the root element name
 	 * @param rootElement the rootElement to set
 	 */
 	private void setRootElement(String rootElement) {

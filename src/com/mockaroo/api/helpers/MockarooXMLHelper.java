@@ -37,6 +37,11 @@ public class MockarooXMLHelper implements IMockarooXMLHelper {
 	private Element rootElement;
 	private Element object;
 	
+	/**
+	 * Constructor
+	 * Applying singleton
+	 * @throws ParserConfigurationException
+	 */
 	private MockarooXMLHelper() throws ParserConfigurationException
 	{
 		this.setDocFactory(DocumentBuilderFactory.newInstance());
@@ -44,6 +49,11 @@ public class MockarooXMLHelper implements IMockarooXMLHelper {
 		this.setDocument(this.getDocBuilder().newDocument());
 	}
 	
+	/**
+	 * Return a {@link MockarooXMLHelper} object
+	 * @return {@link MockarooXMLHelper}
+	 * @throws ParserConfigurationException
+	 */
 	public static MockarooXMLHelper getInstance() throws ParserConfigurationException
 	{
 		if(instance == null)
@@ -54,52 +64,100 @@ public class MockarooXMLHelper implements IMockarooXMLHelper {
 		return instance;
 	}
 
+	/**
+	 * Get the document builder
+	 * @return {@link DocumentBuilder}
+	 */
 	private DocumentBuilder getDocBuilder() {
 		return docBuilder;
 	}
 
+	/**
+	 * Set the document builder
+	 * @param docBuilder {@link DocumentBuilder}
+	 */
 	private void setDocBuilder(DocumentBuilder docBuilder) {
 		this.docBuilder = docBuilder;
 	}
 
+	/**
+	 * Get the document builder factory
+	 * @return {@link DocumentBuilderFactory} 
+	 */
 	private DocumentBuilderFactory getDocFactory() {
 		return docFactory;
 	}
 
+	/**
+	 * Set the document builder factory
+	 * @param docFactory {@link DocumentBuilderFactory}
+	 */
 	private void setDocFactory(DocumentBuilderFactory docFactory) {
 		this.docFactory = docFactory;
 	}
 
+	/**
+	 * Get the {@link Document} object
+	 * @return {@link Document}
+	 */
 	private Document getDocument() {
 		return document;
 	}
 
+	/**
+	 * Set the document
+	 * @param document {@link Document}
+	 */
 	private void setDocument(Document document) {
 		this.document = document;
 	}
 	
+	/**
+	 * Get the root {@link Element}
+	 * @return {@link Element}
+	 */
 	private Element getRootElement() {
 		return rootElement;
 	}
 
+	/**
+	 * Set the root element
+	 * @param rootElement {@link Element}
+	 */
 	private void setRootElement(Element rootElement) {
 		this.rootElement = rootElement;
 	}
 
+	/**
+	 * Get the object {@link Element}
+	 * @return {@link Element}
+	 */
 	private Element getObject() {
 		return object;
 	}
 
+	/**
+	 * Set the object element
+	 * @param object {@link Element}
+	 */
 	private void setObject(Element object) {
 		this.object = object;
 	}
 
+	/**
+	 * Set the name of the root element tag
+	 * @param rootTagName String with the tag name
+	 */
 	private void createRootElement(String rootTagName)
 	{
 		this.setRootElement(this.getDocument().createElement(rootTagName));
 		this.getDocument().appendChild(rootElement);
 	}
 	
+	/**
+	 * Set the child element name
+	 * @param objectName String with the child element name
+	 */
 	private void createChildElement(String objectName)
 	{
 		this.setObject(this.getDocument().createElement(objectName));
@@ -114,6 +172,11 @@ public class MockarooXMLHelper implements IMockarooXMLHelper {
 		this.getObject().setAttributeNode(attr);
 	}
 	
+	/**
+	 * Create the .XML object with tag name and its value
+	 * @param tagName Tag name
+	 * @param tagValue Tag value
+	 */
 	private void createObjectTag(String tagName, String tagValue)
 	{
 		Element element = this.getDocument().createElement(tagName);
@@ -173,6 +236,10 @@ public class MockarooXMLHelper implements IMockarooXMLHelper {
 		return objectValues;
 	}
 	
+	/**
+	 * Create all the tag for the object
+	 * @param jsonObject {@link JSONObject}
+	 */
 	private void setObjectTag(JSONObject jsonObject)
 	{
 		String[] tagsName = this.getObjectTag(jsonObject);
