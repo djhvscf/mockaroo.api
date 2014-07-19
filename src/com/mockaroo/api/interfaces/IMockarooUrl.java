@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
  * @version 0.1.0
  * @since 09/July/2014
  */
-public interface IUrl {
+public interface IMockarooUrl {
 
 	static final String urlMockaroo = "http://www.mockaroo.com/api/generate.json?key=";
 	

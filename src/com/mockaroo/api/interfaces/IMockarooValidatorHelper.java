@@ -12,7 +12,7 @@ import com.mockaroo.api.exceptions.MockarooExceptionValue;
  * @version 0.1.0
  * @since 12/July/2014
  */
-public interface IValidatorHelper {
+public interface IMockarooValidatorHelper {
 
 	/**
 	 * Validate if the column name is null or empty

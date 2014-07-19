@@ -3,13 +3,20 @@ package com.mockaroo.api;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
+
+import org.json.JSONObject;
+
+import com.mockaroo.api.exceptions.MockarooExceptionValue;
+import com.mockaroo.api.helpers.MockarooDataAccessHelper;
+import com.mockaroo.api.helpers.MockarooValidatorHelper;
+import com.mockaroo.api.interfaces.IMockarooDataAccessHelper;
+import com.mockaroo.api.interfaces.IMockarooValidatorHelper;
 
 /**
  * Data access layer
  * @author Dennis Hernández Vargas
- * @version 0.1.0
- * @since 16/July/2014
+ * @version 0.1.1
+ * @since 19/July/2014
  */
 public class MockarooDataAccess {
 
@@ -17,6 +24,12 @@ public class MockarooDataAccess {
     private String url;
     private String username; 
     private String password;
+    private IMockarooValidatorHelper validator = MockarooValidatorHelper.getInstance();
+    private IMockarooDataAccessHelper mockarooDataAccessHelper;
+	public static final String messageExceptionDriver = "The driver class name can't be empty";
+	public static final String messageExceptionUrl = "The url server can't be empty";
+	public static final String messageExceptionUsername = "The password can't be empty";
+	public static final String messageExceptionPassword = "The password can't be empty";
     
     /**
      * Default constructor
@@ -24,9 +37,16 @@ public class MockarooDataAccess {
      * @param url Server url
      * @param username User name
      * @param password User password
+     * @throws MockarooExceptionValue 
      */
-    public MockarooDataAccess(String driverClassName, String url, String username, String password)
+    public MockarooDataAccess(String driverClassName, String url, String username, String password) throws MockarooExceptionValue
     {
+    	validator.validateString(driverClassName, messageExceptionDriver);
+    	validator.validateString(url, messageExceptionUrl);
+    	validator.validateString(username, messageExceptionUsername);
+    	validator.validateString(password, messageExceptionPassword);
+    	
+    	mockarooDataAccessHelper = MockarooDataAccessHelper.getInstance();
     	this.setDriverClassName(driverClassName);
     	this.setUrl(url);
     	this.setUsername(username);
@@ -116,10 +136,8 @@ public class MockarooDataAccess {
      * @throws ClassNotFoundException
      * @throws SQLException
      */
-	protected boolean Insert(String sql) throws ClassNotFoundException, SQLException
+	protected void Insert(String tableName, JSONObject jsonObject, String[] values) throws ClassNotFoundException, SQLException
 	{
-		Statement statement;
-		statement = this.getConnection().createStatement();
-		return !statement.execute(sql);
+		mockarooDataAccessHelper.Insert(tableName, jsonObject, values, this.getConnection());
 	}
 }

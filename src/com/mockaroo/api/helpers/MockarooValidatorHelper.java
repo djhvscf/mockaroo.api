@@ -6,7 +6,7 @@ import com.mockaroo.api.exceptions.MockarooExceptionFormatTime;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
 import com.mockaroo.api.exceptions.MockarooExceptionValue;
-import com.mockaroo.api.interfaces.IValidatorHelper;
+import com.mockaroo.api.interfaces.IMockarooValidatorHelper;
 import java.text.SimpleDateFormat;
 
 /**
@@ -15,8 +15,30 @@ import java.text.SimpleDateFormat;
  * @version 0.1.0
  * @since 12/July/2014
  */
-public class MockarooValidatorHelper implements IValidatorHelper {
+public class MockarooValidatorHelper implements IMockarooValidatorHelper {
 
+	private static MockarooValidatorHelper instance = null;
+	
+	/**
+	 * Default constructor
+	 * Applying singleton
+	 */
+	private MockarooValidatorHelper(){}
+	
+	/**
+	 * Get the {@link MockarooValidatorHelper} object
+	 * @return {@link MockarooValidatorHelper}
+	 */
+	public static MockarooValidatorHelper getInstance()
+	{
+		if(instance == null)
+		{
+			instance = new MockarooValidatorHelper();
+		}
+		
+		return instance;
+	}
+	
 	@Override
 	public void validateColumnName(String name, String messageException) throws MockarooExceptionName
 	{

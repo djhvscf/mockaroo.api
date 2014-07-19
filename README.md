@@ -1,7 +1,7 @@
 Mockaroo API
 ================
 
-Mockaroo API is an API that let us generate random data and insert into our data base. That's it.<br />
+Mockaroo API is an API that let us generate random data and insert into our data bases, create .xml, .xls, .json files. That's it.<br />
 This API is based in JSON Objects.
 
 Author Homepage:      http://djhv92.wix.com/dennishernandez<br />
@@ -32,12 +32,15 @@ How to use it?
 		
 		mockarooApi.Insert(data, dataAccess, "tableName", columnsTable);//Insert into a data base
 		
-		MockarooFile test = new MockarooExcel("c:/temp/","test","testing","en", "EN");
-	    test.write(data); //Generate a Excel file
+		MockarooFile excel = new MockarooExcel("c:/temp/","test","testing","en", "EN");
+	    excel.write(data); //Generate a Excel file
 	    
 	    MockarooFile json = new MockarooJSON("c:/temp/", "test");
 	    json.write(data); //Generate a .json file
-
+	    
+	    MockarooFile xml = new MockarooXML("c:/temp/", "test", "lala");
+		xml.write(data);
+	    
 Dependencies
 =============
 Not yet.
@@ -53,3 +56,7 @@ Version: 0.1.0 - 18/July/2014
 Download mockarooapi.jar
 =======================
 https://github.com/djhvscf/mockaroo.api/releases/download/v0.1.0/mockarooapi.jar
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop

@@ -13,6 +13,7 @@ import com.mockaroo.api.exceptions.MockarooExceptionNumber;
 import com.mockaroo.api.exceptions.MockarooExceptionRegExpValue;
 import com.mockaroo.api.exceptions.MockarooExceptionValue;
 import com.mockaroo.api.interfaces.ICreateJSONObjectHelper;
+import com.mockaroo.api.interfaces.IMockarooValidatorHelper;
 
 /**
  * Class to create a specific JSONObject - Helper class
@@ -22,7 +23,7 @@ import com.mockaroo.api.interfaces.ICreateJSONObjectHelper;
  */
 public class MockarooCreateJSONObjectHelper implements ICreateJSONObjectHelper {
 	
-	private MockarooValidatorHelper validator = new MockarooValidatorHelper();
+	private IMockarooValidatorHelper validator = MockarooValidatorHelper.getInstance();
 	
 	@Override
 	public JSONObject createJSONObject(String name, String type) throws MockarooExceptionName 

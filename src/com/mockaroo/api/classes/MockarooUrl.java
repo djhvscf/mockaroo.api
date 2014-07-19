@@ -5,7 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import com.mockaroo.api.interfaces.IUrl;
+import com.mockaroo.api.interfaces.IMockarooUrl;
 
 /**
  * Class to create a connection to Mockaroo site
@@ -13,7 +13,7 @@ import com.mockaroo.api.interfaces.IUrl;
  * @version 0.1.0
  * @since 09/July/2014
  */
-public class MockarooUrl implements IUrl{
+public class MockarooUrl implements IMockarooUrl{
 
 	private static MockarooUrl instance = null;
 	private String key;
