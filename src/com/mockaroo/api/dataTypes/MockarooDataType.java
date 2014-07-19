@@ -7,7 +7,7 @@ import com.mockaroo.api.interfaces.IMockarooDataType;
 
 public abstract class MockarooDataType implements IMockarooDataType {
 
-	protected static MockarooValidatorHelper validator = new MockarooValidatorHelper();
+	protected static MockarooValidatorHelper validator = MockarooValidatorHelper.getInstance();
 
 	@Override
 	public abstract String getType();

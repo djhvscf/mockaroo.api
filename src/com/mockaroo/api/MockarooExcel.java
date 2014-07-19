@@ -8,8 +8,11 @@ import org.json.JSONObject;
 import jxl.write.WriteException;
 
 import com.mockaroo.api.classes.MockarooFile;
+import com.mockaroo.api.exceptions.MockarooExceptionValue;
 import com.mockaroo.api.helpers.MockarooExcelHelper;
+import com.mockaroo.api.helpers.MockarooValidatorHelper;
 import com.mockaroo.api.interfaces.IMockarooExcelHelper;
+import com.mockaroo.api.interfaces.IMockarooValidatorHelper;
 
 /**
  * Class to create a Excel file
@@ -27,6 +30,13 @@ public class MockarooExcel extends MockarooFile {
 	private String language;
 	private String country;
 	private static final String EXTENSION = ".xls";
+	private IMockarooValidatorHelper validator = MockarooValidatorHelper.getInstance();
+	public String messageExceptionPath = "The path can't be empty";
+	public String messageExceptionInputFileName = "The input file namee can't be empty";
+	public String messageExceptionSheetName = "The sheet name can't be empty";
+	public String messageExceptionLanguage = "The language can't be empty";
+	public String messageExceptionCountry = "The country can't be empty";
+	
 	
 	/**
 	 * Constructor
@@ -36,10 +46,17 @@ public class MockarooExcel extends MockarooFile {
 	 * @param language Language
 	 * @param country Country
 	 * @throws WriteException 
+	 * @throws MockarooExceptionValue 
 	 */
 	public MockarooExcel(String path, String inputFileName, String sheetName, String language, String country)
-			throws WriteException
+			throws WriteException, MockarooExceptionValue
 	{
+		validator.validateString(path, messageExceptionPath);
+		validator.validateString(inputFileName, messageExceptionInputFileName);
+		validator.validateString(sheetName, messageExceptionSheetName);
+		validator.validateString(language, messageExceptionLanguage);
+		validator.validateString(country, messageExceptionCountry);
+		
 		mockarooExcel = MockarooExcelHelper.getInstance();
 		this.setPath(path);
 		this.setInputFileName(inputFileName + EXTENSION);
@@ -55,10 +72,15 @@ public class MockarooExcel extends MockarooFile {
 	 * @param inputFileName Excel file name
 	 * @param sheetName Excel sheet name
 	 * @throws WriteException 
+	 * @throws MockarooExceptionValue 
 	 */
 	public MockarooExcel(String path, String inputFileName, String sheetName) 
-			throws WriteException
+			throws WriteException, MockarooExceptionValue
 	{
+		validator.validateString(path, messageExceptionPath);
+		validator.validateString(inputFileName, messageExceptionInputFileName);
+		validator.validateString(sheetName, messageExceptionSheetName);
+		
 		mockarooExcel = MockarooExcelHelper.getInstance();
 		this.setPath(path);
 		this.setInputFileName(inputFileName);

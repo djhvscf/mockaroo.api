@@ -2,7 +2,6 @@ package com.mockaroo.api;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.sql.SQLException;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -11,9 +10,8 @@ import com.mockaroo.api.classes.MockarooCreateJSONObject;
 import com.mockaroo.api.classes.MockarooUrl;
 import com.mockaroo.api.exceptions.MockarooExceptionJSONArray;
 import com.mockaroo.api.exceptions.MockarooExceptionPing;
-import com.mockaroo.api.helpers.MockarooApiHelper;
 import com.mockaroo.api.helpers.MockarooPingHelper;
-import com.mockaroo.api.interfaces.IUrl;
+import com.mockaroo.api.interfaces.IMockarooUrl;
 
 /**
  * Class base to MockarooApi
@@ -23,14 +21,11 @@ import com.mockaroo.api.interfaces.IUrl;
  */
 public class MockarooApi {
 
-	private final IUrl url;
+	private final IMockarooUrl url;
 	private String key;
 	private String contentType;
 	private int countRegister;
 	private final MockarooCreateJSONObject creater;
-	private MockarooApiHelper mockarooApiHelper;
-	private static final String messageExceptionInsertError = "An error ocurred inserting the data";
-	private static final String INSERT_INTO = "INSERT INTO ";
 	
 	/**
 	 * Constructor
@@ -47,7 +42,6 @@ public class MockarooApi {
 		this.setCountRegister(-1);
 		url = MockarooUrl.getInstance(key, contentType);
 		creater = new MockarooCreateJSONObject();
-		mockarooApiHelper = new MockarooApiHelper();
 	}
 	
 	/**
@@ -66,7 +60,6 @@ public class MockarooApi {
 		this.setCountRegister(countRegister);
 		url = MockarooUrl.getInstance(key, contentType);
 		creater = new MockarooCreateJSONObject();
-		mockarooApiHelper = new MockarooApiHelper();
 	}
 	
 	/**
@@ -103,9 +96,9 @@ public class MockarooApi {
 	
 	/**
 	 * Get the url
-	 * @return {@link IUrl}
+	 * @return {@link IMockarooUrl}
 	 */
-	public IUrl getUrl() {
+	public IMockarooUrl getUrl() {
 		return url;
 	}
 
@@ -158,7 +151,7 @@ public class MockarooApi {
 		return MockarooJSON.getJSONArray(conn, columns, this.getCountRegister());
 	}
 	
-	/**
+	/*/**
 	 * Insert into the database specified
 	 * @param jsonObject JSONObject with the information
 	 * @param dataAccess Object Data Access layer
@@ -166,7 +159,7 @@ public class MockarooApi {
 	 * @param values Values of the table
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
-	 */
+	 *
 	public void Insert(JSONObject jsonObject, MockarooDataAccess dataAccess, String tableName, String[] values) throws ClassNotFoundException, SQLException
 	{
 		String insertQuery = INSERT_INTO + tableName + mockarooApiHelper.generateValues(values) + 
@@ -175,5 +168,5 @@ public class MockarooApi {
 		{
 			throw new SQLException(messageExceptionInsertError);
 		}
-	}
+	}*/
 }

@@ -12,7 +12,11 @@ import org.json.JSONObject;
 
 import com.mockaroo.api.classes.MockarooFile;
 import com.mockaroo.api.exceptions.MockarooExceptionJSONArray;
+import com.mockaroo.api.exceptions.MockarooExceptionValue;
 import com.mockaroo.api.helpers.MockarooJSONHelper;
+import com.mockaroo.api.helpers.MockarooValidatorHelper;
+import com.mockaroo.api.interfaces.IMockarooJSONHelper;
+import com.mockaroo.api.interfaces.IMockarooValidatorHelper;
 
 /**
  * Class base to Mockaroo JSON
@@ -23,43 +27,34 @@ import com.mockaroo.api.helpers.MockarooJSONHelper;
 public class MockarooJSON extends MockarooFile {
 
 	private static final String messageExceptionJSONArray = "The count parameter can't be less than 0 or equal";
-	private MockarooJSONHelper jsonHelper;
+	private IMockarooJSONHelper jsonHelper;
 	private String fileName;
 	private static final String EXTENSION = ".json";
+	private IMockarooValidatorHelper validator = MockarooValidatorHelper.getInstance();
+	private static final String messageExceptionPath = "The path can't be empty";
+	private static final String messageExceptionFileName = "The file name can't be empty";
 	
 	/**
 	 * Constructor
 	 * @param path Where save the file .json
 	 * @param fileName File name
+	 * @throws MockarooExceptionValue 
 	 */
-	public MockarooJSON(String path, String fileName)
+	public MockarooJSON(String path, String fileName) throws MockarooExceptionValue
 	{
-		this.setJsonHelper(new MockarooJSONHelper());
+		validator.validateString(path, messageExceptionPath);
+		validator.validateString(fileName, messageExceptionFileName);
+		
+		jsonHelper = MockarooJSONHelper .getInstance();
 		this.setFileName(path + fileName + EXTENSION);
 	}
 	
-	/**
-	 * Get the json helper to write a .json
-	 * @return the jsonHelper
-	 */
-	private MockarooJSONHelper getJsonHelper() {
-		return jsonHelper;
-	}
-
 	/**
 	 * Get the file name
 	 * @return the fileName
 	 */
 	private String getFileName() {
 		return fileName;
-	}
-
-	/**
-	 * Set the json helper
-	 * @param jsonHelper the jsonHelper to set
-	 */
-	private void setJsonHelper(MockarooJSONHelper jsonHelper) {
-		this.jsonHelper = jsonHelper;
 	}
 
 	/**
@@ -111,6 +106,6 @@ public class MockarooJSON extends MockarooFile {
 	@Override
 	public void write(JSONObject jsonObject) throws IOException, WriteException 
 	{
-		this.getJsonHelper().write(this.getFileName(), jsonObject);
+		jsonHelper.write(this.getFileName(), jsonObject);
 	}
 }

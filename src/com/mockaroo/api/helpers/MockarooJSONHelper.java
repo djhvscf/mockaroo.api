@@ -16,6 +16,28 @@ import com.mockaroo.api.interfaces.IMockarooJSONHelper;
  */
 public class MockarooJSONHelper implements IMockarooJSONHelper {
 
+	private static MockarooJSONHelper instance = null;
+	
+	/**
+	 * Default constructor
+	 * Applying singleton
+	 */
+	private MockarooJSONHelper(){}
+	
+	/**
+	 * Get the {@link MockarooJSONHelper} object 
+	 * @return {@link MockarooJSONHelper}
+	 */
+	public static MockarooJSONHelper getInstance()
+	{
+		if(instance == null)
+		{
+			instance = new MockarooJSONHelper();
+		}
+		
+		return instance;
+	}
+	
 	@Override
 	public void write(String fileName, JSONObject jsonObject)throws IOException, WriteException {
 		

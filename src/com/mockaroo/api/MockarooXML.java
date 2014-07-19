@@ -9,7 +9,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import com.mockaroo.api.classes.MockarooFile;
+import com.mockaroo.api.exceptions.MockarooExceptionValue;
+import com.mockaroo.api.helpers.MockarooValidatorHelper;
 import com.mockaroo.api.helpers.MockarooXMLHelper;
+import com.mockaroo.api.interfaces.IMockarooValidatorHelper;
 import com.mockaroo.api.interfaces.IMockarooXMLHelper;
 
 /**
@@ -26,6 +29,10 @@ public class MockarooXML extends MockarooFile {
 	private String rootElement;
 	private static final String CHILD_ELEMENT = "Object";
 	private static final String EXTENSION = ".xml";
+	private IMockarooValidatorHelper validator = MockarooValidatorHelper.getInstance();
+	private String messageExceptionPath = "The path can't be empty";
+	private String messageExceptionFileName = "The file name can't be empty";
+	private String messageExceptionRootElement = "The root element name can't be empty";
 	
 	/**
 	 * Constructor
@@ -33,9 +40,14 @@ public class MockarooXML extends MockarooFile {
 	 * @param fileName File name
 	 * @param rootElement Name of the root element of the .XML
 	 * @throws ParserConfigurationException
+	 * @throws MockarooExceptionValue 
 	 */
-	public MockarooXML(String path, String fileName, String rootElement) throws ParserConfigurationException
+	public MockarooXML(String path, String fileName, String rootElement) throws ParserConfigurationException, MockarooExceptionValue
 	{
+		validator.validateString(path, messageExceptionPath);
+		validator.validateString(fileName, messageExceptionFileName);
+		validator.validateString(rootElement, messageExceptionRootElement);
+		
 		xmlHelper = MockarooXMLHelper.getInstance();
 		this.setFileName(fileName + EXTENSION);
 		this.setPath(path);
