@@ -150,23 +150,4 @@ public class MockarooApi {
 	{
 		return MockarooJSON.getJSONArray(conn, columns, this.getCountRegister());
 	}
-	
-	/*/**
-	 * Insert into the database specified
-	 * @param jsonObject JSONObject with the information
-	 * @param dataAccess Object Data Access layer
-	 * @param tableName Table to insert
-	 * @param values Values of the table
-	 * @throws ClassNotFoundException
-	 * @throws SQLException
-	 *
-	public void Insert(JSONObject jsonObject, MockarooDataAccess dataAccess, String tableName, String[] values) throws ClassNotFoundException, SQLException
-	{
-		String insertQuery = INSERT_INTO + tableName + mockarooApiHelper.generateValues(values) + 
-								mockarooApiHelper.generateValuesInsert(jsonObject);
-		if(!dataAccess.Insert(insertQuery))
-		{
-			throw new SQLException(messageExceptionInsertError);
-		}
-	}*/
 }
