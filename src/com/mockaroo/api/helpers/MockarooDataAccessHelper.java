@@ -118,4 +118,27 @@ public class MockarooDataAccessHelper implements IMockarooDataAccessHelper {
 			throw new SQLException(messageExceptionInsertError);
 		}
 	}
+
+	@Override
+	public void Insert(String tableName, JSONArray jsonArray, String[] values,
+			Connection connection) throws ClassNotFoundException, SQLException {
+		
+		String columns = this.generateValues(values);
+		
+		for(int i = 0; i < jsonArray.length(); i ++){
+			String insertQuery = INSERT_INTO + tableName + columns + 
+					this.generateValuesInsert(jsonArray.getJSONObject(i));
+	
+			Statement statement;
+			statement = connection.createStatement();
+			try
+			{
+				statement.execute(insertQuery);
+			}
+			catch(SQLException s)
+			{
+				throw new SQLException(messageExceptionInsertError);
+			}
+		}
+	}
 }
