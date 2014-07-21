@@ -9,8 +9,8 @@ import org.json.JSONObject;
 /**
  * Class to create a .json file
  * @author Dennis Hernández Vargas
- * @version 0.1.0
- * @since 17/July/2014
+ * @version 0.1.0 - 17/July/2014
+ * @since 0.1.0
  */
 public interface IMockarooJSONHelper {
 

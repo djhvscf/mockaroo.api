@@ -18,8 +18,8 @@ import com.mockaroo.api.exceptions.MockarooExceptionValue;
 /**
  * Interface that provide base methods to create JSONObject
  * @author Dennis Hernández Vargas
- * @version 0.1.0
- * @since 09/July/2014
+ * @version 0.1.0 - 09/July/2014
+ * @since 0.1.0
  */
 public interface ICreateJSONObjectHelper {
 

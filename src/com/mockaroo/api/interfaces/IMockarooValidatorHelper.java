@@ -9,8 +9,8 @@ import com.mockaroo.api.exceptions.MockarooExceptionValue;
 /**
  * Interface that provide base methods to validator helper
  * @author Dennis Hernández Vargas
- * @version 0.1.0
- * @since 12/July/2014
+ * @version 0.1.0 - 12/July/2014
+ * @since 0.1.0
  */
 public interface IMockarooValidatorHelper {
 

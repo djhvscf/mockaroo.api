@@ -3,8 +3,8 @@ package com.mockaroo.api.enums;
 /**
  * Enum that provide the mockaroo date type
  * @author Dennis Hernández Vargas
- * @version 0.1.0
- * @since 16/July/2014
+ * @version 0.1.0 - 16/July/2014
+ * @since 0.1.0
  */
 public enum MockarooDateType {
 

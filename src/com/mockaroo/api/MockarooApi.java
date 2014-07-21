@@ -11,21 +11,23 @@ import com.mockaroo.api.classes.MockarooUrl;
 import com.mockaroo.api.exceptions.MockarooExceptionJSONArray;
 import com.mockaroo.api.exceptions.MockarooExceptionPing;
 import com.mockaroo.api.helpers.MockarooPingHelper;
+import com.mockaroo.api.interfaces.IMockarooPingHelper;
 import com.mockaroo.api.interfaces.IMockarooUrl;
 
 /**
  * Class base to MockarooApi
  * @author Dennis Hernández Vargas
- * @version 0.1.0
- * @since 16/July/2014
+ * @version 0.1.0 - 16/July/2014
+ * @since 0.1.0
  */
 public class MockarooApi {
 
 	private final IMockarooUrl url;
 	private String key;
-	private String contentType;
 	private int countRegister;
 	private final MockarooCreateJSONObject creater;
+	private static IMockarooPingHelper mockarooPingHelper;
+	private static final String contentType = "application/json";
 	
 	/**
 	 * Constructor
@@ -33,15 +35,9 @@ public class MockarooApi {
 	 * @param contentType Content type
 	 * @throws MockarooExceptionPing 
 	 */
-	public MockarooApi(String key, String contentType) throws MockarooExceptionPing
+	public MockarooApi(String key) throws MockarooExceptionPing
 	{
-		MockarooPingHelper.ping();
-		
-		this.setKey(key);
-		this.setContentType(contentType);
-		this.setCountRegister(-1);
-		url = MockarooUrl.getInstance(key, contentType);
-		creater = new MockarooCreateJSONObject();
+		this(key, -1);
 	}
 	
 	/**
@@ -51,31 +47,15 @@ public class MockarooApi {
 	 * @param countRegister Qunatity of registers
 	 * @throws MockarooExceptionPing 
 	 */
-	public MockarooApi(String key, String contentType, int countRegister) throws MockarooExceptionPing
+	public MockarooApi(String key, int countRegister) throws MockarooExceptionPing
 	{
-		MockarooPingHelper.ping();
+		mockarooPingHelper = MockarooPingHelper.getInstance();
+		mockarooPingHelper.ping();
 		
 		this.setKey(key);
-		this.setContentType(contentType);
 		this.setCountRegister(countRegister);
 		url = MockarooUrl.getInstance(key, contentType);
 		creater = new MockarooCreateJSONObject();
-	}
-	
-	/**
-	 * Get the content type
-	 * @return Content type
-	 */
-	public String getContentType() {
-		return contentType;
-	}
-
-	/**
-	 * Set the content type
-	 * @param contentType
-	 */
-	public void setContentType(String contentType) {
-		this.contentType = contentType;
 	}
 
 	/**
@@ -103,7 +83,7 @@ public class MockarooApi {
 	}
 
 	/**
-	 * Get the {@link MockarooCreateJSONObject}
+	 * Get the {@link MockarooCreateJSONObject} object
 	 * @return {@link MockarooCreateJSONObject}
 	 */
 	public MockarooCreateJSONObject getCreater() {
@@ -114,7 +94,7 @@ public class MockarooApi {
 	 * Gets the counter
 	 * @return Quantity
 	 */
-	public int getCountRegister() {
+	private int getCountRegister() {
 		return countRegister;
 	}
 

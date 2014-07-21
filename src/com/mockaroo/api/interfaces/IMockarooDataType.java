@@ -2,6 +2,12 @@ package com.mockaroo.api.interfaces;
 
 import org.json.JSONObject;
 
+/**
+ * Interface that provide base methods to data access
+ * @author Dennis Hernández Vargas
+ * @version 0.1.0 - 09/July/2014
+ * @since 0.1.0
+ */
 public interface IMockarooDataType {
 
 	static final String messageExceptionName = "The column name can't be empty";

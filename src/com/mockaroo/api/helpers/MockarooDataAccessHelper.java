@@ -12,8 +12,8 @@ import com.mockaroo.api.interfaces.IMockarooDataAccessHelper;
 /**
  * Class to help the MockarooDataAccess class - Helper class
  * @author Dennis Hernández Vargas
- * @version 0.1.1
- * @since 19/July/2014
+ * @version 1.0.0 - 19/July/2014
+ * @since 1.0.0
  */
 public class MockarooDataAccessHelper implements IMockarooDataAccessHelper {
 

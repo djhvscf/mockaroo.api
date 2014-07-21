@@ -9,8 +9,8 @@ import org.json.JSONObject;
 /**
  * Interface that provide base methods to data access
  * @author Dennis Hernández Vargas
- * @version 0.1.1
- * @since 19/July/2014
+ * @version 1.0.0 - 19/July/2014
+ * @since 1.0.0
  */
 public interface IMockarooDataAccessHelper {
 
