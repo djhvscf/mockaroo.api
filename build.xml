@@ -1,0 +1,17 @@
+<project name="Mockaroo API" default="dist" basedir=".">
+    <description>
+        Mockaroo API based on JSON Objects
+    </description>
+ 
+  <property name="src" location="src"/>
+  
+  <target name="compile" depends="init" description="compile">
+    <javac srcdir="${src}" destdir="${build}/main"/>
+    </javac>
+  </target>
+ 
+  <target name="dist" depends="compile">
+    <mkdir dir="${dist}/lib"/>
+    <jar jarfile="${dist}/lib/travis-playground-${DSTAMP}.jar" basedir="${build}"/>
+  </target>
+</project>
