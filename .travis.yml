@@ -1,6 +1,6 @@
 language: java
-install: true
 jdk:
   - oraclejdk7
-  - openjdk7
-  - openjdk6
+notifications:
+  email:
+    - djhv92@hotmail.com
