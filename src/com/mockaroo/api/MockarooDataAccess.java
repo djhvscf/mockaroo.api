@@ -40,7 +40,8 @@ public class MockarooDataAccess {
      * @param password User password
      * @throws MockarooExceptionValue 
      */
-    public MockarooDataAccess(String driverClassName, String url, String username, String password) throws MockarooExceptionValue
+    public MockarooDataAccess(String driverClassName, String url, String username, String password) 
+    		throws MockarooExceptionValue
     {
     	validator.validateString(driverClassName, messageExceptionDriver);
     	validator.validateString(url, messageExceptionUrl);

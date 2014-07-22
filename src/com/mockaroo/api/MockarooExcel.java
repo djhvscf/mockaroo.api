@@ -29,13 +29,15 @@ public class MockarooExcel extends MockarooFile {
 	private String sheetName;
 	private String language;
 	private String country;
-	private static final String EXTENSION = ".xls";
 	private IMockarooValidatorHelper validator = MockarooValidatorHelper.getInstance();
-	public String messageExceptionPath = "The path can't be empty";
-	public String messageExceptionInputFileName = "The input file namee can't be empty";
-	public String messageExceptionSheetName = "The sheet name can't be empty";
-	public String messageExceptionLanguage = "The language can't be empty";
-	public String messageExceptionCountry = "The country can't be empty";
+	private static final String EXTENSION = ".xls";
+	private static final String messageExceptionPath = "The path can't be empty";
+	private static final String messageExceptionInputFileName = "The input file namee can't be empty";
+	private static final String messageExceptionSheetName = "The sheet name can't be empty";
+	private static final String messageExceptionLanguage = "The language can't be empty";
+	private static final String messageExceptionCountry = "The country can't be empty";
+	private static final String LANGUAGE = "en";
+	private static final String COUNTRY = "EN";
 	
 	
 	/**
@@ -77,17 +79,7 @@ public class MockarooExcel extends MockarooFile {
 	public MockarooExcel(String path, String inputFileName, String sheetName) 
 			throws WriteException, MockarooExceptionValue
 	{
-		validator.validateString(path, messageExceptionPath);
-		validator.validateString(inputFileName, messageExceptionInputFileName);
-		validator.validateString(sheetName, messageExceptionSheetName);
-		
-		mockarooExcel = MockarooExcelHelper.getInstance();
-		this.setPath(path);
-		this.setInputFileName(inputFileName);
-		this.setSheetName(sheetName);
-		this.setLanguage("en");
-		this.setCountry("EN");
-		this.setOutputFile();
+		this(path, inputFileName, sheetName, LANGUAGE, COUNTRY);
 	}
 
 	/**

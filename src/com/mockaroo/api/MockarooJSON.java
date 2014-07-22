@@ -29,8 +29,8 @@ public class MockarooJSON extends MockarooFile {
 	private static final String messageExceptionJSONArray = "The count parameter can't be less than 0 or equal";
 	private IMockarooJSONHelper jsonHelper;
 	private String fileName;
-	private static final String EXTENSION = ".json";
 	private IMockarooValidatorHelper validator = MockarooValidatorHelper.getInstance();
+	private static final String EXTENSION = ".json";
 	private static final String messageExceptionPath = "The path can't be empty";
 	private static final String messageExceptionFileName = "The file name can't be empty";
 	

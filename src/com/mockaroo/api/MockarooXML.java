@@ -27,12 +27,12 @@ public class MockarooXML extends MockarooFile {
 	private String path;
 	private String fileName;
 	private String rootElement;
+	private IMockarooValidatorHelper validator = MockarooValidatorHelper.getInstance();
 	private static final String CHILD_ELEMENT = "Object";
 	private static final String EXTENSION = ".xml";
-	private IMockarooValidatorHelper validator = MockarooValidatorHelper.getInstance();
-	private String messageExceptionPath = "The path can't be empty";
-	private String messageExceptionFileName = "The file name can't be empty";
-	private String messageExceptionRootElement = "The root element name can't be empty";
+	private static final String messageExceptionPath = "The path can't be empty";
+	private static final String messageExceptionFileName = "The file name can't be empty";
+	private static final String messageExceptionRootElement = "The root element name can't be empty";
 	
 	/**
 	 * Constructor
