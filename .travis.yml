@@ -1,7 +1,5 @@
 language: java
-install: ant install-deps
+install: ant deps
 jdk:
   - oraclejdk7
-notifications:
-  email:
-    - djhv92@hotmail.com
+  - openjdk7
