@@ -9,9 +9,4 @@
     <javac srcdir="${src}" destdir="${build}/main"/>
     </javac>
   </target>
- 
-  <target name="dist" depends="compile">
-    <mkdir dir="${dist}/lib"/>
-    <jar jarfile="${dist}/lib/travis-playground-${DSTAMP}.jar" basedir="${build}"/>
-  </target>
 </project>
