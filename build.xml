@@ -4,9 +4,4 @@
     </description>
  
   <property name="src" location="src"/>
-  
-  <target name="compile" depends="init" description="compile">
-    <javac srcdir="${src}" destdir="${build}/main"/>
-    </javac>
-  </target>
 </project>
