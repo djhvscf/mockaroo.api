@@ -1,5 +1,17 @@
 language: java
-install: ant deps
+script: mvn clean package
+cache: apt
+before_install:
+  - sudo add-apt-repository -y ppa:chris-lea/node.js
+  - sudo apt-get -y update
+install:
+  - sudo apt-get -y install nodejs
+  - sudo npm install -g grunt-cli
+  - sudo npm install -g bower
+  - gem install compass
+  - travis_retry gem install compass
+  - npm config set registry "https://registry.nodejitsu.com"
+  - npm set tmp .npm-tmp
+  - sudo chown -R `whoami` ~/.npm # give .npm ownership to the user that will run the build
 jdk:
   - oraclejdk7
-  - openjdk7
