@@ -1,7 +1,0 @@
-<project name="Mockaroo API" default="dist" basedir=".">
-    <description>
-        Mockaroo API based on JSON Objects
-    </description>
- 
-  <property name="src" location="src"/>
-</project>
