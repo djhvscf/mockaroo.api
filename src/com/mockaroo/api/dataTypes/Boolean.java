@@ -63,8 +63,8 @@ public class Boolean implements IMockarooObject {
 	@Override
 	public JSONObject getJSONObject() {
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("name", this.getColumnName());
-		jsonObject.put("type", this.geyType());
+		jsonObject.put(NAME, this.getColumnName());
+		jsonObject.put(TYPE, this.geyType());
 
 		return jsonObject;
 

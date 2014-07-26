@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.mockaroo.api.dataTypes;
 
 import org.json.JSONObject;
@@ -6,58 +9,62 @@ import com.mockaroo.api.enums.MockarooType;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 
 /**
- * Blank mockaroo object
+ * Company Name mockaroo object
  * @author Dennis Hernández Vargas
- * @version 2.0.0 - 25/July/2014
+ * @version 2.0.0 - 26/07/2014
  * @since 2.0.0
  */
-public class Blank implements IMockarooObject {
-
-	private static Blank instance = null;
+public class CompanyName implements IMockarooObject {
+	
+	private static CompanyName instance = null;
 	private String columnName;
 	
 	/**
-	 * Default constructor
+	 * Constructor
 	 * @param columnName Column name
 	 */
-	private Blank(String columnName)
+	private CompanyName(String columnName)
 	{
 		this.setColumnName(columnName);
 	}
 	
 	/**
-	 * Get the {@link Blank} object
+	 * Get the {@link CompanyName} object
 	 * @param columnName Column name
-	 * @return {@link Blank} object
+	 * @return {@link CompanyName} object
 	 * @throws MockarooExceptionName 
 	 */
-	public static Blank getInstance(String columnName) throws MockarooExceptionName
+	public static CompanyName getInstance(String columnName) throws MockarooExceptionName
 	{
 		VALIDATOR.validateColumnName(columnName, messageExceptionName);
+		
 		if(instance == null)
 		{
-			instance = new Blank(columnName);
+			instance = new CompanyName(columnName);
 		}
 		
 		return instance;
 	}
 
 	/**
+	 * Get the columnName
 	 * @return the columnName
 	 */
-	public String getColumnName() {
+	private String getColumnName() {
 		return columnName;
 	}
 
 	/**
+	 * Set the columnName
 	 * @param columnName the columnName to set
 	 */
-	public void setColumnName(String columnName) {
+	private void setColumnName(String columnName) {
 		this.columnName = columnName;
 	}
 
 	@Override
 	public JSONObject getJSONObject() {
+		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put(NAME, this.getColumnName());
 		jsonObject.put(TYPE, this.geyType());
@@ -67,6 +74,6 @@ public class Blank implements IMockarooObject {
 
 	@Override
 	public String geyType() {
-		return MockarooType.Blank.toString();
+		return MockarooType.Company_Name.toString().replace(UNDERSCORE, SPACE);
 	}
 }

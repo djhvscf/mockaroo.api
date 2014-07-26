@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.mockaroo.api.dataTypes;
 
 import org.json.JSONObject;
@@ -6,74 +9,71 @@ import com.mockaroo.api.enums.MockarooType;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 
 /**
- * City mockaroo object
+ * Country mockaroo object
  * @author Dennis Hernández Vargas
- * @version 2.0.0 - 25/July/2014
+ * @version 2.0.0 - 26/07/2014
  * @since 2.0.0
  */
-public class City implements IMockarooObject {
+public class Country implements IMockarooObject {
 
-	private static City instance = null;
+	private static Country instance = null;
 	private String columnName;
 	
 	/**
 	 * Constructor
 	 * @param columnName Column name
 	 */
-	private City(String columnName)
+	private Country(String columnName)
 	{
 		this.setColumnName(columnName);
 	}
 	
 	/**
-	 * Get thee {@link City} object
-	 * Applying singleton
-	 * @param columnName Column namee
-	 * @return {@link City} object
+	 * Get the {@link Country} object
+	 * @param columnName Column name
+	 * @return {@link Country} object
 	 * @throws MockarooExceptionName
 	 */
-	public static City getInstance(String columnName) throws MockarooExceptionName
+	public static Country getInstance(String columnName) throws MockarooExceptionName
 	{
 		VALIDATOR.validateColumnName(columnName, messageExceptionName);
 		
 		if(instance == null)
 		{
-			instance = new City(columnName);
+			instance = new Country(columnName);
 		}
 		
 		return instance;
 	}
-	
+
 	/**
-	 * Set the column name
-	 * @param columnName Column name
+	 * Get the columnName
+	 * @return the columnName
 	 */
-	private void setColumnName(String columnName) 
-	{
-		this.columnName = columnName;
+	private String getColumnName() {
+		return columnName;
 	}
-	
+
 	/**
-	 * Get the column name
-	 * @return String column name
+	 * Set the columnName
+	 * @param columnName the columnName to set
 	 */
-	private String getColumnName()
-	{
-		return this.columnName;
+	private void setColumnName(String columnName) {
+		this.columnName = columnName;
 	}
 
 	@Override
-	public JSONObject getJSONObject() 
-	{
+	public JSONObject getJSONObject() {
+		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put(NAME, this.getColumnName());
 		jsonObject.put(TYPE, this.geyType());
 
 		return jsonObject;
 	}
-	
+
 	@Override
 	public String geyType() {
-		return MockarooType.City.toString();
+		return MockarooType.Country.toString();
 	}
 }

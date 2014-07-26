@@ -35,6 +35,11 @@ public interface IMockarooObject {
 	static final String messageExceptionMinTime = "The minimum time can't be empty";
 	static final String messageExceptionMaxTime = "The maximum time can't be empty";
 
+	static final String NAME = "name";
+	static final String TYPE = "type";
+	static final char UNDERSCORE = '_';
+	static final char SPACE = ' ';
+	
 	static final IMockarooValidatorHelper VALIDATOR = MockarooValidatorHelper.getInstance();
 	
 	/**

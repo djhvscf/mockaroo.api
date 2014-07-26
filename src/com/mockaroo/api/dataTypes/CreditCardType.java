@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package com.mockaroo.api.dataTypes;
 
 import org.json.JSONObject;
@@ -6,58 +9,65 @@ import com.mockaroo.api.enums.MockarooType;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 
 /**
- * Blank mockaroo object
+ * CreditCardType mockaroo object
  * @author Dennis Hernández Vargas
- * @version 2.0.0 - 25/July/2014
+ * @version 2.0.0 - 26/07/2014
  * @since 2.0.0
  */
-public class Blank implements IMockarooObject {
+public class CreditCardType implements IMockarooObject {
 
-	private static Blank instance = null;
+	private static CreditCardType instance = null;
 	private String columnName;
 	
 	/**
-	 * Default constructor
+	 * Constructor
 	 * @param columnName Column name
 	 */
-	private Blank(String columnName)
+	private CreditCardType(String columnName)
 	{
 		this.setColumnName(columnName);
 	}
 	
 	/**
-	 * Get the {@link Blank} object
+	 * Get the {@link CreditCardType} object
 	 * @param columnName Column name
-	 * @return {@link Blank} object
-	 * @throws MockarooExceptionName 
+	 * @return {@link CreditCardType} object
+	 * @throws MockarooExceptionName
 	 */
-	public static Blank getInstance(String columnName) throws MockarooExceptionName
+	public static CreditCardType getInstance(String columnName) throws MockarooExceptionName
 	{
 		VALIDATOR.validateColumnName(columnName, messageExceptionName);
+		
 		if(instance == null)
 		{
-			instance = new Blank(columnName);
+			instance = new CreditCardType(columnName);
 		}
 		
 		return instance;
 	}
-
+	
 	/**
+	 * Get the columnName
 	 * @return the columnName
 	 */
-	public String getColumnName() {
+	private String getColumnName() {
 		return columnName;
 	}
 
 	/**
+	 * Set the columnName
 	 * @param columnName the columnName to set
 	 */
-	public void setColumnName(String columnName) {
+	private void setColumnName(String columnName) {
 		this.columnName = columnName;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mockaroo.api.dataTypes.IMockarooObject#getJSONObject()
+	 */
 	@Override
 	public JSONObject getJSONObject() {
+		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put(NAME, this.getColumnName());
 		jsonObject.put(TYPE, this.geyType());
@@ -65,8 +75,11 @@ public class Blank implements IMockarooObject {
 		return jsonObject;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mockaroo.api.dataTypes.IMockarooObject#geyType()
+	 */
 	@Override
 	public String geyType() {
-		return MockarooType.Blank.toString();
+		return MockarooType.Credit_Card_Type.toString().replace(UNDERSCORE, SPACE);
 	}
 }
