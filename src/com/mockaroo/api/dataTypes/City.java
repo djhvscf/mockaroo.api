@@ -6,72 +6,74 @@ import com.mockaroo.api.enums.MockarooType;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 
 /**
- * Boolean mockaroo object
+ * City mockaroo object
  * @author Dennis Hernández Vargas
  * @version 2.0.0 - 25/July/2014
  * @since 2.0.0
  */
-public class Boolean implements IMockarooObject {
+public class City implements IMockarooObject {
 
-	private static Boolean instance = null;
+	private static City instance = null;
 	private String columnName;
 	
 	/**
 	 * Constructor
 	 * @param columnName Column name
 	 */
-	private Boolean(String columnName)
+	private City(String columnName)
 	{
 		this.setColumnName(columnName);
 	}
 	
 	/**
-	 * Get the instance
+	 * Get thee {@link City} object
 	 * Applying singleton
-	 * @param columnName Column name
-	 * @return {@link Boolean}
+	 * @param columnName Column namee
+	 * @return {@link City} object
 	 * @throws MockarooExceptionName
 	 */
-	public static Boolean getInstance(String columnName) throws MockarooExceptionName
+	public static City getInstance(String columnName) throws MockarooExceptionName
 	{
 		VALIDATOR.validateColumnName(columnName, messageExceptionName);
+		
 		if(instance == null)
 		{
-			instance = new Boolean(columnName);
+			instance = new City(columnName);
 		}
 		
 		return instance;
 	}
 	
-
-	/**
-	 * Get the column name
-	 * @return the columnName
-	 */
-	private String getColumnName() {
-		return columnName;
-	}
-
 	/**
 	 * Set the column name
-	 * @param columnName the columnName to set
+	 * @param columnName Column name
 	 */
-	private void setColumnName(String columnName) {
+	private void setColumnName(String columnName) 
+	{
 		this.columnName = columnName;
+	}
+	
+	/**
+	 * Get the column name
+	 * @return String column name
+	 */
+	private String getColumnName()
+	{
+		return this.columnName;
 	}
 
 	@Override
-	public JSONObject getJSONObject() {
+	public JSONObject getJSONObject() 
+	{
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("name", this.getColumnName());
 		jsonObject.put("type", this.geyType());
 
 		return jsonObject;
-
 	}
-
+	
 	@Override
 	public String geyType() {
-		return MockarooType.Boolean.toString();
+		return MockarooType.City.toString();
 	}
 }

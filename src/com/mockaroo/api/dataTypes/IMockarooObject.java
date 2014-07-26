@@ -1,14 +1,17 @@
-package com.mockaroo.api.interfaces;
+package com.mockaroo.api.dataTypes;
 
 import org.json.JSONObject;
 
+import com.mockaroo.api.helpers.MockarooValidatorHelper;
+import com.mockaroo.api.interfaces.IMockarooValidatorHelper;
+
 /**
- * Interface that provide base methods to data access
+ * Interface base to Mockaroo objects
  * @author Dennis Hernández Vargas
- * @version 0.1.0 - 09/July/2014
- * @since 0.1.0
+ * @version 2.0.0 - 25/July/2014
+ * @since 2.0.0
  */
-public interface IMockarooDataType {
+public interface IMockarooObject {
 
 	static final String messageExceptionName = "The column name can't be empty";
 	static final String messageExceptionMinDate = "The min date can't be empty";
@@ -32,7 +35,17 @@ public interface IMockarooDataType {
 	static final String messageExceptionMinTime = "The minimum time can't be empty";
 	static final String messageExceptionMaxTime = "The maximum time can't be empty";
 
+	static final IMockarooValidatorHelper VALIDATOR = MockarooValidatorHelper.getInstance();
 	
-	abstract String getType();
-	abstract JSONObject getJSONObject();
+	/**
+	 * Get the {@link JSONObject} object
+	 * @return {@link JSONObject}
+	 */
+	public JSONObject getJSONObject();
+	
+	/**
+	 * Get the Mockaroo object type
+	 * @return String Mockaroo object
+	 */
+	public String geyType();
 }

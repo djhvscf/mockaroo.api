@@ -3,6 +3,8 @@ package com.mockaroo.api.classes;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.mockaroo.api.dataTypes.Blank;
+import com.mockaroo.api.dataTypes.IMockarooObject;
 import com.mockaroo.api.enums.MockarooMoneyType;
 import com.mockaroo.api.enums.MockarooTimeType;
 import com.mockaroo.api.enums.MockarooType;
@@ -35,7 +37,9 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createBlank(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Blank.toString());
+		IMockarooObject blank = Blank.getInstance(name);
+		return blank.getJSONObject();
+		//return createJSONObject.createJSONObject(name, MockarooType.Blank.toString());
 	}
 	
 	/**
