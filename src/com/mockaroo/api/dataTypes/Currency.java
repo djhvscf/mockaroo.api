@@ -9,38 +9,37 @@ import com.mockaroo.api.enums.MockarooType;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 
 /**
- * Color mockaroo object
+ * Currency mockaroo object
  * @author Dennis Hernández Vargas
- * @version 2.0.0 - 25/07/2014
+ * @version 2.0.0 - 26/07/2014
  * @since 2.0.0
  */
-public class Color implements IMockarooObject{
+public class Currency implements IMockarooObject {
 
-	private static Color instance = null;
+	private static Currency instance = null;
 	private String columnName;
 	
 	/**
 	 * Constructor
 	 * @param columnName Column name
 	 */
-	private Color(String columnName)
+	private Currency(String columnName)
 	{
 		this.setColumnName(columnName);
 	}
 	
 	/**
-	 * Get the {@link Color} object
+	 * Get the {@link Currency} object
 	 * @param columnName Column name
-	 * @return {@link Color} object
+	 * @return {@link Currency} object
 	 * @throws MockarooExceptionName 
 	 */
-	public static Color getInstance(String columnName) throws MockarooExceptionName
+	public static Currency getInstance(String columnName) throws MockarooExceptionName
 	{
 		VALIDATOR.validateColumnName(columnName, messageExceptionName);
-		
 		if(instance == null)
 		{
-			instance = new Color(columnName);
+			instance = new Currency(columnName);
 		}
 		
 		return instance;
@@ -62,8 +61,12 @@ public class Color implements IMockarooObject{
 		this.columnName = columnName;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mockaroo.api.dataTypes.IMockarooObject#getJSONObject()
+	 */
 	@Override
 	public JSONObject getJSONObject() {
+		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put(NAME, this.getColumnName());
 		jsonObject.put(TYPE, this.getType());
@@ -71,9 +74,11 @@ public class Color implements IMockarooObject{
 		return jsonObject;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.mockaroo.api.dataTypes.IMockarooObject#geyType()
+	 */
 	@Override
 	public String getType() {
-		return MockarooType.Color.toString();
+		return MockarooType.Currency.toString();
 	}
-
 }

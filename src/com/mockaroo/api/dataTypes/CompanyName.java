@@ -67,13 +67,13 @@ public class CompanyName implements IMockarooObject {
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put(NAME, this.getColumnName());
-		jsonObject.put(TYPE, this.geyType());
+		jsonObject.put(TYPE, this.getType());
 
 		return jsonObject;
 	}
 
 	@Override
-	public String geyType() {
+	public String getType() {
 		return MockarooType.Company_Name.toString().replace(UNDERSCORE, SPACE);
 	}
 }

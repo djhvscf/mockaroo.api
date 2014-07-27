@@ -69,7 +69,7 @@ public class CreditCardNumber implements IMockarooObject {
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put(NAME, this.getColumnName());
-		jsonObject.put(TYPE, this.geyType());
+		jsonObject.put(TYPE, this.getType());
 
 		return jsonObject;
 	}
@@ -78,7 +78,7 @@ public class CreditCardNumber implements IMockarooObject {
 	 * @see com.mockaroo.api.dataTypes.IMockarooObject#geyType()
 	 */
 	@Override
-	public String geyType() {
+	public String getType() {
 		return MockarooType.Credit_Card_1.toString().replace(UNDERSCORE, SPACE).replace('1', '#');
 	}
 }

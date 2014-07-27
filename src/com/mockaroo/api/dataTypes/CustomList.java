@@ -3,49 +3,58 @@
  */
 package com.mockaroo.api.dataTypes;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mockaroo.api.enums.MockarooType;
+import com.mockaroo.api.exceptions.MockarooExceptionArray;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 
 /**
- * CreditCardType mockaroo object
+ * CustomList mockaroo object
  * @author Dennis Hernández Vargas
  * @version 2.0.0 - 26/07/2014
  * @since 2.0.0
  */
-public class CreditCardType implements IMockarooObject {
+public class CustomList implements IMockarooObject {
 
-	private static CreditCardType instance = null;
+	private static CustomList instance = null;
 	private String columnName;
-	
+	private JSONArray values;
+
 	/**
 	 * Constructor
 	 * @param columnName Column name
 	 */
-	private CreditCardType(String columnName)
-	{
+	private CustomList(String columnName, JSONArray values) {
 		this.setColumnName(columnName);
+		this.setValues(values);
 	}
-	
+
 	/**
-	 * Get the {@link CreditCardType} object
+	 * Get the {@link CustomList} object
 	 * @param columnName Column name
-	 * @return {@link CreditCardType} object
-	 * @throws MockarooExceptionName
+	 * @return {@link CustomList} object
+	 * @throws MockarooExceptionName 
+	 * @throws MockarooExceptionArray 
 	 */
-	public static CreditCardType getInstance(String columnName) throws MockarooExceptionName
+	public static CustomList getInstance(String columnName, JSONArray values) 
+			throws MockarooExceptionName, MockarooExceptionArray 
 	{
 		VALIDATOR.validateColumnName(columnName, messageExceptionName);
 		
-		if(instance == null)
+		if(values.length() == 0)
 		{
-			instance = new CreditCardType(columnName);
+			throw new MockarooExceptionArray(messageExceptionArray);
 		}
 		
+		if (instance == null) {
+			instance = new CustomList(columnName, values);
+		}
+
 		return instance;
 	}
-	
+
 	/**
 	 * Get the columnName
 	 * @return the columnName
@@ -62,6 +71,22 @@ public class CreditCardType implements IMockarooObject {
 		this.columnName = columnName;
 	}
 
+	/**
+	 * Get the values
+	 * @return the values
+	 */
+	private JSONArray getValues() {
+		return values;
+	}
+
+	/**
+	 * Set the values
+	 * @param values the values to set
+	 */
+	private void setValues(JSONArray values) {
+		this.values = values;
+	}
+
 	/* (non-Javadoc)
 	 * @see com.mockaroo.api.dataTypes.IMockarooObject#getJSONObject()
 	 */
@@ -71,7 +96,8 @@ public class CreditCardType implements IMockarooObject {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put(NAME, this.getColumnName());
 		jsonObject.put(TYPE, this.getType());
-
+		jsonObject.put(VALUES, this.getValues());
+		
 		return jsonObject;
 	}
 
@@ -80,6 +106,6 @@ public class CreditCardType implements IMockarooObject {
 	 */
 	@Override
 	public String getType() {
-		return MockarooType.Credit_Card_Type.toString().replace(UNDERSCORE, SPACE);
+		return MockarooType.Custom_List.toString().replace(UNDERSCORE, SPACE);
 	}
 }

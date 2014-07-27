@@ -64,14 +64,14 @@ public class Boolean implements IMockarooObject {
 	public JSONObject getJSONObject() {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put(NAME, this.getColumnName());
-		jsonObject.put(TYPE, this.geyType());
+		jsonObject.put(TYPE, this.getType());
 
 		return jsonObject;
 
 	}
 
 	@Override
-	public String geyType() {
+	public String getType() {
 		return MockarooType.Boolean.toString();
 	}
 }

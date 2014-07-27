@@ -37,6 +37,11 @@ public interface IMockarooObject {
 
 	static final String NAME = "name";
 	static final String TYPE = "type";
+	static final String VALUES = "values";
+	static final String MIN = "min";
+	static final String MAX = "max";
+	static final String FORMAT = "format";
+	static final String FORMULA = "formula";
 	static final char UNDERSCORE = '_';
 	static final char SPACE = ' ';
 	
@@ -52,5 +57,5 @@ public interface IMockarooObject {
 	 * Get the Mockaroo object type
 	 * @return String Mockaroo object
 	 */
-	public String geyType();
+	public String getType();
 }
