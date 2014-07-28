@@ -26,6 +26,10 @@ public class Date implements IMockarooObject {
 	/**
 	 * Constructor
 	 * @param columnName Column name
+	 * @param minDate The minimum date in mm/dd/yyyy format
+	 * @param maxDate The maximum date in mm/dd/yyyy format
+	 * @param formatDate The format to use when parsing min_date, max_date, and when generating output. This can be any format directive supported by ruby Time.strftime. 
+	 * Defaults to ISO 8601 format. Example value: "2007-11-19T08:37:48-06:00"
 	 */
 	private Date(String columnName, String minDate, String maxDate, String formatDate) 
 	{
@@ -38,9 +42,10 @@ public class Date implements IMockarooObject {
 	/**
 	 * Get the {@link Date} object
 	 * @param columnName Column name
-	 * @param minDate Minimum date
-	 * @param maxDate Maximum date
-	 * @param formatDate Format date
+	 * @param minDate The minimum date in mm/dd/yyyy format
+	 * @param maxDate The maximum date in mm/dd/yyyy format
+	 * @param formatDate The format to use when parsing min_date, max_date, and when generating output. This can be any format directive supported by ruby Time.strftime. 
+	 * Defaults to ISO 8601 format. Example value: "2007-11-19T08:37:48-06:00"
 	 * @return {@link Date} object
 	 * @throws MockarooExceptionName 
 	 * @throws MockarooExceptionFormatDate 

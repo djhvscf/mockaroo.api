@@ -26,6 +26,9 @@ public class Sequence implements IMockarooObject {
 	/**
 	 * Constructor
 	 * @param columnName Column name
+	 * @param start The first number in the sequence
+	 * @param step The number to add to each subsequent value
+	 * @param repeat The number of times each value should occur before the step amount is added
 	 */
 	private Sequence(String columnName, int start, int step, int repeat) {
 		this.setColumnName(columnName);
@@ -37,6 +40,9 @@ public class Sequence implements IMockarooObject {
 	/**
 	 * Get the {@link Sequence} object
 	 * @param columnName Column name
+	 * @param start The first number in the sequence
+	 * @param step The number to add to each subsequent value
+	 * @param repeat The number of times each value should occur before the step amount is added
 	 * @return {@link Sequence} object
 	 * @throws MockarooExceptionName 
 	 * @throws MockarooExceptionNumber 

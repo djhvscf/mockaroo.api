@@ -27,6 +27,10 @@ public class Time implements IMockarooObject {
 	/**
 	 * Constructor
 	 * @param columnName Column name
+	 * @param min The minimum time in HH:MM AM/PM format
+	 * @param max The maximum time in HH:MM AM/PM format
+	 * @param format The format to output. This can be any format directive supported by ruby Time.strftime. 
+	 * Defaults to ISO 8601 format. Example value: "08:37:48"
 	 */
 	private Time(String columnName, String min, String max, String format) {
 		this.setColumnName(columnName);
@@ -38,6 +42,10 @@ public class Time implements IMockarooObject {
 	/**
 	 * Get the {@link Time} object
 	 * @param columnName Column name
+	 * @param min The minimum time in HH:MM AM/PM format
+	 * @param max The maximum time in HH:MM AM/PM format
+	 * @param format The format to output. This can be any format directive supported by ruby Time.strftime. 
+	 * Defaults to ISO 8601 format. Example value: "08:37:48"
 	 * @return {@link Time} object
 	 * @throws MockarooExceptionName 
 	 * @throws MockarooExceptionValue 

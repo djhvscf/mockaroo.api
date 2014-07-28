@@ -26,6 +26,9 @@ public class NormalDistribution implements IMockarooObject {
 	/**
 	 * Constructor
 	 * @param columnName Column name
+	 * @param mean The mean value for the normal distribution
+	 * @param sd The standard deviation for the normal distribution
+	 * @param decimals The number of decimals places for each generated value
 	 */
 	private NormalDistribution(String columnName, Double mean, Double sd, int decimals) {
 		this.setColumnName(columnName);
@@ -37,6 +40,9 @@ public class NormalDistribution implements IMockarooObject {
 	/**
 	 * Get the {@link NormalDistribution} object
 	 * @param columnName Column name
+	 * @param mean The mean value for the normal distribution
+	 * @param sd The standard deviation for the normal distribution
+	 * @param decimals The number of decimals places for each generated value
 	 * @return {@link NormalDistribution} object
 	 * @throws MockarooExceptionName 
 	 * @throws MockarooExceptionNumber 

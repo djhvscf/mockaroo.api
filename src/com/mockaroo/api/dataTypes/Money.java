@@ -27,6 +27,9 @@ public class Money implements IMockarooObject {
 	/**
 	 * Constructor
 	 * @param columnName Column name
+	 * @param min The minimum value
+	 * @param max The maximum value
+	 * @param moneyType See {@link MockarooMoneyType}
 	 */
 	private Money(String columnName, int min, int max, MockarooMoneyType moneyType) {
 		this.setColumnName(columnName);
@@ -38,6 +41,9 @@ public class Money implements IMockarooObject {
 	/**
 	 * Get the {@link Money} object
 	 * @param columnName Column name
+	 * @param min The minimum value
+	 * @param max The maximum value
+	 * @param moneyType See {@link MockarooMoneyType}
 	 * @return {@link Money} object
 	 * @throws MockarooExceptionName 
 	 * @throws MockarooExceptionNumber 

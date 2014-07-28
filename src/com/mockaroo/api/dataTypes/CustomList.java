@@ -25,6 +25,7 @@ public class CustomList implements IMockarooObject {
 	/**
 	 * Constructor
 	 * @param columnName Column name
+	 * @param values An array of values to pick from. Each value should be a string
 	 */
 	private CustomList(String columnName, JSONArray values) {
 		this.setColumnName(columnName);
@@ -34,6 +35,7 @@ public class CustomList implements IMockarooObject {
 	/**
 	 * Get the {@link CustomList} object
 	 * @param columnName Column name
+	 * @param values An array of values to pick from. Each value should be a string
 	 * @return {@link CustomList} object
 	 * @throws MockarooExceptionName 
 	 * @throws MockarooExceptionArray 

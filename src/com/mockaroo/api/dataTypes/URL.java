@@ -26,6 +26,10 @@ public class URL implements IMockarooObject {
 	/**
 	 * Constructor
 	 * @param columnName Column name
+	 * @param includeProtocol True to include a protocol in the url
+	 * @param includeHost True to include a hostname in the url
+	 * @param includePath True to include a path in the url
+	 * @param includeQueryString True to include a query string in the url
 	 */
 	private URL(String columnName, boolean includeProtocol, boolean includeHost, boolean includePath, 
 			boolean includeQueryString) {
@@ -39,6 +43,10 @@ public class URL implements IMockarooObject {
 	/**
 	 * Get the {@link URL} object
 	 * @param columnName Column name
+	 * @param includeProtocol True to include a protocol in the url
+	 * @param includeHost True to include a hostname in the url
+	 * @param includePath True to include a path in the url
+	 * @param includeQueryString True to include a query string in the url
 	 * @return {@link URL} object
 	 * @throws MockarooExceptionName 
 	 */

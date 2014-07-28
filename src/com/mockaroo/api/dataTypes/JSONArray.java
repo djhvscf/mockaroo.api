@@ -25,6 +25,8 @@ public class JSONArray implements IMockarooObject {
 	/**
 	 * Constructor
 	 * @param columnName Column name
+	 * @param minItems The minimum number of items to generate (0 to 100)
+	 * @param maxItems The maximum number of items to generate (0 to 100)
 	 */
 	private JSONArray(String columnName, int minItems, int maxItems) {
 		this.setColumnName(columnName);
@@ -35,6 +37,8 @@ public class JSONArray implements IMockarooObject {
 	/**
 	 * Get the {@link JSONArray} object
 	 * @param columnName Column name
+	 * @param minItems The minimum number of items to generate (0 to 100)
+	 * @param maxItems The maximum number of items to generate (0 to 100)
 	 * @return {@link JSONArray} object
 	 * @throws MockarooExceptionName 
 	 * @throws MockarooExceptionNumber 

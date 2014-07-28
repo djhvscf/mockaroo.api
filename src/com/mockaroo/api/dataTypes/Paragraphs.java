@@ -25,6 +25,8 @@ public class Paragraphs implements IMockarooObject {
 	/**
 	 * Constructor
 	 * @param columnName Column name
+	 * @param min The minimum number of paragraphs
+	 * @param max The maximum number of paragraphs
 	 */
 	private Paragraphs(String columnName, int min, int max) {
 		this.setColumnName(columnName);
@@ -35,6 +37,8 @@ public class Paragraphs implements IMockarooObject {
 	/**
 	 * Get the {@link Paragraphs} object
 	 * @param columnName Column name
+	 * @param min The minimum number of paragraphs
+	 * @param max The maximum number of paragraphs
 	 * @return {@link Paragraphs} object
 	 * @throws MockarooExceptionName 
 	 * @throws MockarooExceptionNumber 

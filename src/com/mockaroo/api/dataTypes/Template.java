@@ -24,6 +24,7 @@ public class Template implements IMockarooObject {
 	/**
 	 * Constructor
 	 * @param columnName Column name
+	 * @param value Templates allow you to incorporate values from other columns by surrounding column names with {braces}
 	 */
 	private Template(String columnName, String value) {
 		this.setColumnName(columnName);
@@ -33,6 +34,7 @@ public class Template implements IMockarooObject {
 	/**
 	 * Get the {@link Template} object
 	 * @param columnName Column name
+	 * @param value Templates allow you to incorporate values from other columns by surrounding column names with {braces}
 	 * @return {@link Template} object
 	 * @throws MockarooExceptionName 
 	 * @throws MockarooExceptionValue 

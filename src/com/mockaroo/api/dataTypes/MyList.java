@@ -25,6 +25,7 @@ public class MyList implements IMockarooObject {
 	/**
 	 * Constructor
 	 * @param columnName Column name
+	 * @param myListName The name of a saved list
 	 */
 	private MyList(String columnName, String myListName) {
 		this.setColumnName(columnName);
@@ -34,6 +35,7 @@ public class MyList implements IMockarooObject {
 	/**
 	 * Get the {@link MyList} object
 	 * @param columnName Column name
+	 * @param myListName The name of a saved list
 	 * @return {@link MyList} object
 	 * @throws MockarooExceptionName 
 	 * @throws MockarooExceptionMyList 

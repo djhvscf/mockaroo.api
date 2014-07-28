@@ -24,6 +24,7 @@ public class Formula implements IMockarooObject {
 	/**
 	 * Constructor
 	 * @param columnName Column name
+	 * @param formula Formulas allow you to combine constants and other columns in a mathematical expression
 	 */
 	private Formula(String columnName, String formula) {
 		this.setColumnName(columnName);
@@ -33,6 +34,7 @@ public class Formula implements IMockarooObject {
 	/**
 	 * Get the {@link Formula} object
 	 * @param columnName Column name
+	 * @param formula Formulas allow you to combine constants and other columns in a mathematical expression
 	 * @return {@link Formula} object
 	 * @throws MockarooExceptionName 
 	 * @throws MockarooExceptionFormula 

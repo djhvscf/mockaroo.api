@@ -25,6 +25,8 @@ public class Number implements IMockarooObject {
 	/**
 	 * Constructor
 	 * @param columnName Column name
+	 * @param min The maximum value
+	 * @param decimals The number of decimals
 	 */
 	private Number(String columnName, int min, int decimals) {
 		this.setColumnName(columnName);
@@ -35,6 +37,8 @@ public class Number implements IMockarooObject {
 	/**
 	 * Get the {@link Number} object
 	 * @param columnName Column name
+	 * @param min The maximum value
+	 * @param decimals The number of decimals
 	 * @return {@link Number} object
 	 * @throws MockarooExceptionName 
 	 * @throws MockarooExceptionNumber 
