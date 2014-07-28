@@ -4,6 +4,7 @@ import com.mockaroo.api.exceptions.MockarooExceptionFormatDate;
 import com.mockaroo.api.exceptions.MockarooExceptionFormatTime;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
+import com.mockaroo.api.exceptions.MockarooExceptionRegExpValue;
 import com.mockaroo.api.exceptions.MockarooExceptionValue;
 
 /**
@@ -105,4 +106,12 @@ public interface IMockarooValidatorHelper {
 	void validateDateFormat(String value, String format, String messageExceptionDate, 
 			String messageExceptionFormat) 
 			throws MockarooExceptionFormatDate;
+	
+	/**
+	 * Validate if the regular expression is valid
+	 * @param value Regular expression to validate
+	 * @param messageExceptionRegExp Message to show
+	 * @throws MockarooExceptionRegExpValue
+	 */
+	void validateRegularExpression(String value, String messageExceptionRegExp) throws MockarooExceptionRegExpValue;
 }

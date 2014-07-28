@@ -28,6 +28,7 @@ public interface IMockarooObject {
 	static final String messageExceptionFormula = "The formula can't be empty";
 	static final String messageExceptionMyList = "The my list name can't be empty";
 	static final String messageExceptionValue = "The regular expression value can't be empty";
+	static final String messageExceptionRegValueInvalid = "The regular expression is not valid";
 	static final String messageExceptionStartLess = "The start number can't be less than 1";
 	static final String messageExceptionStepLess = "The step number can't be less than 1";
 	static final String messageExceptionRepeatLess = "The repeat number can't be less than 1";
@@ -49,6 +50,15 @@ public interface IMockarooObject {
 	static final String SD = "sd";
 	static final String DECIMALS = "decimals";
 	static final String LIST = "list";
+	static final String VALUE = "value";
+	static final String START = "start";
+	static final String STEP = "step";
+	static final String REPEAT = "repeat";
+	static final String INCLUDEPROTOCOL = "includeProtocol";
+	static final String INCLUDEHOST = "includeHost";
+	static final String INCLUDEPATH = "includePath";
+	static final String INCLUDEQUERYSTRING = "includeQueryString";
+	
 	static final char UNDERSCORE = '_';
 	static final char SPACE = ' ';
 	
