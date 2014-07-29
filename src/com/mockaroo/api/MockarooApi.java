@@ -54,7 +54,14 @@ public class MockarooApi {
 		
 		this.setKey(key);
 		this.setCountRegister(countRegister);
-		url = MockarooUrl.getInstance(key, contentType);
+		if(countRegister != -1)
+		{
+			url = MockarooUrl.getInstance(key, contentType);
+		}
+		else
+		{
+			url = MockarooUrl.getInstance(key, contentType, countRegister);
+		}
 		creater = new MockarooCreateJSONObject();
 	}
 

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import jxl.write.WriteException;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -106,5 +107,12 @@ public class MockarooXML extends MockarooFile {
 	public void write(JSONObject jsonObject) throws IOException, WriteException, TransformerException 
 	{
 		xmlHelper.write(this.getPath() + this.getFileName(), this.getRootElement(), CHILD_ELEMENT, jsonObject);
+	}
+
+	@Override
+	public void write(JSONArray jsonArray) throws IOException, WriteException,
+			TransformerException {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 
+import javax.xml.transform.TransformerException;
+
 import jxl.write.WriteException;
 
 import org.apache.commons.io.IOUtils;
@@ -45,7 +47,7 @@ public class MockarooJSON extends MockarooFile {
 		validator.validateString(path, messageExceptionPath);
 		validator.validateString(fileName, messageExceptionFileName);
 		
-		jsonHelper = MockarooJSONHelper .getInstance();
+		jsonHelper = MockarooJSONHelper.getInstance();
 		this.setFileName(path + fileName + EXTENSION);
 	}
 	
@@ -107,5 +109,12 @@ public class MockarooJSON extends MockarooFile {
 	public void write(JSONObject jsonObject) throws IOException, WriteException 
 	{
 		jsonHelper.write(this.getFileName(), jsonObject);
+	}
+
+	@Override
+	public void write(JSONArray jsonArray) throws IOException, WriteException,
+			TransformerException {
+		// TODO Auto-generated method stub
+		
 	}
 }

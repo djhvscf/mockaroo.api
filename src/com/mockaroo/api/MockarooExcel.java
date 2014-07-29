@@ -3,6 +3,9 @@ package com.mockaroo.api;
 import java.io.File;
 import java.io.IOException;
 
+import javax.xml.transform.TransformerException;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import jxl.write.WriteException;
@@ -195,5 +198,12 @@ public class MockarooExcel extends MockarooFile {
 	public void write(JSONObject jsonObject) throws IOException, WriteException
 	{
 		mockarooExcel.write(this.getSheetName(), this.getLanguage(), this.getCountry(), this.getFile(), jsonObject);
+	}
+
+	@Override
+	public void write(JSONArray jsonArray) throws IOException, WriteException,
+			TransformerException {
+		mockarooExcel.write(this.getSheetName(), this.getLanguage(), this.getCountry(), this.getFile(), jsonArray);
+		
 	}
 }

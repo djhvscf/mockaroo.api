@@ -6,6 +6,7 @@ import javax.xml.transform.TransformerException;
 
 import jxl.write.WriteException;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -17,4 +18,6 @@ import org.json.JSONObject;
 public abstract class MockarooFile {
 
 	public abstract void write(JSONObject jsonObject) throws IOException, WriteException, TransformerException;
+	
+	public abstract void write(JSONArray jsonArray) throws IOException, WriteException, TransformerException;
 }
