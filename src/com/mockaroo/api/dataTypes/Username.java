@@ -1,5 +1,7 @@
 package com.mockaroo.api.dataTypes;
 
+import org.json.JSONObject;
+
 import com.mockaroo.api.enums.MockarooType;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 

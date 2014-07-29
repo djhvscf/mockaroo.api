@@ -3,7 +3,7 @@ package com.mockaroo.api.dataTypes;
 import com.mockaroo.api.enums.MockarooType;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
-import com.mockaroo.api.helpers.JSONObject;
+import org.json.JSONObject;
 
 /**
  * Words mockaroo object

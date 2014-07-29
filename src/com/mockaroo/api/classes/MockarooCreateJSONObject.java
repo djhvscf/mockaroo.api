@@ -4,7 +4,39 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mockaroo.api.dataTypes.Blank;
+import com.mockaroo.api.dataTypes.City;
+import com.mockaroo.api.dataTypes.Color;
+import com.mockaroo.api.dataTypes.CompanyName;
+import com.mockaroo.api.dataTypes.Country;
+import com.mockaroo.api.dataTypes.CreditCardNumber;
+import com.mockaroo.api.dataTypes.CreditCardType;
+import com.mockaroo.api.dataTypes.Currency;
+import com.mockaroo.api.dataTypes.CurrencyCode;
+import com.mockaroo.api.dataTypes.CustomList;
+import com.mockaroo.api.dataTypes.Date;
+import com.mockaroo.api.dataTypes.DomainName;
+import com.mockaroo.api.dataTypes.EmailAddress;
+import com.mockaroo.api.dataTypes.Encrypt;
+import com.mockaroo.api.dataTypes.FamilyNameChinese;
+import com.mockaroo.api.dataTypes.FirstName;
+import com.mockaroo.api.dataTypes.FirstNameEuropean;
+import com.mockaroo.api.dataTypes.FirstNameFemale;
+import com.mockaroo.api.dataTypes.FirstNameMale;
+import com.mockaroo.api.dataTypes.Formula;
+import com.mockaroo.api.dataTypes.Frequency;
+import com.mockaroo.api.dataTypes.FullName;
+import com.mockaroo.api.dataTypes.GUID;
+import com.mockaroo.api.dataTypes.Gender;
+import com.mockaroo.api.dataTypes.GenderAbbrev;
+import com.mockaroo.api.dataTypes.GivenNameChinese;
+import com.mockaroo.api.dataTypes.HexColor;
 import com.mockaroo.api.dataTypes.IMockarooObject;
+import com.mockaroo.api.dataTypes.IPAddressv4;
+import com.mockaroo.api.dataTypes.IPAddressv6;
+import com.mockaroo.api.dataTypes.ISBN;
+import com.mockaroo.api.dataTypes.Language;
+import com.mockaroo.api.dataTypes.LastName;
+import com.mockaroo.api.dataTypes.Latitude;
 import com.mockaroo.api.enums.MockarooMoneyType;
 import com.mockaroo.api.enums.MockarooTimeType;
 import com.mockaroo.api.enums.MockarooType;
@@ -39,7 +71,6 @@ public class MockarooCreateJSONObject {
 	{
 		IMockarooObject blank = Blank.getInstance(name);
 		return blank.getJSONObject();
-		//return createJSONObject.createJSONObject(name, MockarooType.Blank.toString());
 	}
 	
 	/**
@@ -50,7 +81,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createBoolean(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Boolean.toString());
+		IMockarooObject booleanM = com.mockaroo.api.dataTypes.Boolean.getInstance(name);
+		return booleanM.getJSONObject();
 	}
 	
 	/**
@@ -61,7 +93,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createCity(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.City.toString());
+		IMockarooObject city = City.getInstance(name);
+		return city.getJSONObject();
 	}
 	
 	/**
@@ -72,7 +105,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createColor(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Color.toString());
+		IMockarooObject color = Color.getInstance(name);
+		return color.getJSONObject();
 	}
 	
 	/**
@@ -83,8 +117,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createCompanyName(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Company_Name.toString()
-																.replace('_', ' '));
+		IMockarooObject companyName = CompanyName.getInstance(name);
+		return companyName.getJSONObject();
 	}
 	
 	/**
@@ -95,7 +129,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createCountry(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Country.toString());
+		IMockarooObject country = Country.getInstance(name);
+		return country.getJSONObject();
 	}
 	
 	/**
@@ -106,8 +141,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createCreditCardNumber(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Credit_Card_1.toString()
-																.replace('_', ' ').replace('1', '#'));
+		IMockarooObject creditCardNumber = CreditCardNumber.getInstance(name);
+		return creditCardNumber.getJSONObject();
 	}
 	
 	/**
@@ -118,8 +153,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createCreditCardType(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Credit_Card_Type.toString()
-																.replace('_', ' '));
+		IMockarooObject creditCardType = CreditCardType.getInstance(name);
+		return creditCardType.getJSONObject();
 	}
 	
 	/**
@@ -130,7 +165,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createCurrency(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Currency.toString());
+		IMockarooObject currency = Currency.getInstance(name);
+		return currency.getJSONObject();
 	}
 	
 	/**
@@ -141,8 +177,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createCurrencyCode(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Currency_Code.toString()
-																.replace('_', ' '));
+		IMockarooObject currencyCode = CurrencyCode.getInstance(name);
+		return currencyCode.getJSONObject();
 	}
 	
 	/**
@@ -156,8 +192,8 @@ public class MockarooCreateJSONObject {
 	public JSONObject createCustomList(String name, JSONArray values) 
 			throws MockarooExceptionName, MockarooExceptionArray
 	{
-		return createJSONObject.createJSONObject(name,MockarooType.Custom_List.toString()
-																.replace('_', ' '), values);
+		IMockarooObject customList = CustomList.getInstance(name, values);
+		return customList.getJSONObject();
 	}
 	
 	/**
@@ -174,7 +210,8 @@ public class MockarooCreateJSONObject {
 	public JSONObject createDate(String name, String min, String max, String format)
 			throws MockarooExceptionName, MockarooExceptionFormatDate
 	{
-		return createJSONObject.createJSONObject(name, min, max, format, MockarooType.Date.toString());
+		IMockarooObject date = Date.getInstance(name, min, max, format);
+		return date.getJSONObject();
 	}
 	
 	/**
@@ -185,8 +222,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createDomainName(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Domain_Name.toString()
-																.replace('_', ' '));
+		IMockarooObject domainName = DomainName.getInstance(name);
+		return domainName.getJSONObject();
 	}
 	
 	/**
@@ -197,8 +234,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createEmailAddress(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Email_Address.toString()
-																.replace('_', ' '));
+		IMockarooObject emailAddress = EmailAddress.getInstance(name);
+		return emailAddress.getJSONObject();
 	}
 	
 	/**
@@ -209,7 +246,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createEncrypt(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Encrypt.toString());
+		IMockarooObject encrypt = Encrypt.getInstance(name);
+		return encrypt.getJSONObject();
 	}
 	
 	/**
@@ -220,7 +258,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createFamilyNameChinese(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, "Family Name (Chinese)");
+		IMockarooObject familyNameChinese = FamilyNameChinese.getInstance(name);
+		return familyNameChinese.getJSONObject();
 	}
 	
 	/**
@@ -231,8 +270,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createFirstName(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.First_Name.toString()
-																.replace('_', ' '));
+		IMockarooObject firstName = FirstName.getInstance(name);
+		return firstName.getJSONObject();
 	}
 	
 	/**
@@ -243,8 +282,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createFirstNameEuropean(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.First_Name_European.toString()
-																.replace('_', ' '));
+		IMockarooObject firstNameEuropean = FirstNameEuropean.getInstance(name);
+		return firstNameEuropean.getJSONObject();
 	}
 	
 	/**
@@ -255,8 +294,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createFirstNameFemale(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.First_Name_Female.toString()
-																.replace('_', ' '));
+		IMockarooObject firstNameFemale = FirstNameFemale.getInstance(name);
+		return firstNameFemale.getJSONObject();
 	}
 	
 	/**
@@ -267,8 +306,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject creatFirstNameMale(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.First_Name_Male.toString()
-																.replace('_', ' '));
+		IMockarooObject firstNameMale = FirstNameMale.getInstance(name);
+		return firstNameMale.getJSONObject();
 	}
 	
 	/**
@@ -283,7 +322,8 @@ public class MockarooCreateJSONObject {
 	public JSONObject createFormula(String name, String formula) 
 			throws MockarooExceptionName, MockarooExceptionFormula
 	{
-		return createJSONObject.createJSONObject(name, formula, MockarooType.Formula.toString());
+		IMockarooObject formulaM = Formula.getInstance(name, formula);
+		return formulaM.getJSONObject();
 	}
 	
 	/**
@@ -294,7 +334,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createFrequency(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Frequency.toString());
+		IMockarooObject frequency = Frequency.getInstance(name);
+		return frequency.getJSONObject();
 	}
 	
 	/**
@@ -305,8 +346,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createFullName(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Full_Name.toString()
-															.replace('_', ' '));
+		IMockarooObject fullName = FullName.getInstance(name);
+		return fullName.getJSONObject();
 	}
 	
 	/**
@@ -317,7 +358,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createGender(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Gender.toString());
+		IMockarooObject gender = Gender.getInstance(name);
+		return gender.getJSONObject();
 	}
 	
 	/**
@@ -328,7 +370,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createGenderAbbrev(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, "Gender (abbrev)");
+		IMockarooObject genderAbbrev = GenderAbbrev.getInstance(name);
+		return genderAbbrev.getJSONObject();
 	}
 	
 	/**
@@ -339,7 +382,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createGivenNameChinese(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, "Given Name (Chinese)");
+		IMockarooObject givenNameChinese = GivenNameChinese.getInstance(name);
+		return givenNameChinese.getJSONObject();
 	}
 	
 	/**
@@ -350,7 +394,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createGUID(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.GUID.toString());
+		IMockarooObject guid = GUID.getInstance(name);
+		return guid.getJSONObject();
 	}
 	
 	/**
@@ -361,8 +406,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createHexColor(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Hex_Color.toString()
-															.replace('_', ' '));
+		IMockarooObject hexColor = HexColor.getInstance(name);
+		return hexColor.getJSONObject();
 	}
 	
 	/**
@@ -373,8 +418,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createIPAddressv4(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.IP_Address_v4.toString()
-															.replace('_', ' '));
+		IMockarooObject ipAddressv4 = IPAddressv4.getInstance(name);
+		return ipAddressv4.getJSONObject();
 	}
 	
 	/**
@@ -385,8 +430,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createIPAddressv6(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.IP_Address_v6.toString()
-															.replace('_', ' '));
+		IMockarooObject ipAddressv6 = IPAddressv6.getInstance(name);
+		return ipAddressv6.getJSONObject();
 	}
 	
 	/**
@@ -397,7 +442,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createISBN(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.ISBN.toString());
+		IMockarooObject isbn = ISBN.getInstance(name);
+		return isbn.getJSONObject();
 	}
 	
 	/**
@@ -410,8 +456,8 @@ public class MockarooCreateJSONObject {
 	public JSONObject createJSONArray(String name, int minItems, int maxItems) 
 			throws MockarooExceptionName, MockarooExceptionNumber
 	{
-		return createJSONObject.createJSONObject(name,minItems, maxItems, MockarooType.JSON_Array.toString()
-																				.replace('_', ' '));
+		IMockarooObject jsonArray = com.mockaroo.api.dataTypes.JSONArray.getInstance(name, minItems, maxItems);
+		return jsonArray.getJSONObject();
 	}
 	
 	/**
@@ -422,7 +468,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createLanguage(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Language.toString());
+		IMockarooObject language = Language.getInstance(name);
+		return language.getJSONObject();
 	}
 	
 	/**
@@ -433,8 +480,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createLastName(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Last_Name.toString()
-															.replace('_', ' '));
+		IMockarooObject lastName = LastName.getInstance(name);
+		return lastName.getJSONObject();
 	}
 	
 	/**
@@ -445,7 +492,8 @@ public class MockarooCreateJSONObject {
 	 */
 	public JSONObject createLatitude(String name) throws MockarooExceptionName
 	{
-		return createJSONObject.createJSONObject(name, MockarooType.Latitude.toString());
+		IMockarooObject latitude = Latitude.getInstance(name);
+		return latitude.getJSONObject();
 	}
 	
 	/**
