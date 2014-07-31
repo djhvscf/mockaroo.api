@@ -54,7 +54,7 @@ public class MockarooApi {
 		
 		this.setKey(key);
 		this.setCountRegister(countRegister);
-		if(countRegister != -1)
+		if(countRegister == -1)
 		{
 			url = MockarooUrl.getInstance(key, contentType);
 		}
