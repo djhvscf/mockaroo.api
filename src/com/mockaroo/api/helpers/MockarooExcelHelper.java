@@ -125,10 +125,11 @@ public class MockarooExcelHelper implements IMockarooExcelHelper {
 		workbook.createSheet(sheetName, 0);
 		WritableSheet excelSheet = workbook.getSheet(0);
 		createHeader(excelSheet, jsonArray.getJSONObject(0));
-		
+		int row = 1;
 		for(int i = 0; i < jsonArray.length(); i++)
 		{
-			createData(excelSheet, i, jsonArray.getJSONObject(i));
+			createData(excelSheet, row, jsonArray.getJSONObject(i));
+			row++;
 		}
 		
 		workbook.write();

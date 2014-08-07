@@ -34,6 +34,7 @@ public interface IMockarooObject {
 	static final String messageExceptionValueTemplate = "The value template can't be empty";
 	static final String messageExceptionMinTime = "The minimum time can't be empty";
 	static final String messageExceptionMaxTime = "The maximum time can't be empty";
+	static final String messageExceptionNumberJSONArray = "The max items can't be more than 100";
 
 	static final String NAME = "name";
 	static final String TYPE = "type";

@@ -51,6 +51,7 @@ public class JSONArray implements IMockarooObject {
 		VALIDATOR.validateNumber(minItems, messageExceptionMinLess);
 		VALIDATOR.validateNumber(maxItems, messageExceptionMaxLess);		
 		VALIDATOR.validateNumberEquals(minItems, maxItems, messageExceptionNumberSame);
+		VALIDATOR.validateNumber(maxItems, 101, messageExceptionNumberJSONArray);
 		
 		if (instance == null) {
 			instance = new JSONArray(columnName, minItems, maxItems);
