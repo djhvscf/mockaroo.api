@@ -32,7 +32,6 @@ public class MockarooApi {
 	/**
 	 * Constructor
 	 * @param key Api key
-	 * @param contentType Content type
 	 * @throws MockarooExceptionPing 
 	 */
 	public MockarooApi(String key) throws MockarooExceptionPing
@@ -43,7 +42,6 @@ public class MockarooApi {
 	/**
 	 * Constructor
 	 * @param key Api key
-	 * @param contentType Content type
 	 * @param countRegister Qunatity of registers
 	 * @throws MockarooExceptionPing 
 	 */
