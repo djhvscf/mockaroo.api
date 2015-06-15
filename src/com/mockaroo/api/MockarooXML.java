@@ -110,9 +110,7 @@ public class MockarooXML extends MockarooFile {
 	}
 
 	@Override
-	public void write(JSONArray jsonArray) throws IOException, WriteException,
-			TransformerException {
+	public void write(JSONArray jsonArray) throws IOException, WriteException, TransformerException {
 		// TODO Auto-generated method stub
-		
 	}
 }

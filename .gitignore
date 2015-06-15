@@ -1,3 +1,7 @@
 *.project
 .classpath
 .settings/
+*.name
+.idea/compiler.xml
+*.xml
+mockaroo.api.iml

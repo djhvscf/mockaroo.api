@@ -1,13 +1,11 @@
-Mockaroo API
-================
+# Mockaroo API
 
 Mockaroo API is an API that let us generate random data and insert into our data bases, create .xml, .xls, .json files. That's it.<br />
 This API is based on JSON Objects.
 
-Author Homepage:      http://djhv92.wix.com/dennishernandez<br />
+Author Homepage:      http://djhvscf.github.io/Blog/<br />
 
-How to use it?
-==============
+## How to use it?
 
         MockarooApi mockarooApi = new MockarooApi("Apikey", "application/json"); 
 
@@ -41,21 +39,23 @@ How to use it?
 	    MockarooFile xml = new MockarooXML("c:/temp/", "test", "lala");
 		xml.write(data);
 	    
-Dependencies
-=============
+## Dependencies
+
 Not yet.
 
-Repo Contents
-=============
+## Repo Contents
+
 Not yet.
 
-Release history
-======================
-Version: 0.1.0 - 18-July-2014
+## Release history
 
-Version: 1.0.0 - 19-July-2014
+| Version Number  | Date          |
+| --------------- | -----------   |
+| v1.0.0		  |	`19/July/2014` |
+| v0.1.0		  |	`18/July/2014` |
 
-Download mockarooapi.jar
-=======================
-https://github.com/djhvscf/mockaroo.api/releases/download/v0.1.0/mockarooapi.jar
-https://github.com/djhvscf/mockaroo.api/releases/download/v1.0.0/mockarooapi.jar
+## Known issues
+
+## Reporting issues
+Your feedback is very appreciated! <br />
+Use this page to [Report Issues](https://github.com/djhvscf/mockaroo.api/issues)

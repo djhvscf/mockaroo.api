@@ -100,11 +100,9 @@ public interface IMockarooValidatorHelper {
 	 * @param format Format date
 	 * @param messageExceptionDate Message to show when the exception is thrown
 	 * @param messageExceptionFormat Message to show when the exception is thrown
-	 * @param messageException Message to show when the exception is thrown
 	 * @throws MockarooExceptionFormatDate
 	 */
-	void validateDateFormat(String value, String format, String messageExceptionDate, 
-			String messageExceptionFormat) 
+	void validateDateFormat(String value, String format, String messageExceptionDate, String messageExceptionFormat)
 			throws MockarooExceptionFormatDate;
 	
 	/**
