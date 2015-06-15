@@ -5,15 +5,18 @@ import com.mockaroo.api.exceptions.MockarooExceptionFormatDate;
 import com.mockaroo.api.exceptions.MockarooExceptionFormatTime;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
+import com.mockaroo.api.exceptions.MockarooExceptionRegExpValue;
 import com.mockaroo.api.exceptions.MockarooExceptionValue;
 import com.mockaroo.api.interfaces.IMockarooValidatorHelper;
 import java.text.SimpleDateFormat;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 /**
  * Class to validate some things - Helper class
  * @author Dennis Hernández Vargas
- * @version 0.1.0
- * @since 12/July/2014
+ * @version 0.1.0 - 12/July/2014
+ * @since 0.1.0
  */
 public class MockarooValidatorHelper implements IMockarooValidatorHelper {
 
@@ -162,5 +165,16 @@ public class MockarooValidatorHelper implements IMockarooValidatorHelper {
 		{
 			throw new MockarooExceptionFormatDate(messageExceptionFormat);
 		}
+	}
+
+	@Override
+	public void validateRegularExpression(String value,
+			String messageExceptionRegExp) throws MockarooExceptionRegExpValue {
+		
+        try {
+            Pattern.compile(value);
+        } catch (PatternSyntaxException exception) {
+            throw new MockarooExceptionRegExpValue(messageExceptionRegExp);
+        }
 	}
 }

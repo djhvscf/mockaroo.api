@@ -25,8 +25,8 @@ import com.mockaroo.api.interfaces.IMockarooXMLHelper;
 /**
  * Class that create a XML file
  * @author Dennis Hernández Vargas
- * @version 0.1.1
- * @since 18/July/2014
+ * @version 1.0.0 - 18/July/2014
+ * @since 1.0.0
  */
 public class MockarooXMLHelper implements IMockarooXMLHelper {
 

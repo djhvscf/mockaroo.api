@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mockaroo.api.exceptions.MockarooExceptionValue;
@@ -15,8 +16,8 @@ import com.mockaroo.api.interfaces.IMockarooValidatorHelper;
 /**
  * Data access layer
  * @author Dennis Hernández Vargas
- * @version 0.1.1
- * @since 19/July/2014
+ * @version 1.0.0 - 19/July/2014
+ * @since 1.0.0
  */
 public class MockarooDataAccess {
 
@@ -39,7 +40,8 @@ public class MockarooDataAccess {
      * @param password User password
      * @throws MockarooExceptionValue 
      */
-    public MockarooDataAccess(String driverClassName, String url, String username, String password) throws MockarooExceptionValue
+    public MockarooDataAccess(String driverClassName, String url, String username, String password) 
+    		throws MockarooExceptionValue
     {
     	validator.validateString(driverClassName, messageExceptionDriver);
     	validator.validateString(url, messageExceptionUrl);
@@ -130,14 +132,30 @@ public class MockarooDataAccess {
 	}
 	
     /**
-     * insert the data into the database
-     * @param sql String with the sql statement
-     * @return True -> Was inserted, False -> An error ocurred
+     * Insert a JSONObject into a database
+     * @param tableName Table name 
+     * @param jsonObject {@link JSONObject}
+     * @param values Columns
      * @throws ClassNotFoundException
      * @throws SQLException
      */
-	public void Insert(String tableName, JSONObject jsonObject, String[] values) throws ClassNotFoundException, SQLException
+	public void Insert(String tableName, JSONObject jsonObject, String[] values) 
+			throws ClassNotFoundException, SQLException
 	{
 		mockarooDataAccessHelper.Insert(tableName, jsonObject, values, this.getConnection());
+	}
+	
+	/**
+     * Insert a JSONArray into a database
+     * @param tableName Table name 
+     * @param jsonArray {@link JSONArray}
+     * @param values Columns
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
+	public void Insert(String tableName, JSONArray jsonArray, String[] values)
+			throws ClassNotFoundException, SQLException
+	{
+		mockarooDataAccessHelper.Insert(tableName, jsonArray, values, this.getConnection());
 	}
 }

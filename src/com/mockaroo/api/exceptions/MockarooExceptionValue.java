@@ -3,8 +3,8 @@ package com.mockaroo.api.exceptions;
 /**
  * Throw when the value string is empty or null
  * @author Dennis Hernández Vargas
- * @version 0.1.0
- * @since 13/July/2014
+ * @version 0.1.0 - 13/July/2014
+ * @since 0.1.0
  */
 public class MockarooExceptionValue extends MockarooException {
 

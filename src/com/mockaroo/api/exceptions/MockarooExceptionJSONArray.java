@@ -3,8 +3,8 @@ package com.mockaroo.api.exceptions;
 /**
  * Throw when is invalid received a JSONArray because the count parameter is less than 0 
  * @author Dennis Hernández Vargas
- * @version 0.1.0
- * @since 16/July/2014
+ * @version 0.1.0 - 16/July/2014
+ * @since 0.1.0
  */
 public class MockarooExceptionJSONArray extends MockarooException {
 

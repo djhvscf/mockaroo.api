@@ -12,14 +12,16 @@ import com.mockaroo.api.interfaces.IMockarooDataAccessHelper;
 /**
  * Class to help the MockarooDataAccess class - Helper class
  * @author Dennis Hernández Vargas
- * @version 0.1.1
- * @since 19/July/2014
+ * @version 1.0.0 - 19/July/2014
+ * @since 1.0.0
  */
 public class MockarooDataAccessHelper implements IMockarooDataAccessHelper {
 
 	private static MockarooDataAccessHelper instance = null;
 	private static final String messageExceptionInsertError = "An error ocurred inserting the data";
 	private static final String INSERT_INTO = "INSERT INTO ";
+	private static final String LAST = ") ";
+	private static final String COMMA = ",";
 
 	/**
 	 * Default constructor
@@ -47,16 +49,15 @@ public class MockarooDataAccessHelper implements IMockarooDataAccessHelper {
 	public String generateValues(String[] values)
 	{
 		String first = " (";
-		String last = ") ";
 		String valuesGenerated = "";
 		valuesGenerated += first;
 		
 		for(int i = 0; i < values.length; i++)
 		{
-			valuesGenerated += values[i] + ",";
+			valuesGenerated += values[i] + COMMA;
 		}
 		
-		valuesGenerated = validateEnds(valuesGenerated) + last;
+		valuesGenerated = validateEnds(valuesGenerated) + LAST;
 		
 		return valuesGenerated;
 	}
@@ -70,17 +71,15 @@ public class MockarooDataAccessHelper implements IMockarooDataAccessHelper {
 	{
 		JSONArray name = jsonObject.names();
 		String first = "VALUES(";
-		String last = ") ";
 		String valuesToInsert = "";
-		
 		valuesToInsert += first;
 		
 		for(int i = 0; i < name.length(); i++)
 		{
-			valuesToInsert += "'" + jsonObject.getString(name.getString(i)) + "'" + ",";
+			valuesToInsert += "'" + jsonObject.getString(name.getString(i)) + "'" + COMMA;
 		}
 		
-		valuesToInsert = validateEnds(valuesToInsert) + last;
+		valuesToInsert = validateEnds(valuesToInsert) + LAST;
 		
 		return valuesToInsert;
 	}
@@ -92,12 +91,12 @@ public class MockarooDataAccessHelper implements IMockarooDataAccessHelper {
 	 */
 	private String validateEnds(String value)
 	{
-		if (value.endsWith(",")) 
+		if (value.endsWith(COMMA)) 
 		{
 			value = value.substring(0, value.length() - 1);
 		}
 		
-		return value;	
+		return value;
 	}
 
 	@Override
@@ -116,6 +115,33 @@ public class MockarooDataAccessHelper implements IMockarooDataAccessHelper {
 		catch(SQLException s)
 		{
 			throw new SQLException(messageExceptionInsertError);
+		}
+	}
+
+	@Override
+	public void Insert(String tableName, JSONArray jsonArray, String[] values,
+			Connection connection) throws ClassNotFoundException, SQLException {
+		
+		String columns = this.generateValues(values);
+		String insertQuery = "";
+		for(int i = 0; i < jsonArray.length(); i ++){
+			insertQuery = INSERT_INTO + tableName + columns + 
+					this.generateValuesInsert(jsonArray.getJSONObject(i));
+	
+			Statement statement;
+			statement = connection.createStatement();
+			try
+			{
+				statement.execute(insertQuery);
+			}
+			catch(SQLException s)
+			{
+				throw new SQLException(messageExceptionInsertError);
+			}
+			finally
+			{
+				insertQuery = "";
+			}
 		}
 	}
 }

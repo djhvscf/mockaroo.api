@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import jxl.write.WriteException;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -18,8 +19,8 @@ import com.mockaroo.api.interfaces.IMockarooXMLHelper;
 /**
  * Class base to Mockaroo XML
  * @author Dennis Hernández Vargas
- * @version 0.1.1
- * @since 18/July/2014
+ * @version 1.0.0 - 18/July/2014
+ * @since 1.0.0
  */
 public class MockarooXML extends MockarooFile {
 
@@ -27,12 +28,12 @@ public class MockarooXML extends MockarooFile {
 	private String path;
 	private String fileName;
 	private String rootElement;
+	private IMockarooValidatorHelper validator = MockarooValidatorHelper.getInstance();
 	private static final String CHILD_ELEMENT = "Object";
 	private static final String EXTENSION = ".xml";
-	private IMockarooValidatorHelper validator = MockarooValidatorHelper.getInstance();
-	private String messageExceptionPath = "The path can't be empty";
-	private String messageExceptionFileName = "The file name can't be empty";
-	private String messageExceptionRootElement = "The root element name can't be empty";
+	private static final String messageExceptionPath = "The path can't be empty";
+	private static final String messageExceptionFileName = "The file name can't be empty";
+	private static final String messageExceptionRootElement = "The root element name can't be empty";
 	
 	/**
 	 * Constructor
@@ -106,5 +107,10 @@ public class MockarooXML extends MockarooFile {
 	public void write(JSONObject jsonObject) throws IOException, WriteException, TransformerException 
 	{
 		xmlHelper.write(this.getPath() + this.getFileName(), this.getRootElement(), CHILD_ELEMENT, jsonObject);
+	}
+
+	@Override
+	public void write(JSONArray jsonArray) throws IOException, WriteException, TransformerException {
+		// TODO Auto-generated method stub
 	}
 }

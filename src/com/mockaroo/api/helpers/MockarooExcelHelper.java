@@ -24,8 +24,8 @@ import jxl.write.biff.RowsExceededException;
 /**
  * Class that create a Excel file
  * @author Dennis Hernández Vargas
- * @version 0.1.0
- * @since 17/July/2014
+ * @version 0.1.0 - 17/July/2014
+ * @since 0.1.0
  */
 public class MockarooExcelHelper implements IMockarooExcelHelper {
 
@@ -114,6 +114,28 @@ public class MockarooExcelHelper implements IMockarooExcelHelper {
 		workbook.close();
 	}
 	
+	@Override
+	public void write(String sheetName, String language, String country, File file, JSONArray jsonArray) 
+			throws IOException, WriteException
+	{
+		WorkbookSettings wbSettings = new WorkbookSettings();
+		wbSettings.setLocale(new Locale(language, country));
+
+		WritableWorkbook workbook = Workbook.createWorkbook(file, wbSettings);
+		workbook.createSheet(sheetName, 0);
+		WritableSheet excelSheet = workbook.getSheet(0);
+		createHeader(excelSheet, jsonArray.getJSONObject(0));
+		int row = 1;
+		for(int i = 0; i < jsonArray.length(); i++)
+		{
+			createData(excelSheet, row, jsonArray.getJSONObject(i));
+			row++;
+		}
+		
+		workbook.write();
+		workbook.close();
+	}
+	
 	/**
 	 * Create a header of the columns in the Excel file
 	 * @param sheet Excel file sheet
@@ -147,6 +169,22 @@ public class MockarooExcelHelper implements IMockarooExcelHelper {
 		for (int i = 0; i < data.length; i++) 
 		{
 			addData(sheet, i, 1, data[i], this.getTimes());
+		}
+	}
+	
+	/**
+	 * Create a data to write in Excel file
+	 * @param sheet Excel file sheet
+	 * @param jsonObject {@link JSONObject} with data
+	 * @throws WriteException
+	 * @throws RowsExceededException
+	 */
+	private void createData(WritableSheet sheet, int row, JSONObject jsonObject) throws WriteException, RowsExceededException 
+	{
+		String[] data = generateValuesInsert(jsonObject);
+		for (int i = 0; i < data.length; i++) 
+		{
+			addData(sheet, i, row, data[i], this.getTimes());
 		}
 	}
 

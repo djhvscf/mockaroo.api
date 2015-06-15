@@ -4,13 +4,14 @@ import com.mockaroo.api.exceptions.MockarooExceptionFormatDate;
 import com.mockaroo.api.exceptions.MockarooExceptionFormatTime;
 import com.mockaroo.api.exceptions.MockarooExceptionName;
 import com.mockaroo.api.exceptions.MockarooExceptionNumber;
+import com.mockaroo.api.exceptions.MockarooExceptionRegExpValue;
 import com.mockaroo.api.exceptions.MockarooExceptionValue;
 
 /**
  * Interface that provide base methods to validator helper
  * @author Dennis Hernández Vargas
- * @version 0.1.0
- * @since 12/July/2014
+ * @version 0.1.0 - 12/July/2014
+ * @since 0.1.0
  */
 public interface IMockarooValidatorHelper {
 
@@ -99,10 +100,16 @@ public interface IMockarooValidatorHelper {
 	 * @param format Format date
 	 * @param messageExceptionDate Message to show when the exception is thrown
 	 * @param messageExceptionFormat Message to show when the exception is thrown
-	 * @param messageException Message to show when the exception is thrown
 	 * @throws MockarooExceptionFormatDate
 	 */
-	void validateDateFormat(String value, String format, String messageExceptionDate, 
-			String messageExceptionFormat) 
+	void validateDateFormat(String value, String format, String messageExceptionDate, String messageExceptionFormat)
 			throws MockarooExceptionFormatDate;
+	
+	/**
+	 * Validate if the regular expression is valid
+	 * @param value Regular expression to validate
+	 * @param messageExceptionRegExp Message to show
+	 * @throws MockarooExceptionRegExpValue
+	 */
+	void validateRegularExpression(String value, String messageExceptionRegExp) throws MockarooExceptionRegExpValue;
 }

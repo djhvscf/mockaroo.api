@@ -3,8 +3,8 @@ package com.mockaroo.api.enums;
 /**
  * Enum that provide the mockaroo objects
  * @author Dennis Hernández Vargas
- * @version 0.1.0
- * @since 09/July/2014
+ * @version 0.1.0 - 09/July/2014
+ * @since 0.1.0
  */
 public enum MockarooType {
 	Blank,

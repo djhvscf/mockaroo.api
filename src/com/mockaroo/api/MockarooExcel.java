@@ -3,6 +3,9 @@ package com.mockaroo.api;
 import java.io.File;
 import java.io.IOException;
 
+import javax.xml.transform.TransformerException;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import jxl.write.WriteException;
@@ -17,8 +20,8 @@ import com.mockaroo.api.interfaces.IMockarooValidatorHelper;
 /**
  * Class to create a Excel file
  * @author Dennis Hernández Vargas
- * @version 0.1.0
- * @since 17/July/2014
+ * @version 0.1.0 - 17/July/2014
+ * @since 0.1.0
  */
 public class MockarooExcel extends MockarooFile {
 
@@ -29,13 +32,15 @@ public class MockarooExcel extends MockarooFile {
 	private String sheetName;
 	private String language;
 	private String country;
-	private static final String EXTENSION = ".xls";
 	private IMockarooValidatorHelper validator = MockarooValidatorHelper.getInstance();
-	public String messageExceptionPath = "The path can't be empty";
-	public String messageExceptionInputFileName = "The input file namee can't be empty";
-	public String messageExceptionSheetName = "The sheet name can't be empty";
-	public String messageExceptionLanguage = "The language can't be empty";
-	public String messageExceptionCountry = "The country can't be empty";
+	private static final String EXTENSION = ".xls";
+	private static final String messageExceptionPath = "The path can't be empty";
+	private static final String messageExceptionInputFileName = "The input file namee can't be empty";
+	private static final String messageExceptionSheetName = "The sheet name can't be empty";
+	private static final String messageExceptionLanguage = "The language can't be empty";
+	private static final String messageExceptionCountry = "The country can't be empty";
+	private static final String LANGUAGE = "en";
+	private static final String COUNTRY = "EN";
 	
 	
 	/**
@@ -77,17 +82,7 @@ public class MockarooExcel extends MockarooFile {
 	public MockarooExcel(String path, String inputFileName, String sheetName) 
 			throws WriteException, MockarooExceptionValue
 	{
-		validator.validateString(path, messageExceptionPath);
-		validator.validateString(inputFileName, messageExceptionInputFileName);
-		validator.validateString(sheetName, messageExceptionSheetName);
-		
-		mockarooExcel = MockarooExcelHelper.getInstance();
-		this.setPath(path);
-		this.setInputFileName(inputFileName);
-		this.setSheetName(sheetName);
-		this.setLanguage("en");
-		this.setCountry("EN");
-		this.setOutputFile();
+		this(path, inputFileName, sheetName, LANGUAGE, COUNTRY);
 	}
 
 	/**
@@ -203,5 +198,12 @@ public class MockarooExcel extends MockarooFile {
 	public void write(JSONObject jsonObject) throws IOException, WriteException
 	{
 		mockarooExcel.write(this.getSheetName(), this.getLanguage(), this.getCountry(), this.getFile(), jsonObject);
+	}
+
+	@Override
+	public void write(JSONArray jsonArray) throws IOException, WriteException,
+			TransformerException {
+		mockarooExcel.write(this.getSheetName(), this.getLanguage(), this.getCountry(), this.getFile(), jsonArray);
+		
 	}
 }

@@ -10,8 +10,8 @@ import com.mockaroo.api.interfaces.IMockarooUrl;
 /**
  * Class to create a connection to Mockaroo site
  * @author Dennis Hernández Vargas
- * @version 0.1.0
- * @since 09/July/2014
+ * @version 0.1.0 - 09/July/2014
+ * @since 0.1.0
  */
 public class MockarooUrl implements IMockarooUrl{
 
@@ -26,9 +26,7 @@ public class MockarooUrl implements IMockarooUrl{
 	 */
 	private MockarooUrl(String key, String contentType)
 	{
-		this.setKey(key);
-		this.setContentType(contentType);
-		this.setCountRegister(-1);
+		this(key, contentType, -1);
 	}
 	
 	/**
