@@ -38,6 +38,8 @@ public interface IMockarooObject {
 
 	static final String NAME = "name";
 	static final String TYPE = "type";
+	static final String SELECTIONSTYLE = "selectionStyle";
+	static final String DATASET = "dataset";
 	static final String VALUES = "values";
 	static final String MIN = "min";
 	static final String MAX = "max";

@@ -109,8 +109,8 @@ public class MockarooUrl implements IMockarooUrl{
 	
 	/**
 	 * Create a connection with api key and content type
-	 * @param papiKey Mockaroo api key
-	 * @param pcontentType Content type
+	 * @param apiKey Mockaroo api key
+	 * @param contentType Content type
 	 * @return {@link HttpURLConnection}
 	 * @throws MalformedURLException
 	 * @throws IOException

@@ -7,17 +7,20 @@ package com.mockaroo.api.enums;
  * @since 0.1.0
  */
 public enum MockarooType {
+	BitcoinAddress,
 	Blank,
 	Boolean,
 	City,
 	Color,
 	Company_Name,
 	Country,
+	CountryCode,
 	Credit_Card_1,//#
 	Credit_Card_Type,
 	Currency,
 	Currency_Code,
 	Custom_List,
+	Dataset_Column,
 	Date,
 	Domain_Name,
 	Email_Address,
